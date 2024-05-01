@@ -73,7 +73,7 @@ export default defineConfig({
     minify: 'terser',
     chunkSizeWarningLimit: Infinity,
     rollupOptions: {
-      external: ['workbox-window', '/assets/illustrations/map/map.svg']
+      external: ['workbox-window']
     }
 
     /**
