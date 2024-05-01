@@ -1,0 +1,22 @@
+:root {
+    --primary-rgb: 130 23 253;
+    --primary: rgb(119 4 251);
+    --white: #fff;
+    --white-smoke: #fcfcfc;
+    --placeholder: #cecece;
+    --border: #e5e5e5;
+    --border-hover: #d4cfcf;
+    --dark-text: #283252;
+    --medium-text: #757a91;
+    --light-text: #a2a5b9;
+    --widget-grey: #f5f6fa;
+    --fade-grey: #ededed;
+    --dark-border: #393945;
+    --navbar-link-color: hsl( 232  14%  68% );
+  
+    // placeload colors
+    --placeload-nuance-from: rgb(0 0 0 / 7%);
+    --placeload-nuance-to: rgb(0 0 0 / 15%);
+    --placeload-dark-nuance-from: var(--night-light-12);
+    --placeload-dark-nuance-to: var(--night-light-16);
+}

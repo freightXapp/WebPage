@@ -3,12 +3,10 @@ module.exports = {
     'stylelint-config-standard',
     'stylelint-config-recommended-vue',
   ],
-  customSyntax: 'postcss-scss',
   plugins: ['stylelint-scss'],
   overrides: [
     {
       files: ['*.vue', '**/*.vue'],
-      customSyntax: 'postcss-html',
     },
   ],
   rules: {
@@ -25,11 +23,6 @@ module.exports = {
     'declaration-block-no-redundant-longhand-properties': null,
     'function-no-unknown': null,
     'import-notation': 'string',
-
-    /** Bulma **/
-    'function-name-case': null,
-    'scss/dollar-variable-pattern': null,
-    'no-duplicate-selectors': null, // TODO
 
     /** Vuejs **/
     'value-keyword-case': null,
