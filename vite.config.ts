@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite'
-import { resolve, dirname } from 'pathe'
+import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'node:url'
 import Vue from '@vitejs/plugin-vue'
 import Pages from 'vite-plugin-pages'
