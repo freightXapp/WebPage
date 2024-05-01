@@ -58,7 +58,7 @@ export default {
         // define default props for Navbar here, you can override them using page meta
         items: [
           {
-            label: 'Home',
+            label: 'BAT IVAN PEDERAS',
             to: '/',
           },
         ],
