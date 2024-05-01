@@ -72,6 +72,9 @@ export default defineConfig({
   build: {
     minify: 'terser',
     chunkSizeWarningLimit: Infinity,
+    rollupOptions: {
+      external: ['workbox-window']
+    }
 
     /**
      * Uncomment this section to build the demo with missing images
