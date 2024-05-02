@@ -10,16 +10,13 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "bulma": "^1.0.0",
     "nuxt": "^3.11.2",
-    "ufo": "^1.5.3",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.2.5"
+
   },
   "devDependencies": {
-    "@fontsource-variable/montserrat": "^5.0.9",
-    "@fontsource-variable/roboto-flex": "^5.0.8",
-    "nuxt-icon": "^0.4.2",
-    "sass": "^1.76.0"
+    "sass": "^1.76.0",
+    "nuxt-svgo": "^3.7.0"
   }
 }
