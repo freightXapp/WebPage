@@ -159,7 +159,7 @@ const emit = defineEmits(['close'])
   </div>
 </template>
 <style lang="scss" scoped>
-
+@import "https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css";
 .colums{
     display: flex;
     flex-wrap: wrap;

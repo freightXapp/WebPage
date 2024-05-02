@@ -73,7 +73,7 @@ const props = withDefaults(
 </style>
 
 <style lang="scss">
-
+@import "https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css";
 .vulk-theme-toggle input:checked,
 .is-dark .vulk-theme-toggle input {
   + * .track {

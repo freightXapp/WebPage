@@ -1,5 +1,5 @@
 <template>
-    <HeaderNav>
-    </HeaderNav>
+    <HeaderNavbar>
+    </HeaderNavbar>
     <slot />
 </template>

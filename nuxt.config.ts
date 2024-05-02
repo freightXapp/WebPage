@@ -9,6 +9,8 @@ export default defineNuxtConfig({
   // swiper:{
   //   styleLang: 'css',
   // },
+  modules: ['nuxt-icon'],
+
   vite: {
     css: {
       preprocessorOptions: {
@@ -18,7 +20,5 @@ export default defineNuxtConfig({
       },
     },
   },
-  modules: ['nuxt-icon'],
-
 
 })

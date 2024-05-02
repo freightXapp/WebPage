@@ -105,21 +105,22 @@ const buttonClasses = computed(() => [
     :class="buttonClasses"
     :disabled="disabled"
   >
-    <!-- <i
+     <Icon
       v-if="props.iconLeft"
       class="iconify mr-1"
-      :data-icon="props.iconLeft"
+      :name="props.iconLeft"
     />
     <slot />
-    <i
+    <Icon
       v-if="props.iconRight"
       class="iconify ml-2"
-      :data-icon="props.iconRight"
-    /> -->
+      :name="props.iconRight"
+    /> 
   </button>
 </template>
 
 <style lang="scss" scoped>
+@import "https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css";
 
 .button {
   font-size: 0.95rem;

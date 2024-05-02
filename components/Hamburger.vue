@@ -29,6 +29,8 @@ const hamburgerClasses = computed(() => [
 </template>
 
 <style lang="scss" scoped>
+@use 'sass:math';
+
 $hamburger-size: 1.6rem;
 $hamburger-dash-width: 0.75em;
 $hamburger-dash-height: 0.05em;
@@ -40,7 +42,7 @@ $hamburger-dash-border-radius: 0;
   position: absolute;
   top: 50%;
   left: 2rem;
-//   left: math.div((1em - $hamburger-dash-width), 2);
+  left: math.div((1em - $hamburger-dash-width), 2);
   background-color: var(--light-text);
   width: $hamburger-dash-width;
   height: $hamburger-dash-height;
@@ -63,25 +65,25 @@ $hamburger-dash-border-radius: 0;
   cursor: pointer;
 
   span {
-    // @extend %menu-dash;
+    @extend %menu-dash;
 
-    // margin-top: math.div($hamburger-dash-height, -2);
+    margin-top: math.div($hamburger-dash-height, -2);
   }
 
   &::before {
     content: '';
 
-    // @extend %menu-dash;
+    @extend %menu-dash;
 
-    // margin-top: math.div(-$hamburger-dash-gutter + $hamburger-dash-height, -2);
+    margin-top: math.div(-$hamburger-dash-gutter + $hamburger-dash-height, -2);
   }
 
   &::after {
     content: '';
 
-    // @extend %menu-dash;
+    @extend %menu-dash;
 
-    // margin-top: math.div($hamburger-dash-gutter + $hamburger-dash-height, -2);
+    margin-top: math.div($hamburger-dash-gutter + $hamburger-dash-height, -2);
   }
 }
 
@@ -95,12 +97,12 @@ $hamburger-dash-border-radius: 0;
   &.open {
     &::before {
       transform: rotate(135deg);
-    //   margin-top: math.div($hamburger-dash-height, -2);
+      margin-top: math.div($hamburger-dash-height, -2);
     }
 
     &::after {
       transform: rotate(-135deg);
-    //   margin-top: math.div($hamburger-dash-height, -2);
+      margin-top: math.div($hamburger-dash-height, -2);
     }
 
     span {
@@ -121,7 +123,7 @@ $hamburger-dash-border-radius: 0;
 
     &::before,
     &::after {
-    //   @extend %menu-dash;
+      @extend %menu-dash;
 
       content: '';
       transition: 0.25s ease;
@@ -130,11 +132,11 @@ $hamburger-dash-border-radius: 0;
     }
 
     &::before {
-    //   transform: translateY(-$hamburger-dash-gutter);
+      transform: translateY(-$hamburger-dash-gutter);
     }
 
     &::after {
-    //   transform: translateY($hamburger-dash-gutter);
+      transform: translateY($hamburger-dash-gutter);
     }
   }
 
@@ -158,14 +160,14 @@ $hamburger-dash-border-radius: 0;
 
   &::after {
     left: auto;
-    // right: math.div((1em - $hamburger-dash-width), 2);
+    right: math.div((1em - $hamburger-dash-width), 2);
   }
 
   span {
     transition: 0.2s;
 
     &::before {
-    //   @extend %menu-dash;
+      @extend %menu-dash;
 
       content: '';
       transition: inherit;
@@ -203,7 +205,7 @@ $hamburger-dash-border-radius: 0;
 
     &::before,
     &::after {
-    //   @extend %menu-dash;
+      @extend %menu-dash;
 
       content: '';
       top: 0;
@@ -213,11 +215,11 @@ $hamburger-dash-border-radius: 0;
     }
 
     &::before {
-    //   transform: translateY(-$hamburger-dash-gutter);
+      transform: translateY(-$hamburger-dash-gutter);
     }
 
     &::after {
-    //   transform: translateY($hamburger-dash-gutter);
+      transform: translateY($hamburger-dash-gutter);
     }
   }
 
@@ -227,7 +229,7 @@ $hamburger-dash-border-radius: 0;
 
       &::before,
       &::after {
-        // width: math.div($hamburger-dash-width, 2);
+        width: math.div($hamburger-dash-width, 2);
         left: 0.02em;
       }
 
@@ -264,11 +266,11 @@ $hamburger-dash-border-radius: 0;
     }
 
     &::before {
-    //   transform: translateY(-$hamburger-dash-gutter);
+      transform: translateY(-$hamburger-dash-gutter);
     }
 
     &::after {
-    //   transform: translateY($hamburger-dash-gutter);
+      transform: translateY($hamburger-dash-gutter);
     }
   }
 
@@ -278,7 +280,7 @@ $hamburger-dash-border-radius: 0;
 
       &::before,
       &::after {
-        // width: math.div($hamburger-dash-width, 2);
+        width: math.div($hamburger-dash-width, 2);
         right: 0.02em;
       }
 
