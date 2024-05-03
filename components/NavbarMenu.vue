@@ -80,6 +80,12 @@ const props = withDefaults(defineProps<Props>(), {});
 <style setup lang="scss">
 .header {
   &__nav {
+    &-link{
+      width: 100%;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+    }
     &-list {
       top: 10rem;
       display:flex;
@@ -89,9 +95,14 @@ const props = withDefaults(defineProps<Props>(), {});
       gap: 1.5rem;
 
     }
+    &-item{
+      width: 100%;
+
+    }
     &-title{
       font-size: clamp(1.5rem, 50%, 1.7rem);
       font-weight: 500;
+      position: relative;
     }
 
     @media (min-width: $breakpoint-small) {
@@ -105,6 +116,7 @@ const props = withDefaults(defineProps<Props>(), {});
       }
 
       &-item {
+        width: auto;
         position: relative;
         margin-right: 2rem;
 
@@ -142,16 +154,18 @@ const props = withDefaults(defineProps<Props>(), {});
         content: '';
         position: absolute;
         bottom: 0;
-        left: 0;
-        width: 100%;
+        // left: 0;
+        width: 8rem;
         height: 2px;
         background-color: #007bff;
-        transform: translateX(-100%);
+        transform: translateX(-30%);
+        opacity: 0;;
         transition: transform 0.3s ease-in-out;
       }
 
       &:hover {
         &::after {
+        opacity: 1;
           transform: translateX(0);
         }
       }

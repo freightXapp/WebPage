@@ -9,8 +9,11 @@
       <nav class="header__nav">
         <ClientOnly>
           <Teleport to="body" v-if="isMobile && isToggle" class="header__menu-mobile">
-            <BaseDialog  ref="modal">
-              <NavbarMenu :is-toggle="isToggle"></NavbarMenu>
+            <BaseDialog  clas="t" ref="modal">
+              <template #modal-body>
+                <closeBtn @click="hiddenModal" class="header__dialog-close"></closeBtn>
+                <NavbarMenu  :is-toggle="isToggle"></NavbarMenu>
+              </template>
             </BaseDialog>
           </Teleport>
           <NavbarMenu v-if="!isMobile" class="header__menu-desktop":is-toggle="false"></NavbarMenu>
@@ -35,6 +38,7 @@
 
   <script setup lang="ts">
     import pickUp2 from '~/assets/BaseIcons/pc2.svg';
+    import closeBtn from '~/assets/BaseIcons/closeBold.svg';
     import BaseDialog from './BaseDialog.vue';
 
     const isToggle = ref(false);
@@ -48,23 +52,25 @@
     })
 
     const hiddenModal = () => {
-      isToggle.value = false;
+      setTimeout(() =>{ // needed for animation dialig
+        isToggle.value = false;
+      }, 200)
       modal.value?.closeModal();
-      /* eslint-disable no-use-before-define */
       document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener('popstate', hiddenModal);
     };
 
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         event.preventDefault();
-        hiddenModal();
+      isToggle.value = false;
       }
     };
     const showModal = () => {
-      console.log('yes');
       isToggle.value = !isToggle.value;
         modal.value?.openModal(); // baseDialog
       document.addEventListener('keydown', handleEscape);
+      window.addEventListener('popstate', hiddenModal)
     };
 
     function handleViewportChange(){
@@ -74,29 +80,14 @@
   </script>
 
   <style lang="scss" scoped>
-.header__nav-mobile{
-
+.header__dialog-close{
+  width: 3rem;
+  height: 3rem;
+  color: white;
+  float: right;
+  top: 2.6rem;
+  right: 1.8rem;
 }
-  .header__menu-desktop{
-
-    display: flex;
-    }
-
-  //   .dialog {
-  //   border: none;
-  //   height: 100vh;
-  //   margin: 0;
-  //   max-height: none;
-  //   max-width: none;
-  //   padding: 0;
-  //   width: 100vw;
-  //   background-color: rgba(0, 0, 0, 0.6);
-  //   top: 0;
-  //   left: 0;
-  //   position: fixed;
-  //   z-index: 1000;
-  //   overflow: hidden;
-  // }
 
     // desktop + hamburger menu
     .header {
@@ -115,13 +106,6 @@
       &__logo {
         width: 15rem;
         height: 5rem;
-
-        // min-width: 3.5rem;
-        // min-height: 3.5rem;
-        & svg,
-        path {
-          fill: none;
-        }
       }
 
       &__hamburger-btn {
@@ -185,131 +169,6 @@
         }
       }
 
-      // &__nav {
-      //   &-list {
-      //     display: none;
-      //   }
-
-      //   @media (min-width: $breakpoint-small) {
-      //     &-list {
-      //       display: flex;
-      //       flex-direction: row;
-      //       list-style: none;
-      //       margin: 0;
-      //       padding: 0;
-      //     }
-
-      //     &-item {
-      //       position: relative;
-      //       margin-right: 2rem;
-
-      //       &:hover {
-      //         .header__dropdown {
-      //           opacity: 1;
-      //           visibility: visible;
-      //           transform: translateY(0);
-      //         }
-      //       }
-      //     }
-      //   }
-
-      //   &-link {
-      //     color: #ffff;
-      //     text-decoration: none;
-      //     display: flex;
-      //     align-items: center;
-      //     padding: 0.5rem 0;
-      //     position: relative;
-      //     overflow: hidden;
-
-      //     &:hover {
-      //       .header__dropdown {
-      //         opacity: 1;
-      //         visibility: visible;
-      //         transform: translateY(0);
-      //       }
-      //     }
-
-      //     &::after {
-      //       content: '';
-      //       position: absolute;
-      //       bottom: 0;
-      //       left: 0;
-      //       width: 100%;
-      //       height: 2px;
-      //       background-color: #007bff;
-      //       transform: translateX(-100%);
-      //       transition: transform 0.3s ease-in-out;
-      //     }
-
-      //     &:hover {
-      //       &::after {
-      //         transform: translateX(0);
-      //       }
-      //     }
-      //   }
-
-      //   &-icon {
-      //     margin-left: 0.5rem;
-      //   }
-
-      //   &__dropdown {
-      //     position: absolute;
-      //     top: 100%;
-      //     left: 0;
-      //     background-color: #fff;
-      //     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      //     padding: 1rem;
-      //     min-width: 200px;
-      //     opacity: 0;
-      //     visibility: hidden;
-      //     transform: translateY(20px);
-      //     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, transform 0.3s ease-in-out;
-
-      //     &-list {
-      //       list-style: none;
-      //       margin: 0;
-      //       padding: 0;
-      //     }
-
-      //     &-item {
-      //       margin-bottom: 0.5rem;
-      //     }
-
-      //     &-link {
-      //       color: #333;
-      //       text-decoration: none;
-      //       display: flex;
-      //       align-items: center;
-      //       padding: 0.5rem;
-      //       position: relative;
-      //       overflow: hidden;
-
-      //       &::after {
-      //         content: '';
-      //         position: absolute;
-      //         bottom: 0;
-      //         left: 0;
-      //         width: 100%;
-      //         height: 2px;
-      //         background-color: #007bff;
-      //         transform: translateX(-100%);
-      //         transition: transform 0.3s ease-in-out;
-      //       }
-
-      //       &:hover {
-      //         &::after {
-      //           transform: translateX(0);
-      //         }
-      //       }
-      //     }
-
-      //     &-icon {
-      //       margin-right: 0.5rem;
-      //     }
-      //   }
-      // }
-
       &__auth {
         display: none;
       }
@@ -338,10 +197,5 @@
           }
         }
       }
-    }
-
-    // mobile content
-    .header__nav-mobile {
-      // display: block;
     }
   </style>
