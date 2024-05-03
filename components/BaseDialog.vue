@@ -1,7 +1,7 @@
 <template>
     <section>
-      <dialog ref="baseDialog">
-        <slot> </slot>
+      <dialog ref="baseDialog" class="dialog" :class="{'isClosing': dialogClose}">
+        <slot></slot> 
       </dialog>
     </section>
   </template>
@@ -9,6 +9,7 @@
   <script lang="ts" setup>
   
   const isDialogSupported = ref(true);
+  const dialogClose = ref(false);
   
   const baseDialog = ref<HTMLDialogElement>();
   
@@ -24,6 +25,7 @@
   const modalExistsAndIsOpen = (): boolean | undefined => baseDialog.value && baseDialog.value.open;
   
   const closeCallback = (): void => {
+
     if (modalExistsAndIsOpen()) {
       baseDialog.value?.close();
       baseDialog.value?.classList.remove('close');
@@ -32,6 +34,8 @@
     }
   };
   const closeModal = () => {
+    dialogClose.value = true;
+
     if (modalExistsAndIsOpen()) {
       baseDialog.value?.close();
     } else {
@@ -43,6 +47,7 @@
   };
   
   const closeModalWithoutAnimation = (): void => {
+    
     if (modalExistsAndIsOpen()) {
       baseDialog.value?.close();
       if (baseDialog.value) {
@@ -53,13 +58,7 @@
   };
   
   onMounted(() => {
-    // dialog polyfill
-    isDialogSupported.value =
-      typeof baseDialog.value?.showModal === 'function' && baseDialog.value?.showModal !== undefined;
-    // if (!isDialogSupported.value && !window.HTMLDialogElement) {
-    //   dialogPolyfill.registerDialog(baseDialog.value as HTMLDialogElement);
-    // }
-  
+    openModal();
     // close modal on native back event
     window.addEventListener('popstate', () => {
       closeModalWithoutAnimation();
@@ -67,14 +66,11 @@
   
     // close on ESC to also clear history state
     baseDialog.value?.addEventListener('keydown', (event) => {
+      console.log(event.key)
       if (event.key === 'Escape') {
         event.preventDefault();
-        const isNotCombinedKey = !(event.ctrlKey || event.altKey || event.shiftKey);
-        if (isNotCombinedKey) {
           closeModal();
-        }
       }
-      openModal();
     });
   
     // fixes overflow on dialog close event if needed.It is replaced by '!important css'
@@ -108,6 +104,31 @@
     position: fixed;
     z-index: 1000;
     overflow: hidden;
+    animation: slide-in-right 0.3s ease-in-out forwards;
   }
+  .isClosing {
+  animation: slide-out-left 0.3s ease-in-out forwards; /* Use the left-slide-out animation */
+}
+  @keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out-left {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
   </style>
   
