@@ -3,68 +3,28 @@
     <li class="header__nav-item">
       <NuxtLink to="/" class="header__nav-link">
         <span class="header__nav-title">Shippers</span>
-        <!-- <NuxtIcon name="arrow-down" class="header__nav-icon" /> -->
       </NuxtLink>
-      <div class="header__dropdown">
-        <!-- Add dropdown content for "About" -->
-      </div>
+      <div class="header__dropdown"></div>
     </li>
     <li class="header__nav-item">
       <a href="#" class="header__nav-link">
         <span class="header__nav-title">Forwarders</span>
-        <!-- <NuxtIcon name="arrow-down" class="header__nav-icon" /> -->
       </a>
-      <!-- <div class="header__dropdown"> -->
-      <!-- Add dropdown content for "Services" -->
-      <!-- </div> -->
     </li>
     <li class="header__nav-item">
       <a href="#" class="header__nav-link">
         <span class="header__nav-title">Carriers</span>
-        <!-- <NuxtIcon name="arrow-down" class="header__nav-icon" /> -->
       </a>
-      <!-- <div class="header__dropdown"> -->
-      <!-- Add dropdown content for "Contact" -->
-      <!-- </div> -->
     </li>
     <li class="header__nav-item">
       <a href="#" class="header__nav-link">
         <span class="header__nav-title">Price</span>
-        <!-- <NuxtIcon name="arrow-down" class="header__nav-icon" /> -->
       </a>
-      <!-- <div class="header__dropdown"> -->
-      <!-- Add dropdown content for "Contact" -->
-      <!-- </div> -->
     </li>
     <li class="header__nav-item">
       <a href="#" class="header__nav-link">
         <span class="header__nav-title">About us</span>
-        <!-- <NuxtIcon name="arrow-down" class="header__nav-icon" /> -->
       </a>
-      <!-- <div class="header__dropdown">
-                            <ul class="header__dropdown-list">
-                                <li class="header__dropdown-item">
-                                    <a href="#" class="header__dropdown-link">
-                                        <span>Link 1</span>
-                                    </a>
-                                </li>
-                                <li class="header__dropdown-item">
-                                    <a href="#" class="header__dropdown-link">
-                                        <span>Link 2</span>
-                                    </a>
-                                </li>
-                                <li class="header__dropdown-item">
-                                    <a href="#" class="header__dropdown-link">
-                                        <span>Link 3</span>
-                                    </a>
-                                </li>
-                                <li class="header__dropdown-item">
-                                    <a href="#" class="header__dropdown-link">
-                                        <span>Link 4</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div> -->
     </li>
   </ul>
 </template>
@@ -80,26 +40,24 @@ const props = withDefaults(defineProps<Props>(), {});
 <style setup lang="scss">
 .header {
   &__nav {
-    &-link{
+    &-link {
       width: 100%;
-      display:flex;
+      display: flex;
       justify-content: center;
       align-items: center;
     }
     &-list {
       top: 10rem;
-      display:flex;
+      display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       gap: 1.5rem;
-
     }
-    &-item{
+    &-item {
       width: 100%;
-
     }
-    &-title{
+    &-title {
       font-size: clamp(1.5rem, 50%, 1.7rem);
       font-weight: 500;
       position: relative;
@@ -131,7 +89,7 @@ const props = withDefaults(defineProps<Props>(), {});
     }
 
     &-link {
-      color: #ffff;
+      color: var(--white);
       text-decoration: none;
       display: flex;
       align-items: center;
@@ -140,7 +98,9 @@ const props = withDefaults(defineProps<Props>(), {});
       overflow: hidden;
       border: none;
       outline: none;
-      
+      @media (min-width: $breakpoint-small) {
+        color: var(--black);
+      }
 
       &:hover {
         .header__dropdown {
@@ -157,15 +117,15 @@ const props = withDefaults(defineProps<Props>(), {});
         // left: 0;
         width: 8rem;
         height: 2px;
-        background-color: #007bff;
+        background-color: var(--baby-blue);
         transform: translateX(-30%);
-        opacity: 0;;
+        opacity: 0;
         transition: transform 0.3s ease-in-out;
       }
 
       &:hover {
         &::after {
-        opacity: 1;
+          opacity: 1;
           transform: translateX(0);
         }
       }
@@ -179,7 +139,7 @@ const props = withDefaults(defineProps<Props>(), {});
       position: absolute;
       top: 100%;
       left: 0;
-      background-color: #fff;
+      background-color: var(--white);
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       padding: 1rem;
       min-width: 200px;
@@ -199,7 +159,7 @@ const props = withDefaults(defineProps<Props>(), {});
       }
 
       &-link {
-        color: #333;
+        color: var(--black);
         text-decoration: none;
         display: flex;
         align-items: center;
@@ -214,7 +174,7 @@ const props = withDefaults(defineProps<Props>(), {});
           left: 0;
           width: 100%;
           height: 2px;
-          background-color: #007bff;
+          background-color: var(--baby-blue);
           transform: translateX(-100%);
           transition: transform 0.3s ease-in-out;
         }

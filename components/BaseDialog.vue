@@ -7,13 +7,11 @@
 </template>
 
 <script lang="ts" setup>
-const isDialogSupported = ref(true);
 const dialogClose = ref(false);
 
 const baseDialog = ref<HTMLDialogElement>();
 
 const openModal = () => {
-
   baseDialog.value?.showModal();
   window.history.pushState({ checkoutModal: true }, '');
   document.body.style.overflow = 'hidden';
@@ -23,24 +21,19 @@ const modalExistsAndIsOpen = (): boolean | undefined => baseDialog.value && base
 
 const closeModal = () => {
   dialogClose.value = true;
-  console.log('close')
-  baseDialog.value?.addEventListener('webkitAnimationEnd', ()=>{
+  baseDialog.value?.addEventListener('webkitAnimationEnd', () => {
     if (modalExistsAndIsOpen()) {
       baseDialog.value?.close();
-    } 
+    }
     document.body.style.overflow = 'auto';
     if (baseDialog.value) baseDialog.value.style.overflow = 'auto';
-  })
-  
+  });
 };
-
 
 onMounted(() => {
   openModal();
-  // close modal on native back event
   window.addEventListener('popstate', () => {
-    closeModal()
-
+    closeModal();
   });
 
   // close on ESC to also clear history state
@@ -76,7 +69,7 @@ defineExpose({
   max-width: none;
   padding: 0;
   width: 100vw;
-  background-color: rgb(0, 0, 0);
+  background-color: var(--black);
   top: 0;
   left: 0;
   position: fixed;
