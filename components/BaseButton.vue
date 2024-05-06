@@ -1,9 +1,10 @@
 <template>
-  <!-- <component
+  <component
     :is="tag"
     class="button"
     :style="{ background: bgColor, padding: padding, margin: margin }"
     @click="$emit('BaseButton:click')"
+    v-if="type !== 'arrow'"
   >
 
   <NuxtLink v-if="tag === 'a'" :to="linkPath" class="button">
@@ -12,10 +13,10 @@
     </NuxtLink>
     <svgImage v-else-if="svgImage" alt="Button Image" :class="svgImageType ? svgImageType : 'button-image'" />
     <span  v-if="tag !== 'a'">{{ buttonText }}</span>
-  </component> -->
+  </component>
 
 
-  <button 
+  <button class="button" v-if="type === 'arrow'"
   :style="{ background: bgColor, padding: padding, margin: margin }"
   >
     {{ buttonText }}
@@ -32,6 +33,7 @@
 // import arrow from '~/assets/BaseIcons/arrowRightStr.svg'
 
 interface Props {
+type?: string;
   tag?: string;
   bgColor?: string;
   padding?: string;
@@ -51,17 +53,16 @@ const props = withDefaults(defineProps<Props>(), {
   svgImage: '',
   linkPath: '',
   svgImageType: '',
+  type: 'arrow'
 });
 </script>
 
 <style scoped lang="scss">
-:root {
-  --buttonColor: #635bff;
-  --buttonHoverColor: #0a2540;
-  --knockoutColor: #fff;
-}
+.arrow-icon{
+        top: 0.3rem;
+  }
 
-button {
+.button {
   border-radius: $button-border-medium;
   color: white;
   text-align: center;
@@ -71,13 +72,12 @@ button {
   cursor: pointer;
   position: relative;
   font-weight: 700;
-  transition: background 0.5s;
-  display: flex;
-  align-items: center;
+  transition: box-shadow 0.3s;
   gap: 0.5rem;
+  
 
   &:hover, &:focus {
-    background-color: var(--buttonHoverColor);
+box-shadow: 5px 5px 5px var(--light-text);
 
     .arrow-icon__tip {
       transform: translateX(0px);

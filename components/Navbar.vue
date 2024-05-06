@@ -88,7 +88,6 @@ function handleViewportChange() {
 
 // desktop + hamburger menu
 .header {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 1rem 0;
 
   &__container {

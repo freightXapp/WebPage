@@ -4,7 +4,7 @@
     Enhances transport logistics by offering better workforce management, reducing empty kilometers, and increasing
     payment security.
   </p>
-  <BaseButton :bg-color="'var(--pc2-orange-button)'" :svgImage="arrow" :linkPath="'https://one2hero.com/'"  :svgImageType="'arrow-right'" :button-text="'Start for free'" :tag="'a'"></BaseButton>
+  <BaseButton :bg-color="'var(--pc2-orange-button)'"  :svgImage="arrow" :linkPath="'https://one2hero.com/'"  :svgImageType="'arrow-right'" :button-text="'Start for free'" :tag="'a'"></BaseButton>
 </template>
 
 <script setup>
