@@ -3,30 +3,57 @@
     <div class="header__container">
       <div class="header__logo-container">
         <NuxtLink to="/">
-          <pickUp2 :filled="''" class="header__logo" />
+          <pickUp2
+            :filled="''"
+            class="header__logo"
+          />
         </NuxtLink>
       </div>
       <nav class="header__nav">
         <ClientOnly>
-          <Teleport to="body" v-if="isMobile && isToggle" class="header__menu-mobile">
-            <BaseDialog clas="t" ref="modal">
+          <Teleport
+            v-if="isMobile && isToggle"
+            to="body"
+            class="header__menu-mobile"
+          >
+            <BaseDialog
+              ref="modal"
+              clas="t"
+            >
               <template #modal-body>
-                <closeBtn @click="hiddenModal" class="header__dialog-close"></closeBtn>
-                <NavbarMenu :is-toggle="isToggle"></NavbarMenu>
+                <closeBtn
+                  class="header__dialog-close"
+                  @click="hiddenModal"
+                />
+                <NavbarMenu :is-toggle="isToggle" />
               </template>
             </BaseDialog>
           </Teleport>
-          <NavbarMenu v-if="!isMobile" class="header__menu-desktop" :is-toggle="false"></NavbarMenu>
+          <NavbarMenu
+            v-if="!isMobile"
+            class="header__menu-desktop"
+            :is-toggle="false"
+          />
         </ClientOnly>
       </nav>
       <div class="header__last-items">
         <div class="header__auth">
-          <a href="#" class="header__auth-link">
+          <a
+            href="#"
+            class="header__auth-link"
+          >
             <User class="header__auth-icon" />
           </a>
         </div>
-        <label for="side-navbar-toggle" @click="showModal" class="header__hamburger-btn">
-          <span :class="[`${isToggle ? 'header__hamburger-active' : ''}`]" class="header__hamburger-icon"></span>
+        <label
+          for="side-navbar-toggle"
+          class="header__hamburger-btn"
+          @click="showModal"
+        >
+          <span
+            :class="[`${isToggle ? 'header__hamburger-active' : ''}`]"
+            class="header__hamburger-icon"
+          />
         </label>
       </div>
     </div>
@@ -59,7 +86,7 @@ const hiddenModal = () => {
 };
 
 const handleEscape = (event: KeyboardEvent) => {
-  if (event.key === 'Escape') {
+    if (event.key === 'Escape') {
     event.preventDefault();
     isToggle.value = false;
   }

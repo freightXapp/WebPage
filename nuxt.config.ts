@@ -9,10 +9,7 @@ export default defineNuxtConfig({
   // swiper:{
   //   styleLang: 'css',
   // },
-  modules: [
-  'nuxt-svgo',
-      '@nuxt/eslint'
-  ],
+  modules: ['nuxt-svgo'],
 
   vite: {
     css: {

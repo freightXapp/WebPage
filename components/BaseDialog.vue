@@ -1,7 +1,11 @@
 <template>
   <section>
-    <dialog ref="baseDialog" class="dialog" :class="{ 'is-closing': dialogClose }">
-      <slot name="modal-body"></slot>
+    <dialog
+      ref="baseDialog"
+      class="dialog"
+      :class="{ 'is-closing': dialogClose }"
+    >
+      <slot name="modal-body" />
     </dialog>
   </section>
 </template>

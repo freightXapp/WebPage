@@ -1,28 +1,46 @@
 <template>
-  <ul class="header__nav-list" :class="{ 'header__nav-mobile': isToggle }">
+  <ul
+    class="header__nav-list"
+    :class="{ 'header__nav-mobile': isToggle }"
+  >
     <li class="header__nav-item">
-      <NuxtLink to="/" class="header__nav-link">
+      <NuxtLink
+        to="/"
+        class="header__nav-link"
+      >
         <span class="header__nav-title">Shippers</span>
       </NuxtLink>
-      <div class="header__dropdown"></div>
+      <div class="header__dropdown" />
     </li>
     <li class="header__nav-item">
-      <a href="#" class="header__nav-link">
+      <a
+        href="#"
+        class="header__nav-link"
+      >
         <span class="header__nav-title">Forwarders</span>
       </a>
     </li>
     <li class="header__nav-item">
-      <a href="#" class="header__nav-link">
+      <a
+        href="#"
+        class="header__nav-link"
+      >
         <span class="header__nav-title">Carriers</span>
       </a>
     </li>
     <li class="header__nav-item">
-      <a href="#" class="header__nav-link">
+      <a
+        href="#"
+        class="header__nav-link"
+      >
         <span class="header__nav-title">Price</span>
       </a>
     </li>
     <li class="header__nav-item">
-      <a href="#" class="header__nav-link">
+      <a
+        href="#"
+        class="header__nav-link"
+      >
         <span class="header__nav-title">About us</span>
       </a>
     </li>

@@ -1,0 +1,35 @@
+{
+    "files.autoSave": "afterDelay",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "grunt.autoDetect": "on",
+    "jake.autoDetect": "on",
+    "[vue]": {
+        "editor.defaultFormatter": "stylelint.vscode-stylelint"
+    },
+    "vetur.format.options.tabSize": 4,
+    "eslint.trace.server": "off",
+    "editor.detectIndentation": false,
+    "tabnine.experimentalAutoImports": true,
+    "eslint.nodeEnv": "",
+    "eslint.nodePath": "",
+    "eslint.notebooks.rules.customizations": [],
+    "workbench.sideBar.location": "right",
+    "typescript.tsserver.watchOptions": {
+        "watchFile": "useFsEvents"
+    },
+    "svg.preview.boundingBox": false,
+    "svg.preview.transparencyGrid": false,
+    "editor.codeActionsOnSave": {},
+    "workbench.iconTheme": "material-icon-theme",
+    "diffEditor.renderSideBySide": false,
+    "window.zoomLevel": -1,
+    "workbench.colorTheme": "Sapphire (Dim)",
+    "workbench.colorCustomizations": {
+        "tab.activeBorder": "#cc00ff",
+        "tab.activeBackground": "#62007b"
+    },
+    "diffEditor.ignoreTrimWhitespace": false
+}
+
+// open 'search from vs code' command+p or ctrl+p => type '> open user settings(JSON)'

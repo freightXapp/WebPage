@@ -1,31 +1,61 @@
 <template>
   <component
     :is="tag"
+    v-if="type !== 'arrow'"
     class="button"
     :style="{ background: bgColor, padding: padding, margin: margin }"
     @click="$emit('BaseButton:click')"
-    v-if="type !== 'arrow'"
   >
-
-  <NuxtLink v-if="tag === 'a'" :to="linkPath" class="button">
-    {{ buttonText }}
-      <arrow  alt="Button Image" :class="svgImageType ? svgImageType : 'button-image'" />
+    <NuxtLink
+      v-if="tag === 'a'"
+      :to="linkPath"
+      class="button"
+    >
+      {{ buttonText }}
+      <arrow
+        alt="Button Image"
+        :class="svgImageType ? svgImageType : 'button-image'"
+      />
     </NuxtLink>
-    <svgImage v-else-if="svgImage" alt="Button Image" :class="svgImageType ? svgImageType : 'button-image'" />
-    <span  v-if="tag !== 'a'">{{ buttonText }}</span>
+    <svgImage
+      v-else-if="svgImage"
+      alt="Button Image"
+      :class="svgImageType ? svgImageType : 'button-image'"
+    />
+    <span v-if="tag !== 'a'">{{ buttonText }}</span>
   </component>
 
 
-  <button class="button" v-if="type === 'arrow'"
-  :style="{ background: bgColor, padding: padding, margin: margin }"
+  <button
+    v-if="type === 'arrow'"
+    class="button"
+    :style="{ background: bgColor, padding: padding, margin: margin }"
   >
     {{ buttonText }}
-  <svg class="arrow-icon" width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path class="arrow-icon__tip" d="M8 15L14 8.5L8 2" stroke="currentColor" stroke-width="3" />
-    <line class="arrow-icon__line" x1="13" y1="8.5" y2="8.5" stroke="currentColor" stroke-width="3" />
-  </svg>
-
-</button>
+    <svg
+      class="arrow-icon"
+      width="17"
+      height="17"
+      viewBox="0 0 17 17"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        class="arrow-icon__tip"
+        d="M8 15L14 8.5L8 2"
+        stroke="currentColor"
+        stroke-width="3"
+      />
+      <line
+        class="arrow-icon__line"
+        x1="13"
+        y1="8.5"
+        y2="8.5"
+        stroke="currentColor"
+        stroke-width="3"
+      />
+    </svg>
+  </button>
 </template>
 
 

@@ -1,10 +1,19 @@
 <template>
-  <h1 class="main__cont-1-head">Partners in optimized transport process</h1>
+  <h1 class="main__cont-1-head">
+    Partners in optimized transport process
+  </h1>
   <p class="main__cont-1-add">
     Enhances transport logistics by offering better workforce management, reducing empty kilometers, and increasing
     payment security.
   </p>
-  <BaseButton :bg-color="'var(--pc2-orange-button)'"  :svgImage="arrow" :linkPath="'https://one2hero.com/'"  :svgImageType="'arrow-right'" :button-text="'Start for free'" :tag="'a'"></BaseButton>
+  <BaseButton
+    :bg-color="'var(--pc2-orange-button)'"
+    :svg-image="arrow"
+    :link-path="'https://one2hero.com/'"
+    :svg-image-type="'arrow-right'"
+    :button-text="'Start for free'"
+    :tag="'a'"
+  />
 </template>
 
 <script setup>
