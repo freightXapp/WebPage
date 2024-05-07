@@ -52,7 +52,10 @@
           <button type="submit" class="footer__button">SUBSCRIBE</button>
         </form>
         <div class="footer__icons">
-          <Facebook></Facebook>
+          <Facebook />
+          <Facebook />
+          <Facebook />
+          <Facebook />
         </div>
       </div>
     </div>
@@ -73,6 +76,7 @@ import Facebook from "~/assets/BaseIcons/facebook.svg";
   bottom: 0;
   left: 0;
   margin-top: auto;
+
   &__row {
     display: flex;
     flex-wrap: wrap;
@@ -82,6 +86,7 @@ import Facebook from "~/assets/BaseIcons/facebook.svg";
     margin: 0 auto;
     padding: 0 20px;
   }
+
   &__column {
     flex: 1 1 240px; // Ensure all columns are flexible and align nicely
     &--info,
@@ -90,36 +95,65 @@ import Facebook from "~/assets/BaseIcons/facebook.svg";
     &--newsletter {
       h4 {
         color: #202a4b;
-        font-size: 1.2rem;
-        font-weight: 400;
+        font-size: 1.4rem;
+        font-weight: 600;
       }
     }
   }
+
   &__links {
     margin-top: 20px;
     li {
       list-style: none;
       margin-bottom: 10px;
+      position: relative;
     }
     a {
+      font-size: 1.2rem;
+      font-weight: 400;
       text-decoration: none;
       color: #bfbfbf;
+      display: inline-block;
+
       &:hover {
-        color: #fff;
+        &::after {
+          opacity: 1;
+          transform: translateX(0%);
+        }
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -5px;
+        width: 100%;
+        height: 2px;
+        background-color: var(--baby-blue, #7489c6);
+        transform: translateX(-30%);
+        transition: transform 0.3s ease-in-out;
+        opacity: 0;
       }
     }
   }
+
   &__title {
-    font-size: 1.2rem;
-    font-weight: 400;
+    font-size: 2rem;
+    font-weight: 600;
+    p {
+      font-size: 1.2rem;
+    }
   }
+
   &__form {
     display: flex;
     gap: 5px;
-    align-items: center; // Added to align the button and input
+    align-items: center;
   }
+
   &__input {
-    flex: 1 0 50%; // Make input take only part of the form width
+    flex: 1 0 50%;
     height: 40px;
     border-radius: 6px;
     background: none;
@@ -132,6 +166,7 @@ import Facebook from "~/assets/BaseIcons/facebook.svg";
       color: #ccc;
     }
   }
+
   &__button {
     padding: 10px 15px;
     border-radius: 6px;
@@ -142,6 +177,7 @@ import Facebook from "~/assets/BaseIcons/facebook.svg";
       background: #cecccc;
     }
   }
+
   &__icons {
     display: flex;
     margin-top: 30px;
