@@ -49,7 +49,12 @@
             required
             class="footer__input"
           />
-          <button type="submit" class="footer__button">SUBSCRIBE</button>
+          <BaseButton
+            :bg-color="'var(--pc2-orange-button)'"
+            :link-path="'https://one2hero.com/'"
+            :button-text="'Subscribe'"
+            :tag="'a'"
+          />
         </form>
         <div class="footer__icons">
           <Facebook />
@@ -57,6 +62,11 @@
           <Facebook />
           <Facebook />
         </div>
+      </div>
+      <div class="footer__copyright">
+        <p class="footer__copyright--text">
+          All Rights Reserved © Pickup2 2024
+        </p>
       </div>
     </div>
   </section>
@@ -72,7 +82,7 @@ import Facebook from "~/assets/BaseIcons/facebook.svg";
   width: 100%;
   background: #f7f7fa;
   color: black;
-  padding: 60px 0;
+  padding: 40px 15px 0 0;
   bottom: 0;
   left: 0;
   margin-top: auto;
@@ -81,7 +91,7 @@ import Facebook from "~/assets/BaseIcons/facebook.svg";
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 20px; // Reduced gap for better alignment
+    gap: 20px;
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 20px;
@@ -95,9 +105,16 @@ import Facebook from "~/assets/BaseIcons/facebook.svg";
     &--newsletter {
       h4 {
         color: #202a4b;
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         font-weight: 600;
       }
+    }
+  }
+  &__copyright {
+    width: 100%;
+    text-align: center;
+    &--text {
+      font-size: 1.4rem;
     }
   }
 
@@ -112,7 +129,7 @@ import Facebook from "~/assets/BaseIcons/facebook.svg";
       font-size: 1.2rem;
       font-weight: 400;
       text-decoration: none;
-      color: #bfbfbf;
+      color: #000000;
       display: inline-block;
 
       &:hover {
@@ -138,14 +155,6 @@ import Facebook from "~/assets/BaseIcons/facebook.svg";
     }
   }
 
-  &__title {
-    font-size: 2rem;
-    font-weight: 600;
-    p {
-      font-size: 1.2rem;
-    }
-  }
-
   &__form {
     display: flex;
     gap: 5px;
@@ -158,12 +167,12 @@ import Facebook from "~/assets/BaseIcons/facebook.svg";
     border-radius: 6px;
     background: none;
     outline: none;
-    border: 1px solid #7489c6;
-    caret-color: #fff;
-    color: #fff;
+    border: 1px solid var(--baby-blue, #7489c6);
+    caret-color: #010101;
+    color: #0a0909;
     padding-left: 10px;
     &::placeholder {
-      color: #ccc;
+      color: #010101;
     }
   }
 
