@@ -82,7 +82,7 @@ import Facebook from "~/assets/BaseIcons/facebook.svg";
   width: 100%;
   background: #f7f7fa;
   color: black;
-  padding: 40px 15px 0 0;
+  padding: 40px 15px;
   bottom: 0;
   left: 0;
   margin-top: auto;

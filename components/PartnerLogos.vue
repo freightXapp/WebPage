@@ -14,14 +14,15 @@
 
 <style lang="scss" scoped>
 .small-section {
-  padding: 60px 0; // Adjust padding as necessary, possibly reducing it
-
+  margin: auto;
+  width: 80%;
+  padding: 60px 0;
   .container {
-    padding: 0; // Minimize padding if it's not required
+    padding: 0;
   }
 
   .row {
-    margin: 0; // Adjust or remove margin
+    margin: 0;
   }
 }
 @media (min-width: 1461px) {
