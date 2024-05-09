@@ -114,6 +114,7 @@ function handleViewportChange() {
   &__logo {
     width: 15rem;
     height: 5rem;
+    margin-right: 50px;
   }
 
   &__hamburger-btn {
