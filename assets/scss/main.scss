@@ -93,7 +93,8 @@ html {
   font-size: 62.5%; // Root font size 10px=1rem
   scroll-behavior: smooth;
   pointer-events: auto;
-  margin: auto;
+ margin:0 ;
+ height: 100%;
   @include customHorizontalScrollbar(
     $height: 0.5rem,
     $width: 0.5rem,

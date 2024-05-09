@@ -14,7 +14,7 @@
 
 <style lang="scss" scoped>
 .small-section {
-  margin: auto;
+  margin: 0 auto;
   width: 80%;
   padding: 60px 0;
   .container {
