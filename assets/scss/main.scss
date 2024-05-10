@@ -89,17 +89,18 @@
   scroll-behavior: smooth;
 }
 html {
+  max-width: 100% ;
   font-size: 62.5%; // Root font size 10px=1rem
   scroll-behavior: smooth;
   pointer-events: auto;
-  margin: auto;
+ margin:0 ;
+ height: 100%;
   @include customHorizontalScrollbar(
     $height: 0.5rem,
     $width: 0.5rem,
     $border-radius: 0.5rem
   );
-  max-width: $breakpoint-container;
-
+ 
 }
 
 body {

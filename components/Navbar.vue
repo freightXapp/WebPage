@@ -3,10 +3,7 @@
     <div class="header__container">
       <div class="header__logo-container">
         <NuxtLink to="/">
-          <pickUp2
-            :filled="''"
-            class="header__logo"
-          />
+          <pickUp2 :filled="''" class="header__logo" />
         </NuxtLink>
       </div>
       <nav class="header__nav">
@@ -16,15 +13,9 @@
             to="body"
             class="header__menu-mobile"
           >
-            <BaseDialog
-              ref="modal"
-              clas="t"
-            >
+            <BaseDialog ref="modal" clas="t">
               <template #modal-body>
-                <closeBtn
-                  class="header__dialog-close"
-                  @click="hiddenModal"
-                />
+                <closeBtn class="header__dialog-close" @click="hiddenModal" />
                 <NavbarMenu :is-toggle="isToggle" />
               </template>
             </BaseDialog>
@@ -38,10 +29,7 @@
       </nav>
       <div class="header__last-items">
         <div class="header__auth">
-          <a
-            href="#"
-            class="header__auth-link"
-          >
+          <a href="#" class="header__auth-link">
             <User class="header__auth-icon" />
           </a>
         </div>
@@ -116,7 +104,6 @@ function handleViewportChange() {
 // desktop + hamburger menu
 .header {
   padding: 1rem 0;
-
   &__container {
     margin: 0 1rem;
     display: flex;
@@ -127,6 +114,7 @@ function handleViewportChange() {
   &__logo {
     width: 15rem;
     height: 5rem;
+    margin-right: 50px;
   }
 
   &__hamburger-btn {
@@ -152,7 +140,7 @@ function handleViewportChange() {
 
     &::before,
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       left: 0;
       transition: all 0.15s ease;
