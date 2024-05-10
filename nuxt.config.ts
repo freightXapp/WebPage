@@ -1,10 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-
   modules: ["nuxt-svgo", "@nuxt/eslint", "nuxt-swiper"],
-
-
   vite: {
     css: {
       preprocessorOptions: {

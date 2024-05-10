@@ -75,8 +75,8 @@ type?: string;
 }
 withDefaults(defineProps<Props>(), {
   tag: 'button',
-  bgColor: 'orange',
-  padding: '1.4rem 2rem 1.4rem 1.3rem',
+    bgColor: 'var(--main-blue)',
+  padding: '1rem 2rem 1.4rem 1.3rem',
   margin: '4px 2px',
   buttonText: 'Button',
   svgImage: '',
@@ -88,25 +88,46 @@ withDefaults(defineProps<Props>(), {
 
 <style scoped lang="scss">
 .arrow-icon{
-        top: 0.3rem;
+        position:absolute;
+        right: 0.7rem;
+        top: 1.3rem;
+      
   }
 
 .button {
-  border-radius: $button-border-medium;
+  border-radius: $button-border-large;
   color: white;
+  display:flex;
+  justify-content: center;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   font-size: $font-small;
   cursor: pointer;
   position: relative;
   font-weight: 700;
   transition: box-shadow 0.3s;
+  width: 22rem;
+  height: 4.4rem;
   gap: 0.5rem;
+    &::after {
+        background-color: transparent;
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        content: "";
+        background-color: transparent;
+        border: 5px solid white;
+        -webkit-border-radius: 50%;
+        width: 4.4rem;
+        height: 5rem;
+        display: block;
+        position: absolute;
+        top: -0.3rem;
+        right: -0.4rem;
+    }
   
 
   &:hover, &:focus {
-box-shadow: 5px 5px 5px var(--light-text);
+box-shadow: -2px 10px 15px var(--light-text);
 
     .arrow-icon__tip {
       transform: translateX(0px);
@@ -185,5 +206,4 @@ box-shadow: 5px 5px 5px var(--light-text);
 //   transform: translateY(-50%);
 //   margin-right: 1rem;
 //   font-size: 2.2rem;
-// }
-</style>
+// }</style>
