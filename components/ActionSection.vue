@@ -45,8 +45,8 @@
   justify-content: space-between;
 
   @media (max-width: 768px) {
-    width: 90%; // Makes card width responsive
-    margin: 10px auto; // Centers card horizontally with margin
+    width: 60%; // Makes card width responsive
+    margin: 0 auto; // Centers card horizontally with margin
   }
 
   &__title {
@@ -78,8 +78,8 @@
     }
 
     &--grey {
-      background-color: #f7f7fa;
-      color: black;
+      background-color: #151e3a;
+      color: #c6c6c7;
     }
   }
 }

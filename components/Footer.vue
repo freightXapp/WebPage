@@ -1,12 +1,12 @@
 <template>
   <div>
-    <ActionSection class="action-section"></ActionSection>
+    <ActionSection class="action-section" />
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="wave">
       <path
         fill="#151E3A"
         fill-opacity="1"
         d="M0,288L1440,224L1440,320L0,320Z"
-      ></path>
+      />
     </svg>
   </div>
   <section class="footer">
@@ -80,7 +80,7 @@ import pickUp2 from "~/assets/BaseIcons/pc2-dark.svg";
 
 <style lang="scss" scoped>
 .action-section {
-  margin-bottom: -450px;
+  margin-bottom: -350px;
   z-index: 1;
 }
 .wave {
@@ -146,23 +146,26 @@ import pickUp2 from "~/assets/BaseIcons/pc2-dark.svg";
     }
   }
   &__copyright {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 20px 0px;
     width: 100%;
-
     &--text {
-      font-size: 1.4rem;
-      font-weight: 200;
+      font-size: 1.2rem;
+      font-weight: 300;
       color: #c6c6c7;
       text-align: left;
+      white-space: nowrap;
     }
   }
 
   &__rules {
-    width: 100%;
     text-align: right;
     text-decoration: none;
     color: white;
     font-weight: 100;
+    margin-right: 70px;
 
     a {
       color: white;
@@ -199,11 +202,11 @@ import pickUp2 from "~/assets/BaseIcons/pc2-dark.svg";
 
     &--svg {
       color: #c6c6c7;
-      width: 1.5em; // Adjust size if necessary
-      height: 1.5em; // Adjust size if necessary
+      width: 1.7em; // Adjust size if necessary
+      height: 1.7em; // Adjust size if necessary
       border: 2px solid #c6c6c7; // Adds a solid border
       border-radius: 50%; // Makes the icon borders circular
-      padding: 5px; // Padding inside the border
+      padding: 6px; // Padding inside the border
       transition: all 0.3s ease; // Smooth transition for hover effects
 
       &:hover {
