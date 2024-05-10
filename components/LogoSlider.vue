@@ -2,8 +2,8 @@
     <Swiper
 :modules="[SwiperAutoplay, SwiperEffectCreative,
         SwiperPagination,
-    SwiperNavigation]" :breakpoint="breakpoints" :loop="true" class="slide-1 brand-slider"
-        :slides-per-view="4" :space-between="50" :autoplay="{
+    SwiperNavigation]" :breakpoints="breakpoints" :loop="true" class="slide-1 brand-slider"
+        :space-between="50" :autoplay="{
             delay: 2000,
             disableOnInteraction: false,
         }">
@@ -16,9 +16,6 @@
 </template>
 
 <script lang="ts" setup>
-
-
-
 const brands = [
     '/img/1.png',
     '/img/2.png',
@@ -33,14 +30,20 @@ const brands = [
 const breakpoints = {
     320: {
         slidesPerView: 2,
+        spacebetween: "20"
     },
     480: {
         slidesPerView: 3,
+        spacebetween:"20"
+
     },
     768: {
         slidesPerView: 4,
+        spacebetween:"30"
+
     },
     1199: {
+        spacebetween:"50",
         slidesPerView: 5,
     },
 };
