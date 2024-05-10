@@ -80,7 +80,7 @@ import pickUp2 from "~/assets/BaseIcons/pc2-dark.svg";
 
 <style lang="scss" scoped>
 .action-section {
-  margin-bottom: -450px;
+  margin-bottom: -350px;
   z-index: 1;
 }
 .wave {
