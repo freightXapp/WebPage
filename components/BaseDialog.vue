@@ -11,57 +11,57 @@
 </template>
 
 <script lang="ts" setup>
-const dialogClose = ref(false);
+const dialogClose = ref(false)
 
-const baseDialog = ref<HTMLDialogElement>();
+const baseDialog = ref<HTMLDialogElement>()
 
 const openModal = () => {
-  baseDialog.value?.showModal();
-  window.history.pushState({ checkoutModal: true }, '');
-  document.body.style.overflow = 'hidden';
-};
+    baseDialog.value?.showModal()
+    window.history.pushState({ checkoutModal: true }, '')
+    document.body.style.overflow = 'hidden'
+}
 
-const modalExistsAndIsOpen = (): boolean | undefined => baseDialog.value && baseDialog.value.open;
+const modalExistsAndIsOpen = (): boolean | undefined => baseDialog.value && baseDialog.value.open
 
 const closeModal = () => {
-  dialogClose.value = true;
-  baseDialog.value?.addEventListener('webkitAnimationEnd', () => {
-    if (modalExistsAndIsOpen()) {
-      baseDialog.value?.close();
-    }
-    document.body.style.overflow = 'auto';
-    if (baseDialog.value) baseDialog.value.style.overflow = 'auto';
-  });
-};
+    dialogClose.value = true
+    baseDialog.value?.addEventListener('webkitAnimationEnd', () => {
+        if (modalExistsAndIsOpen()) {
+            baseDialog.value?.close()
+        }
+        document.body.style.overflow = 'auto'
+        if (baseDialog.value) baseDialog.value.style.overflow = 'auto'
+    })
+}
 
 onMounted(() => {
-  openModal();
-  window.addEventListener('popstate', () => {
-    closeModal();
-  });
+    openModal()
+    window.addEventListener('popstate', () => {
+        closeModal()
+    })
 
-  // close on ESC to also clear history state
-  baseDialog.value?.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-      event.preventDefault();
-      closeModal();
-    }
-  });
+    // close on ESC to also clear history state
+    baseDialog.value?.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            event.preventDefault()
+            closeModal()
+        }
+    })
 
-  // fixes overflow on dialog close event if needed.It is replaced by '!important css'
-  baseDialog.value?.addEventListener('close', () => {
-    document.body.style.overflow = 'auto';
-  });
-});
+    // fixes overflow on dialog close event if needed.It is replaced by '!important css'
+    baseDialog.value?.addEventListener('close', () => {
+        document.body.style.overflow = 'auto'
+    })
+})
 
 onUnmounted(() => {
-  closeModal();
-});
+    closeModal()
+})
 
 defineExpose({
   openModal,
   closeModal,
-});
+})
 </script>
 
 <style lang="scss" scoped>

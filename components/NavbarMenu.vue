@@ -49,10 +49,10 @@
 
 <script setup lang="ts">
 interface Props {
-  isToggle: boolean;
+  isToggle: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), {});
+const props = withDefaults(defineProps<Props>(), {})
 </script>
 
 <style setup lang="scss">

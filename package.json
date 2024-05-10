@@ -11,14 +11,17 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "nuxt": "^3.11.2",
     "vue": "^3.4.21",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
+    "@nuxt/eslint": "^0.3.10",
     "@nuxt/eslint-config": "^0.3.10",
     "eslint": "^8.57.0",
     "nuxt-svgo": "^3.7.0",
-    "sass": "^1.76.0"
+    "sass": "^1.76.0",
+    "typescript": "^5.4.5"
   }
 }

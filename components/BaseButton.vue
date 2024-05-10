@@ -73,8 +73,7 @@ type?: string;
   linkPath?: string;
   svgImageType?: string;
 }
-
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   tag: 'button',
   bgColor: 'orange',
   padding: '1.4rem 2rem 1.4rem 1.3rem',

@@ -1,6 +1,5 @@
 <template>
-    <MainContent></MainContent>
+  <MainContent />
 </template>
 <script setup lang="ts">
-console.log('test')
 </script>

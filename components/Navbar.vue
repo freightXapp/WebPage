@@ -61,45 +61,45 @@
 </template>
 
 <script setup lang="ts">
-import pickUp2 from '~/assets/BaseIcons/pc2-dark.svg';
-import closeBtn from '~/assets/BaseIcons/closeBold.svg';
-import User from '~/assets/BaseIcons/user.svg';
-import BaseDialog from './BaseDialog.vue';
+import BaseDialog from './BaseDialog.vue'
+import pickUp2 from '~/assets/BaseIcons/pc2-dark.svg'
+import closeBtn from '~/assets/BaseIcons/closeBold.svg'
+import User from '~/assets/BaseIcons/user.svg'
 
-const isToggle = ref(false);
-const modal = ref<typeof BaseDialog>();
-const isMobile = ref(false);
+const isToggle = ref(false)
+const modal = ref<typeof BaseDialog>()
+const isMobile = ref(false)
 
 onMounted(() => {
-  isMobile.value = window.innerWidth < 768;
-  window.addEventListener('resize', handleViewportChange);
-});
+    isMobile.value = window.innerWidth < 768
+    window.addEventListener('resize', handleViewportChange)
+})
 
 const hiddenModal = () => {
-  setTimeout(() => {
+    setTimeout(() => {
     // needed for animation dialig
-    isToggle.value = false;
-  }, 200);
-  modal.value?.closeModal();
-  document.removeEventListener('keydown', handleEscape);
-  document.removeEventListener('popstate', hiddenModal);
-};
+        isToggle.value = false
+    }, 200)
+    modal.value?.closeModal()
+    document.removeEventListener('keydown', handleEscape)
+    document.removeEventListener('popstate', hiddenModal)
+}
 
 const handleEscape = (event: KeyboardEvent) => {
     if (event.key === 'Escape') {
-    event.preventDefault();
-    isToggle.value = false;
-  }
-};
+        event.preventDefault()
+        isToggle.value = false
+    }
+}
 const showModal = () => {
-  isToggle.value = !isToggle.value;
-  modal.value?.openModal(); // baseDialog
-  document.addEventListener('keydown', handleEscape);
-  window.addEventListener('popstate', hiddenModal);
-};
+    isToggle.value = !isToggle.value
+    modal.value?.openModal() // baseDialog
+    document.addEventListener('keydown', handleEscape)
+    window.addEventListener('popstate', hiddenModal)
+}
 
 function handleViewportChange() {
-  isMobile.value = window.innerWidth < 768;
+    isMobile.value = window.innerWidth < 768
 }
 </script>
 
