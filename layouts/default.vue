@@ -1,9 +1,9 @@
 <template>
-  <div class="container">
-    <Navbar> </Navbar>
-    <slot />
-    <Footer> </Footer>
-  </div>
+    <div class="container">
+        <Navbar />
+        <slot />
+        <Footer />
+    </div>
 </template>
 <style scoped lang="scss">
 .container {

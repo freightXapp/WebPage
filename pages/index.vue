@@ -1,7 +1,8 @@
 <template>
-  <MainContent></MainContent>
-  <PartnerLogos></PartnerLogos>
+    <div>
+        <MainContent />
+        <PartnerLogos />
+    </div>
 </template>
 <script setup lang="ts">
-console.log("test");
 </script>

@@ -60,7 +60,7 @@
 
 
 <script setup lang="ts">
-// import arrow from '~/assets/BaseIcons/arrowRightStr.svg'
+import arrow from '~/assets/BaseIcons/arrowRightStr.svg'
 
 interface Props {
 type?: string;
