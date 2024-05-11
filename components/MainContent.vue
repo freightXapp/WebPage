@@ -8,7 +8,7 @@
                             <div v-if="section.sectionImage">
                                 <component :is="section.sectionImage" :filled="''" class="main__cont-1-section-image" />
                             </div>
-                            Shippers
+                            {{section.section}}
                         </h3>
                     </div>
                     <h1 class="main__cont-1-head">
