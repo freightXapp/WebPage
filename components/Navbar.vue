@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header ref="header" class="header" :class="{ 'sticky-header': isHeaderBg }">
     <div class="header__container">
       <div class="header__logo-container">
         <NuxtLink to="/">
@@ -57,11 +57,33 @@ import User from '~/assets/BaseIcons/user.svg'
 const isToggle = ref(false)
 const modal = ref<typeof BaseDialog>()
 const isMobile = ref(false)
+const header = ref(null);
+const isHeaderBg = ref(false)
+let lastScrollPosition = 0;
 
+function handleScroll (){
+     const threshold = 1;
+     console.log(window.scrollY)
+  isHeaderBg.value = window.scrollY > threshold;
+
+
+    const currentScrollPosition = window.scrollY;
+  if (currentScrollPosition < lastScrollPosition || isHeaderBg.value) {
+    header.value.style.top = '';
+  } else {
+    header.value.style.top = '-100%';
+  }
+  lastScrollPosition = currentScrollPosition;
+}
 onMounted(() => {
     isMobile.value = window.innerWidth < 768
     window.addEventListener('resize', handleViewportChange)
+    window.addEventListener('scroll', handleScroll);
 })
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll);
+});
 
 const hiddenModal = () => {
     setTimeout(() => {
@@ -100,10 +122,16 @@ function handleViewportChange() {
   top: 2.6rem;
   right: 1.8rem;
 }
-
+.sticky-header{
+    background-color: white;
+}
 // desktop + hamburger menu
 .header {
   padding: 1rem 0;
+  position: fixed;
+    width: 100%;
+    z-index: 4;
+//   background-color: rgba(0, 78, 97, 0.96);
   &__container {
     margin: 0 1rem;
     display: flex;

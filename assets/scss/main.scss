@@ -91,7 +91,7 @@
 html {
   max-width: 100% ;
   font-size: 62.5%; // Root font size 10px=1rem
-  scroll-behavior: smooth;
+scroll-behavior: smooth;
   pointer-events: auto;
  margin:0 ;
  height: 100%;
@@ -104,17 +104,12 @@ html {
 }
 
 body {
+    background-color: rgba(61, 61, 61, 0.225);
   margin: 0;
-  color: var(--color-text);
   overflow: auto;
 
-  background: #000000;  /* fallback for old browsers */
-  background: var(--bg-main);
   line-height: 2.1rem;
   font-size: 1.6rem;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 body *{
@@ -126,7 +121,6 @@ body *{
 }
 
 main{
-  margin: 0 1rem;
   min-height: 45rem;
 
 }
