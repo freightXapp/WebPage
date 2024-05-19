@@ -1,6 +1,7 @@
 <template>
     <div>
         <MainContent />
+        <Services/>
         <PartnerLogos />
     </div>
 </template>

@@ -3,7 +3,8 @@
     <div class="header__container">
       <div class="header__logo-container">
         <NuxtLink to="/">
-          <pickUp2 :filled="''" class="header__logo" />
+          <pickUp2 v-if="isHeaderBg" :filled="''" class="header__logo" />
+          <pickUp2White v-else :filled="''" class="header__logo" />
         </NuxtLink>
       </div>
       <nav class="header__nav">
@@ -24,13 +25,17 @@
             v-if="!isMobile"
             class="header__menu-desktop"
             :is-toggle="false"
+            :is-above="!isHeaderBg"
           />
         </ClientOnly>
       </nav>
       <div class="header__last-items">
         <div class="header__auth">
           <a href="#" class="header__auth-link">
-            <User class="header__auth-icon" />
+            <User
+              class="header__auth-icon"
+              :class="[{ 'header__auth-icon--white': !isHeaderBg }]"
+            />
           </a>
         </div>
         <label
@@ -39,7 +44,12 @@
           @click="showModal"
         >
           <span
-            :class="[`${isToggle ? 'header__hamburger-active' : ''}`]"
+            :class="[
+              {
+                'header__hamburger-active': isToggle,
+                'header__hamburger-icon--white': !isHeaderBg,
+              },
+            ]"
             class="header__hamburger-icon"
           />
         </label>
@@ -49,67 +59,69 @@
 </template>
 
 <script setup lang="ts">
-import BaseDialog from './BaseDialog.vue'
-import pickUp2 from '~/assets/BaseIcons/pc2-dark.svg'
-import closeBtn from '~/assets/BaseIcons/closeBold.svg'
-import User from '~/assets/BaseIcons/user.svg'
+import BaseDialog from "./BaseDialog.vue";
+import pickUp2 from "~/assets/BaseIcons/pc2-dark.svg";
+import pickUp2White from "~/assets/BaseIcons/pc2.svg";
+import closeBtn from "~/assets/BaseIcons/closeBold.svg";
+import User from "~/assets/BaseIcons/user.svg";
 
-const isToggle = ref(false)
-const modal = ref<typeof BaseDialog>()
-const isMobile = ref(false)
+const isToggle = ref(false);
+const modal = ref<typeof BaseDialog>();
+const isMobile = ref(false);
 const header = ref(null);
-const isHeaderBg = ref(false)
+const isHeaderBg = ref(false);
 let lastScrollPosition = 0;
 
-function handleScroll (){
-     const threshold = 1;
-     console.log(window.scrollY)
+function handleScroll() {
+  const threshold = 0;
   isHeaderBg.value = window.scrollY > threshold;
+  const currentScrollPosition = window.scrollY;
 
-
-    const currentScrollPosition = window.scrollY;
-  if (currentScrollPosition < lastScrollPosition || isHeaderBg.value) {
-    header.value.style.top = '';
+  if (currentScrollPosition < lastScrollPosition || isHeaderBg) {
+    header.value.style.top = "";
   } else {
-    header.value.style.top = '-100%';
+    header.value.style.top = "-100%";
   }
+
   lastScrollPosition = currentScrollPosition;
 }
 onMounted(() => {
-    isMobile.value = window.innerWidth < 768
-    window.addEventListener('resize', handleViewportChange)
-    window.addEventListener('scroll', handleScroll);
-})
+  isMobile.value = window.innerWidth < 768;
+  window.addEventListener("resize", handleViewportChange);
+  window.addEventListener("scroll", handleScroll);
+  handleScroll();
+  header.value.style.top = "";
+});
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll);
+  window.removeEventListener("scroll", handleScroll);
 });
 
 const hiddenModal = () => {
-    setTimeout(() => {
+  setTimeout(() => {
     // needed for animation dialig
-        isToggle.value = false
-    }, 200)
-    modal.value?.closeModal()
-    document.removeEventListener('keydown', handleEscape)
-    document.removeEventListener('popstate', hiddenModal)
-}
+    isToggle.value = false;
+  }, 200);
+  modal.value?.closeModal();
+  document.removeEventListener("keydown", handleEscape);
+  document.removeEventListener("popstate", hiddenModal);
+};
 
 const handleEscape = (event: KeyboardEvent) => {
-    if (event.key === 'Escape') {
-        event.preventDefault()
-        isToggle.value = false
-    }
-}
+  if (event.key === "Escape") {
+    event.preventDefault();
+    isToggle.value = false;
+  }
+};
 const showModal = () => {
-    isToggle.value = !isToggle.value
-    modal.value?.openModal() // baseDialog
-    document.addEventListener('keydown', handleEscape)
-    window.addEventListener('popstate', hiddenModal)
-}
+  isToggle.value = !isToggle.value;
+  modal.value?.openModal(); // baseDialog
+  document.addEventListener("keydown", handleEscape);
+  window.addEventListener("popstate", hiddenModal);
+};
 
 function handleViewportChange() {
-    isMobile.value = window.innerWidth < 768
+  isMobile.value = window.innerWidth < 768;
 }
 </script>
 
@@ -122,21 +134,22 @@ function handleViewportChange() {
   top: 2.6rem;
   right: 1.8rem;
 }
-.sticky-header{
-    background-color: white;
+.sticky-header {
+  background-color: var(--white);
 }
 // desktop + hamburger menu
 .header {
   padding: 1rem 0;
   position: fixed;
-    width: 100%;
-    z-index: 4;
-//   background-color: rgba(0, 78, 97, 0.96);
+  width: 100%;
+  z-index: 4;
   &__container {
     margin: 0 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: $breakpoint-maxsize;
+    margin: 0 auto;
   }
 
   &__logo {
@@ -156,6 +169,13 @@ function handleViewportChange() {
   &__hamburger-icon {
     position: relative;
     color: var(--black);
+    &--white {
+      &,
+      &::before,
+      &::after {
+        background-color: var(--white) !important;
+      }
+    }
 
     &,
     &::before,
@@ -210,11 +230,12 @@ function handleViewportChange() {
     justify-content: center;
     align-items: center;
   }
-  &__auth {
-    &-icon {
-      height: 3rem;
-      width: 3rem;
-      color: var(--black);
+  &__auth-icon {
+    height: 3rem;
+    width: 3rem;
+    color: var(--black);
+    &--white {
+      color: var(--white);
     }
   }
 }

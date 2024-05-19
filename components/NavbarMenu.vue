@@ -8,7 +8,7 @@
         to="/"
         class="header__nav-link"
       >
-        <span class="header__nav-title">Shippers</span>
+        <span class="header__nav-title" :class="[{'header__nav-title--white': isAbove}]">Shippers</span>
       </NuxtLink>
       <div class="header__dropdown" />
     </li>
@@ -17,7 +17,7 @@
         href="#"
         class="header__nav-link"
       >
-        <span class="header__nav-title">Forwarders</span>
+        <span class="header__nav-title" :class="[{'header__nav-title--white': isAbove}]">Forwarders</span>
       </a>
     </li>
     <li class="header__nav-item">
@@ -25,7 +25,7 @@
         href="#"
         class="header__nav-link"
       >
-        <span class="header__nav-title">Carriers</span>
+        <span class="header__nav-title"  :class="[{'header__nav-title--white': isAbove}]">Carriers</span>
       </a>
     </li>
     <li class="header__nav-item">
@@ -33,7 +33,7 @@
         href="#"
         class="header__nav-link"
       >
-        <span class="header__nav-title">Price</span>
+        <span class="header__nav-title" :class="[{'header__nav-title--white': isAbove}]">Price</span>
       </a>
     </li>
     <li class="header__nav-item">
@@ -41,7 +41,7 @@
         href="#"
         class="header__nav-link"
       >
-        <span class="header__nav-title">About us</span>
+        <span class="header__nav-title" :class="[{'header__nav-title--white': isAbove}]">About us</span>
       </a>
     </li>
   </ul>
@@ -49,10 +49,13 @@
 
 <script setup lang="ts">
 interface Props {
-  isToggle: boolean
+  isToggle: boolean,
+  isAbove?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), {})
+const props = withDefaults(defineProps<Props>(), {
+})
+console.log(props.isAbove)
 </script>
 
 <style setup lang="scss">
@@ -79,6 +82,9 @@ const props = withDefaults(defineProps<Props>(), {})
       font-size: clamp(1.5rem, 50%, 1.7rem);
       font-weight: 500;
       position: relative;
+      &--white{
+        color: white;
+      }
     }
 
     @media (min-width: $breakpoint-small) {

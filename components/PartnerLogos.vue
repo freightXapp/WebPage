@@ -15,7 +15,7 @@
 <style lang="scss" scoped>
 .small-section {
   margin: 0 auto;
-  width: 80%;
+  width: $breakpoint-maxsize;
   padding: 60px 0;
   .container {
     padding: 0;
@@ -24,10 +24,13 @@
   .row {
     margin: 0;
   }
-}
-@media (min-width: 1461px) {
-  .container {
-    max-width: 1400px;
+  
+  .container{
+    margin-left: 2rem;
+    @media(min-width: $breakpoint-maxsize){
+        margin-left: 10rem;
+    }
   }
 }
+
 </style>

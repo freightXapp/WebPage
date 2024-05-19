@@ -3,7 +3,7 @@
     <div
       v-for="(section, index) in textContent"
       :key="section"
-      :class="`main__cont-${index}`"
+      :class="[`main__cont-${index}`, { 'main__cont-container': index !== 0 }]"
     >
       <div class="main__cont-1-main">
         <div
@@ -26,7 +26,7 @@
             </h3>
           </div>
           <h1 class="main__cont-1-head" :class="`main__cont-${index}-head`">
-            <span v-if="index !== 0" class="main__cont-1-count">0{{ index }}</span>
+          
             {{ section.title }}
           </h1>
           <p class="main__cont-1-add" :class="`main__cont-${index}-add`">
@@ -44,7 +44,72 @@
             />
           </div>
         </div>
-        <div v-if="section.imagePath">
+        <div
+          v-if="section.imagePath"
+          :class="`main__cont-${index}-img-container`"
+        >
+          <img
+            :src="section.imagePath"
+            class="main__cont-1-img"
+            :class="`main__cont-${index}-img`"
+            alt="logo"
+          >
+        </div>
+      </div>
+    </div>
+
+
+    <h1 class="main__content-title">Your Solutions</h1>
+    <p class="main__content-addition">Technology that enhances your performance, security and business</p>
+    <div class="main">
+      <div
+        v-for="(section, index) in mainContentent"
+        :key="section"
+        class="main__loop-container"
+      >
+        <div class="main__container">
+          <div
+            class="main__cont-text-content main__container"
+          >
+            <div v-if="section.section" class="main__cont-1-section">
+              <h3
+                class="main__cont-1-section-title main__cont-title"
+              >
+                <div v-if="section.sectionImage">
+                  <component
+                    :is="section.sectionImage"
+                    :filled="''"
+                    class="main__cont-1-section-image"
+                  />
+                </div>
+                {{ section.section }}
+              </h3>
+            </div>
+            <h1 class="main__cont-1-head" ">
+              <span  class="main__cont-1-count"
+                >0{{ index + 1 }}</span
+              >
+              {{ section.title }}
+            </h1>
+            <p class="main__cont-1-add">
+              {{ section.description }}
+            </p>
+          </div>
+          <div
+            class="main__cont-1-container"
+          >
+            <BaseButton
+              :bg-color="section.buttonColor"
+              :link-path="'https://one2hero.com/'"
+              :svg-image-type="'arrow-right'"
+              :button-text="section.buttonText"
+            />
+          </div>
+        </div>
+        <div
+          v-if="section.imagePath"
+          :class="`main__cont-${index}-img-container`"
+        >
           <img
             :src="section.imagePath"
             class="main__cont-1-img"
@@ -74,16 +139,12 @@ const textContent = [
     description:
       "Enhances transport logistics by offering better workforce management, reducing empty kilometers, and increasing payment security.",
   },
-  {
-    title: "Your solutions",
-    buttonText: "Learn more",
-    description:
-      "Technology that enhances your performance, security and business",
-  },
+];
+
+const mainContentent = [
   {
     section: "Shippers",
     sectionImage: wareHouseSVG,
-    imagePath: defaultImage,
     buttonText: "Learn more",
     title: "Find transport for your freights",
     description:
@@ -92,7 +153,6 @@ const textContent = [
   {
     section: "Forwarders",
     sectionImage: monitorSmartSVG,
-    imagePath: defaultImage,
     buttonText: "Learn more",
     title: "Get loads faster, gain trust quicker",
     description:
@@ -101,7 +161,6 @@ const textContent = [
   {
     section: "Carriers",
     sectionImage: carriersSVG,
-    imagePath: defaultImage,
     buttonText: "Learn more",
     title: "Maximize loads, minimize runs, master your routes",
     description:
@@ -110,7 +169,6 @@ const textContent = [
   {
     section: "Managers",
     sectionImage: managersSVG,
-    imagePath: defaultImage,
     buttonText: "Learn more",
     title: "Navigate, succeed, analyze, delegate, connect All in one place",
     description:
@@ -119,7 +177,6 @@ const textContent = [
   {
     section: "Trust and feedback",
     sectionImage: trustSVG,
-    imagePath: defaultImage,
     buttonText: "Learn more",
     title: "Feedback at every level from companies to individuals",
     description:
@@ -129,12 +186,83 @@ const textContent = [
 </script>
 
 <style scoped lang="scss">
+.main {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+       max-width: $breakpoint-maxsize;
+    margin: 0 auto;
+  @media (min-width: $breakpoint-small) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: $breakpoint_large) {
+    grid-template-columns: repeat(3, 1fr);
+   
+  }
+  &__container{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  &__loop-container{
+    background: white;
+    border-radius: 2rem;
+    margin: 2rem;
+    &:hover{
+            filter: drop-shadow(2px 2px 2px var(--main-orange));
+    }
+  @media (min-width: $breakpoint_large) {
+      &:nth-child(4){
+          grid-column: 1 / 3;
+      }
+       &:nth-child(5){
+          grid-column: 3 / 4;
+      }
+  }
+  }
+  &__cont-title{
+    margin-top: 3rem;
+  }
+  &__content-title{
+    font-size: 5rem;
+    color: var(--main-blue);
+    justify-content: center;
+    display: flex;
+    margin-top: 3rem;
+    position: relative;
+    text-align: center;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 1.1rem;
+        height: 0.15em;
+        background-image: var(--pc2-orange-button);
+        background-repeat: no-repeat;
+        left: 50%;
+        right: 50%;
+        clip-path: ellipse();
+        transform: translate(-50%, -50%);
+        z-index: -1;
+        width: 40rem;;
+    }
+  }
+  &__content-addition{
+    display: flex;
+    justify-content: center;
+    margin: 1rem 1rem 2rem 1rem;
+        text-align: center;
+  }
+}
 .main__cont-1 {
   &-main {
-        border-radius: 1rem;
-  background: white;
-  margin: 1rem;
-  padding: 3.3rem 0px;
+    border-radius: 1rem;
+    background: white;
+    margin: 1rem;
+    padding: 3.3rem 0px;
+    overflow: hidden;
+    @media (min-width: $breakpoint_small) {
+      overflow: initial;
+    }
   }
 
   &-head {
@@ -144,7 +272,7 @@ const textContent = [
     line-height: 3.6rem;
     text-align: left;
     margin-left: 2rem;
-
+    margin-bottom: 1rem;
   }
 
   &-add {
@@ -155,17 +283,16 @@ const textContent = [
     text-wrap: balance;
     color: var(--black);
     text-align: left;
-
   }
-  &-count{
-    display:inline-block;
+  &-count {
+    display: inline-block;
     font-size: 4rem;
     margin-inline-end: 15px;
     font-weight: 700;
     color: var(--main-orange);
   }
   &-container {
-    margin-top: 5rem;
+    margin: 5rem 0 3rem ;
     display: flex;
     margin-left: 2rem;
   }
@@ -173,21 +300,25 @@ const textContent = [
   &-img {
     overflow: hidden;
     border-radius: 2rem;
-    width: 100%;
     height: auto;
-    max-width: 70rem;
-    margin: 4rem auto;
+    max-width: 50rem;
+    margin: 9rem auto;
     display: flex;
     justify-content: center;
+   
   }
 
   &-section {
     display: flex;
     justify-content: flex-start;
+    margin-bottom: 1.5rem;
+    @media (min-width: $breakpoint_small) {
+      margin-bottom: 2.5rem;
+    }
 
     &-image {
-      width: 5rem;
-      height: 4.5rem;
+      width: 3rem;
+      height: 3rem;
       margin-left: 2rem;
     }
 
@@ -208,14 +339,21 @@ const textContent = [
 .main__cont-0 {
   background-image: url("../assets/BaseIcons/main.webp");
   background-repeat: no-repeat;
-  width: 100%;
-  height: 100%;
-  background-size: contain;
   background-size: cover;
+  background-position: center;
+  padding-top: 3rem;
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
   padding-top: 10rem;
-    .main__cont-1-main{
-        background-color: transparent !important;
-    }
+  @media(min-width: $breakpoint-small){
+        min-height: 56vh;
+  }
+  .main__cont-1-main {
+    background-color: transparent !important;
+        max-width: $breakpoint-maxsize;
+    margin: 0 auto
+  }
   &-text-content {
     top: 3rem;
   }
@@ -228,27 +366,66 @@ const textContent = [
     z-index: 3;
 
     color: white;
-    font-size: 3.4rem;
+    font-size: 3rem;
     text-align: left;
     margin-left: 2rem;
     text-wrap: balance;
+    width: 95%;
+    margin: 2rem;
+    font-size: 3rem;
+    line-height: 4rem;
+
+    @media (min-width: $breakpoint_mobiletabs) {
+      font-size: 5.4rem;
+      line-height: 6.4rem;
+    }
+
+    @media (min-width: $breakpoint_small) {
+      line-height: 7rem;
+      font-size: 6rem;
+      width: 60%;
+    }
   }
   &-add {
     color: white;
     text-align: left;
     margin-top: 1rem;
-    font-size: 1.7rem;
+    font-size: 1.6rem;
     margin-left: 2rem;
     z-index: 3;
+    max-width: 100%;
+    text-shadow: 2px 2px 4px black;
+    @media (min-width: $breakpoint_mobiletabs) {
+      font-size: 1.7;
+
+    }
+    @media (min-width: $breakpoint_small) {
+      max-width: 35vw;
+    }
   }
   &-container {
     z-index: 3;
-    margin-top: 2rem;
   }
   &-img {
-    top: -20rem;
+    top: -25rem;
     clip-path: polygon(0 15%, 100% 0, 100% 85%, 0 100%);
+    @media (min-width: $breakpoint-small) {
+      top: 0rem;
+              transform: translate(26%, -20%);
+
+    }
+    &-container {
+      filter: drop-shadow(20px 20px var(--main-orange));
+      @media (min-width: $breakpoint-small) {
+        position: absolute;
+        left: 0;
+        right: -23rem;
+        top: 4rem;
+      }
+      @media (min-width: $breakpoint_medium) {
+        top: -5rem;
+      }
+    }
   }
 }
-
 </style>
