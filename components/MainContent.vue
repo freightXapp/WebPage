@@ -186,6 +186,9 @@ const mainContentent = [
 </script>
 
 <style scoped lang="scss">
+
+
+
 .main {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -274,7 +277,6 @@ const mainContentent = [
     margin-left: 2rem;
     margin-bottom: 1rem;
   }
-
   &-add {
     font-weight: 300;
     font-size: $font-almost-large;
@@ -346,15 +348,20 @@ const mainContentent = [
     height: 100%;
     width: 100%;
   padding-top: 10rem;
+
   @media(min-width: $breakpoint-small){
         min-height: 56vh;
   }
   .main__cont-1-main {
     background-color: transparent !important;
         max-width: $breakpoint-maxsize;
-    margin: 0 auto
+    margin: 0 auto;
+    
+    
   }
   &-text-content {
+      @include animate-move('left-to-right', 0.5s);
+
     top: 3rem;
   }
   :deep(.button) {
@@ -362,6 +369,7 @@ const mainContentent = [
     font-size: 1.8rem;
   }
   &-head {
+
     // margin-top: 10rem;
     z-index: 3;
 
@@ -405,15 +413,21 @@ const mainContentent = [
   }
   &-container {
     z-index: 3;
+      @include animate-move('left-to-right', 0.5s);
+
   }
   &-img {
-    top: -25rem;
-    clip-path: polygon(0 15%, 100% 0, 100% 85%, 0 100%);
+
+      clip-path: polygon(0 15%, 100% 0, 100% 85%, 0 100%);
+      top: -25rem;
+      @include animate-move('right-to-left', 1s);
+      
     @media (min-width: $breakpoint-small) {
       top: 0rem;
-              transform: translate(26%, -20%);
-
+      transform: translate(26%, -20%);
+      animation: move-right-to-left-25 1s;
     }
+
     &-container {
       filter: drop-shadow(20px 20px var(--main-orange));
       @media (min-width: $breakpoint-small) {
@@ -428,4 +442,16 @@ const mainContentent = [
     }
   }
 }
+
+ @keyframes move-right-to-left-25 {
+  0% {
+     transform: translate(26%, 100%);
+
+
+  }
+  100% {
+      transform: translate(26%, -20%);
+  }
+}
+
 </style>

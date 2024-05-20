@@ -1,8 +1,8 @@
 <template>
     <div>
         <MainContent />
-        <Services/>
         <PartnerLogos />
+        <Services/>
     </div>
 </template>
 <script setup lang="ts">

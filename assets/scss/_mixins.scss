@@ -58,3 +58,53 @@
        display:block;
     }
  }
+
+
+ @keyframes move-right-to-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes move-left-to-right {
+  0% {
+    transform: translateX(-100%);
+    z-index: 1;
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes move-top-to-bottom {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes move-bottom-to-top {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@mixin animate-move($direction, $duration: 1s, $ease: ease-in-out, $delay: 0s) {
+  @if $direction == 'right-to-left' {
+    animation: move-right-to-left $duration $ease $delay;
+  } @else if $direction == 'left-to-right' {
+    animation: move-left-to-right $duration $ease $delay;
+  } @else if $direction == 'top-to-bottom' {
+    animation: move-top-to-bottom $duration $ease $delay;
+  } @else if $direction == 'bottom-to-top' {
+    animation: move-bottom-to-top $duration $ease $delay;
+  }
+}
