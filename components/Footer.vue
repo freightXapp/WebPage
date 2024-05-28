@@ -46,7 +46,7 @@
 
       <div class="footer__column footer__logo">
         <NuxtLink to="/">
-          <pickUp2 :filled="''" class="footer__logo--svg" />
+          <pickUp2White :filled="''" class="footer__logo--svg" />
         </NuxtLink>
         <p class="footer__logo--description">
           Partners in optimized transport process
@@ -76,6 +76,7 @@ import Instagram from "~/assets/BaseIcons/instagram.svg";
 import Linkedin from "~/assets/BaseIcons/linkedin.svg";
 import Twitter from "~/assets/BaseIcons/twitterX.svg";
 import pickUp2 from "~/assets/BaseIcons/pc2-dark.svg";
+import pickUp2White from "~/assets/BaseIcons/pc2.svg";
 </script>
 
 <style lang="scss" scoped>
@@ -86,6 +87,7 @@ import pickUp2 from "~/assets/BaseIcons/pc2-dark.svg";
 .wave {
   display: block;
   margin-top: 0;
+  top: 1;
 }
 .footer {
   position: relative;
@@ -98,6 +100,7 @@ import pickUp2 from "~/assets/BaseIcons/pc2-dark.svg";
   left: 0;
   margin-top: auto;
   clip-path: polygon(0 -10%, 100% 50%, 200%% 100%, 50% 100%);
+  top: 1;
 
   &:before {
     content: "";

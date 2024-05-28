@@ -123,13 +123,14 @@
 </template>
 
 <script setup>
-import truckImage from "~/assets/BaseIcons/truck.png";
+import truckImage from "~/assets/BaseIcons/truck.png"; 
 import defaultImage from "~/assets/BaseIcons/default.png";
 import wareHouseSVG from "~/assets/BaseIcons/warehouse.svg";
 import monitorSmartSVG from "~/assets/BaseIcons/monitor-smartphone.svg";
 import carriersSVG from "~/assets/BaseIcons/carriers.svg";
 import managersSVG from "~/assets/BaseIcons/managers.svg";
 import trustSVG from "~/assets/BaseIcons/trust.svg";
+import trucks from "~/assets/BaseIcons/trucks.png"
 const textContent = [
   {
     buttonColor: "var(--pc2-orange-button)",
@@ -339,7 +340,8 @@ const mainContentent = [
 }
 
 .main__cont-0 {
-  background-image: url("../assets/BaseIcons/main.webp");
+  background-image: url("../assets/BaseIcons/trucks.png");
+  opacity: 60%;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
