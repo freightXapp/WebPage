@@ -44,7 +44,7 @@
             />
           </div>
         </div>
-        <div
+        <!-- <div
           v-if="section.imagePath"
           :class="`main__cont-${index}-img-container`"
         >
@@ -54,7 +54,7 @@
             :class="`main__cont-${index}-img`"
             alt="logo"
           >
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -343,7 +343,6 @@ const mainContentent = [
 
 .main__cont-0 {
   background-image: url("../assets/BaseIcons/trucks.png");
-  opacity: 60%;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
