@@ -339,6 +339,8 @@ const mainContentent = [
   }
 }
 
+
+
 .main__cont-0 {
   background-image: url("../assets/BaseIcons/trucks.png");
   opacity: 60%;
