@@ -5,6 +5,11 @@
       :key="section"
       :class="[`main__cont-${index}`, { 'main__cont-container': index !== 0 }]"
     >
+    <video  @ended="handleVideoEnd"
+    autoplay
+    muted>
+  <source src="../assets/videos/v1.mov" type="video/mp4">
+    Your browser does not support the video tag.</video>
       <div class="main__cont-1-main">
         <div
           class="main__cont-1-text-content"
@@ -218,9 +223,11 @@ const textContent = [
 }
 
 
-
+video{
+    width: 100%;
+}
 .main__cont-0 {
-  background-image: url("../assets/BaseIcons/trucks.png");
+    z-index: -1;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -231,12 +238,17 @@ const textContent = [
   padding-top: 10rem;
 
   @media(min-width: $breakpoint-small){
-        min-height: 56vh;
+        max-height: 56vh;
   }
   .main__cont-1-main {
     background-color: transparent !important;
         max-width: $breakpoint-maxsize;
     margin: 0 auto;
+    z-index: 1;
+    top: 16%;
+    bottom: 50%;
+    position: absolute;
+    transform: translate(10%, 0);
     
     
   }
