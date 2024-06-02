@@ -44,79 +44,6 @@
             />
           </div>
         </div>
-        <!-- <div
-          v-if="section.imagePath"
-          :class="`main__cont-${index}-img-container`"
-        >
-          <img
-            :src="section.imagePath"
-            class="main__cont-1-img"
-            :class="`main__cont-${index}-img`"
-            alt="logo"
-          >
-        </div> -->
-      </div>
-    </div>
-
-
-    <h1 class="main__content-title">Your Solutions</h1>
-    <p class="main__content-addition">Technology that enhances your performance, security and business</p>
-    <div class="main">
-      <div
-        v-for="(section, index) in mainContentent"
-        :key="section"
-        class="main__loop-container"
-      >
-        <div class="main__container">
-          <div
-            class="main__cont-text-content main__container"
-          >
-            <div v-if="section.section" class="main__cont-1-section">
-              <h3
-                class="main__cont-1-section-title main__cont-title"
-              >
-                <div v-if="section.sectionImage">
-                  <component
-                    :is="section.sectionImage"
-                    :filled="''"
-                    class="main__cont-1-section-image"
-                  />
-                </div>
-                {{ section.section }}
-              </h3>
-            </div>
-            <h1 class="main__cont-1-head" ">
-              <span  class="main__cont-1-count"
-                >0{{ index + 1 }}</span
-              >
-              {{ section.title }}
-            </h1>
-            <p class="main__cont-1-add">
-              {{ section.description }}
-            </p>
-          </div>
-          <div
-            class="main__cont-1-container"
-          >
-            <BaseButton
-              :bg-color="section.buttonColor"
-              :link-path="'https://one2hero.com/'"
-              :svg-image-type="'arrow-right'"
-              :button-text="section.buttonText"
-            />
-          </div>
-        </div>
-        <div
-          v-if="section.imagePath"
-          :class="`main__cont-${index}-img-container`"
-        >
-          <img
-            :src="section.imagePath"
-            class="main__cont-1-img"
-            :class="`main__cont-${index}-img`"
-            alt="logo"
-          >
-        </div>
       </div>
     </div>
   </div>
@@ -124,13 +51,6 @@
 
 <script setup>
 import truckImage from "~/assets/BaseIcons/truck.png"; 
-import defaultImage from "~/assets/BaseIcons/default.png";
-import wareHouseSVG from "~/assets/BaseIcons/warehouse.svg";
-import monitorSmartSVG from "~/assets/BaseIcons/monitor-smartphone.svg";
-import carriersSVG from "~/assets/BaseIcons/carriers.svg";
-import managersSVG from "~/assets/BaseIcons/managers.svg";
-import trustSVG from "~/assets/BaseIcons/trust.svg";
-import trucks from "~/assets/BaseIcons/trucks.png"
 const textContent = [
   {
     buttonColor: "var(--pc2-orange-button)",
@@ -142,48 +62,6 @@ const textContent = [
   },
 ];
 
-const mainContentent = [
-  {
-    section: "Shippers",
-    sectionImage: wareHouseSVG,
-    buttonText: "Learn more",
-    title: "Find transport for your freights",
-    description:
-      "Ship with ease using our platform. Real-time tracking, freight management tools and secure backups.",
-  },
-  {
-    section: "Forwarders",
-    sectionImage: monitorSmartSVG,
-    buttonText: "Learn more",
-    title: "Get loads faster, gain trust quicker",
-    description:
-      "Boost your freight forwarding efficiency with our advanced system, quickly connecting you to available loads and providing transparent user ratings for smarter decisions.",
-  },
-  {
-    section: "Carriers",
-    sectionImage: carriersSVG,
-    buttonText: "Learn more",
-    title: "Maximize loads, minimize runs, master your routes",
-    description:
-      "Empower your transport business with our logistics interface. It  connects you swiftly to loads, provides real-time tracking, and helps optimize your route efficiency to reduce empty kilometers.",
-  },
-  {
-    section: "Managers",
-    sectionImage: managersSVG,
-    buttonText: "Learn more",
-    title: "Navigate, succeed, analyze, delegate, connect All in one place",
-    description:
-      "Enhance your managerial efficiency with our advanced analytics, delegated team control, and fast access to an extensive partner network, all designed to streamline your leadership.",
-  },
-  {
-    section: "Trust and feedback",
-    sectionImage: trustSVG,
-    buttonText: "Learn more",
-    title: "Feedback at every level from companies to individuals",
-    description:
-      "Optimize your decision-making with our evaluation system, offering detailed ratings for companies and individual employees, enhancing your business insights.",
-  },
-];
 </script>
 
 <style scoped lang="scss">

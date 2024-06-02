@@ -1,7 +1,7 @@
 <template>
   <section class="small-section">
     <div class="container">
-      <div class="row">
+      <div class="section__row">
         <div class="col">
           <LogoSlider />
         </div>
@@ -15,13 +15,12 @@
 <style lang="scss" scoped>
 .small-section {
   margin: 0 auto;
-  width: $breakpoint-maxsize;
   padding: 60px 0;
   .container {
     padding: 0;
   }
 
-  .row {
+  .section__row {
     margin: 0;
   }
   
