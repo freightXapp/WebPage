@@ -1,8 +1,8 @@
 <template>
   <div
     v-for="(service, index) in services"
-    class="service-long"
     :key="service.title + index"
+    class="service-long"
   >
     <div class="service-long__main">
       <div class="service-long__sub-container">
@@ -17,7 +17,7 @@
       <p class="service-long__description">
         {{ service.description }}
       </p>
-      <div class="service-long__options-container">
+      <div class="service-long__options-container" :class="{'service-long__options-container-odd': index % 2 !== 0}">
         <ul class="service-long__options">
           <div class="service-long__option-container">
             <li
@@ -49,7 +49,7 @@
             class="service-long__image"
             :src="service.image"
             alt="Feedback Ratings"
-          />
+          >
         </div>
       </div>
     </div>
@@ -142,7 +142,7 @@ const services = [
     margin: 3% auto 10rem auto;
     padding: 0 1.5rem;
     @media (min-width: $breakpoint-large) {
-      margin:5% 3%;
+      margin:5% auto;
     }
 }
     &__sub-container {
@@ -174,14 +174,22 @@ const services = [
       margin-bottom: 3rem;
     }
 
-    &__options-container {
+    &__options-container,
+    &__options-container-odd {
       display: flex;
       gap: 5rem;
     flex-direction: column-reverse;
 
       @media(min-width: $breakpoint-medium){
         flex-direction: row;
+        
+        }
       }
+    &__options-container-odd{
+        @media(min-width: $breakpoint-medium){
+        flex-direction: row-reverse;
+
+        }
     }
     &__description {
       margin-bottom: 3rem;

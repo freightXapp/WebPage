@@ -5,11 +5,8 @@
       :key="section"
       :class="[`main__cont-${index}`, { 'main__cont-container': index !== 0 }]"
     >
-    <video  @ended="handleVideoEnd"
-    autoplay
-    muted>
-  <source src="../assets/videos/v1.mov" type="video/mp4">
-    Your browser does not support the video tag.</video>
+      <test2/>
+
       <div class="main__cont-1-main">
         <div
           class="main__cont-1-text-content"
@@ -31,7 +28,6 @@
             </h3>
           </div>
           <h1 class="main__cont-1-head" :class="`main__cont-${index}-head`">
-          
             {{ section.title }}
           </h1>
           <p class="main__cont-1-add" :class="`main__cont-${index}-add`">
@@ -55,7 +51,7 @@
 </template>
 
 <script setup>
-import truckImage from "~/assets/BaseIcons/truck.png"; 
+import truckImage from "~/assets/BaseIcons/truck.png";
 const textContent = [
   {
     buttonColor: "var(--pc2-orange-button)",
@@ -66,50 +62,70 @@ const textContent = [
       "Enhances transport logistics by offering better workforce management, reducing empty kilometers, and increasing payment security.",
   },
 ];
-
 </script>
 
 <style scoped lang="scss">
+.video-container {
+    position:relative
+
+}
+
+
+video {
+    height: auto;
+    left: 50%;
+    min-height: 100%;
+    min-width: 100%;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    width: auto;
+    z-index: 0;
+    width: 100%;
+}
+
 
 
 
 .main {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-       max-width: $breakpoint-maxsize;
-    margin: 0 auto;
+  max-width: $breakpoint-maxsize;
+  margin: 0 auto;
   @media (min-width: $breakpoint-small) {
     grid-template-columns: repeat(2, 1fr);
   }
   @media (min-width: $breakpoint_large) {
     grid-template-columns: repeat(3, 1fr);
-   
   }
-  &__container{
+  &__container {
     display: flex;
     flex-direction: column;
     height: 100%;
   }
-  &__loop-container{
+  &__loop-container {
     background: white;
     border-radius: 2rem;
     margin: 2rem;
-    &:hover{
-            filter: drop-shadow(2px 2px 2px var(--main-orange));
+    &:hover {
+      filter: drop-shadow(2px 2px 2px var(--main-orange));
     }
-  @media (min-width: $breakpoint_large) {
-      &:nth-child(4){
-          grid-column: 1 / 3;
+    @media (min-width: $breakpoint_large) {
+      &:nth-child(4) {
+        grid-column: 1 / 3;
       }
-       &:nth-child(5){
-          grid-column: 3 / 4;
+      &:nth-child(5) {
+        grid-column: 3 / 4;
       }
+    }
   }
-  }
-  &__cont-title{
+  &__cont-title {
     margin-top: 3rem;
   }
-  &__content-title{
+  &__content-title {
     font-size: 5rem;
     color: var(--main-blue);
     justify-content: center;
@@ -119,28 +135,29 @@ const textContent = [
     text-align: center;
 
     &::after {
-        content: '';
-        position: absolute;
-        bottom: 1.1rem;
-        height: 0.15em;
-        background-image: var(--pc2-orange-button);
-        background-repeat: no-repeat;
-        left: 50%;
-        right: 50%;
-        clip-path: ellipse();
-        transform: translate(-50%, -50%);
-        z-index: -1;
-        width: 40rem;;
+      content: "";
+      position: absolute;
+      bottom: 1.1rem;
+      height: 0.15em;
+      background-image: var(--pc2-orange-button);
+      background-repeat: no-repeat;
+      left: 50%;
+      right: 50%;
+      clip-path: ellipse();
+      transform: translate(-50%, -50%);
+      z-index: -1;
+      width: 40rem;
     }
   }
-  &__content-addition{
+  &__content-addition {
     display: flex;
     justify-content: center;
     margin: 1rem 1rem 2rem 1rem;
-        text-align: center;
+    text-align: center;
   }
 }
 .main__cont-1 {
+    position:relative;
   &-main {
     border-radius: 1rem;
     background: white;
@@ -178,7 +195,7 @@ const textContent = [
     color: var(--main-orange);
   }
   &-container {
-    margin: 5rem 0 3rem ;
+    margin: 5rem 0 3rem;
     display: flex;
     margin-left: 2rem;
   }
@@ -191,7 +208,6 @@ const textContent = [
     margin: 9rem auto;
     display: flex;
     justify-content: center;
-   
   }
 
   &-section {
@@ -222,38 +238,29 @@ const textContent = [
   }
 }
 
-
-video{
-    width: 100%;
+video {
+  width: 100%;
 }
 .main__cont-0 {
-    z-index: -1;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  padding-top: 3rem;
-    object-fit: contain;
+    position: relative;
     height: 100%;
     width: 100%;
-  padding-top: 10rem;
+ 
 
-  @media(min-width: $breakpoint-small){
-        max-height: 56vh;
+  @media (min-width: $breakpoint-small) {
   }
   .main__cont-1-main {
     background-color: transparent !important;
-        max-width: $breakpoint-maxsize;
+    // max-width: $breakpoint-maxsize;
     margin: 0 auto;
     z-index: 1;
     top: 16%;
     bottom: 50%;
     position: absolute;
     transform: translate(10%, 0);
-    
-    
   }
   &-text-content {
-      @include animate-move('left-to-right', 0.5s);
+    @include animate-move("left-to-right", 0.5s);
 
     top: 3rem;
   }
@@ -262,7 +269,6 @@ video{
     font-size: 1.8rem;
   }
   &-head {
-
     // margin-top: 10rem;
     z-index: 3;
 
@@ -298,7 +304,6 @@ video{
     text-shadow: 2px 2px 4px black;
     @media (min-width: $breakpoint_mobiletabs) {
       font-size: 1.7;
-
     }
     @media (min-width: $breakpoint_small) {
       max-width: 35vw;
@@ -306,15 +311,13 @@ video{
   }
   &-container {
     z-index: 3;
-      @include animate-move('left-to-right', 0.5s);
-
+    @include animate-move("left-to-right", 0.5s);
   }
   &-img {
+    clip-path: polygon(0 15%, 100% 0, 100% 85%, 0 100%);
+    top: -25rem;
+    @include animate-move("right-to-left", 1s);
 
-      clip-path: polygon(0 15%, 100% 0, 100% 85%, 0 100%);
-      top: -25rem;
-      @include animate-move('right-to-left', 1s);
-      
     @media (min-width: $breakpoint-small) {
       top: 0rem;
       transform: translate(26%, -20%);
@@ -336,15 +339,12 @@ video{
   }
 }
 
- @keyframes move-right-to-left-25 {
+@keyframes move-right-to-left-25 {
   0% {
-     transform: translate(26%, 100%);
-
-
+    transform: translate(26%, 100%);
   }
   100% {
-      transform: translate(26%, -20%);
+    transform: translate(26%, -20%);
   }
 }
-
 </style>

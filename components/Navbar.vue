@@ -143,17 +143,7 @@ function handleViewportChange() {
   position: fixed;
   width: 100%;
   z-index: 4;
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #151e3a;
-    opacity: 0.6;
-    z-index: -1; // Ensure the background is behind the header content
-  }
+
   &__container {
     margin: 0 1rem;
     display: flex;

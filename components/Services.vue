@@ -69,7 +69,7 @@ const props = withDefaults(defineProps<Props>(), {
     margin: 3% auto 10rem auto;
   padding: 0 1.5rem;
   @media(min-width: $breakpoint-large){
-    margin: 5% 3%;
+    margin: 5% auto;
   }
  
   &__svg {

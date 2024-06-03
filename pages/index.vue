@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MainContent />
+    <MainVideoContent/>
     <div class="services">
       <Services
         v-for="item, index in mainContentent"
