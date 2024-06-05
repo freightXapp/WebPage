@@ -1,9 +1,9 @@
 <template>
   <div>
-    <ActionSection class="action-section" />
+    <!-- <ActionSection class="action-section" /> -->
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="wave">
       <path
-        fill="#151E3A"
+        fill="#1B4390"
         fill-opacity="1"
         d="M0,288L1440,224L1440,320L0,320Z"
       />
@@ -62,9 +62,6 @@
         <p class="footer__copyright--text">
           All Rights Reserved © Pickup2 2024
         </p>
-        <div class="footer__rules">
-          <a href="#">Terms and Conditions</a> | <a href="#">Privacy Policy</a>
-        </div>
       </div>
     </div>
   </section>
@@ -75,7 +72,6 @@ import Facebook from "~/assets/BaseIcons/facebook.svg";
 import Instagram from "~/assets/BaseIcons/instagram.svg";
 import Linkedin from "~/assets/BaseIcons/linkedin.svg";
 import Twitter from "~/assets/BaseIcons/twitterX.svg";
-import pickUp2 from "~/assets/BaseIcons/pc2-dark.svg";
 import pickUp2White from "~/assets/BaseIcons/pc2.svg";
 </script>
 
@@ -87,31 +83,29 @@ import pickUp2White from "~/assets/BaseIcons/pc2.svg";
 .wave {
   display: block;
   margin-top: 0;
-  top: 1;
+  top: 1px;
 }
 .footer {
   position: relative;
   width: 100%;
-  background: #151e3a;
+  background: var(--main-blue);
   color: black;
-  padding: 30px 30px 15px;
+  padding: 5px 20px 15px;
   overflow: hidden;
   bottom: 0;
   left: 0;
-  margin-top: auto;
   clip-path: polygon(0 -10%, 100% 50%, 200%% 100%, 50% 100%);
-  top: 1;
 
   &:before {
     content: "";
     position: absolute;
-    top: -20px; // Adjust based on the depth of the wave
+    top: -20px;
     left: 0;
     width: 200%;
-    height: 100px; // Adjust based on the depth of the wave
+    height: 100px;
     background: inherit;
 
-    transform: rotate(-3deg); // Rotate to create a slant
+    transform: rotate(-3deg);
     transform-origin: left;
   }
 
@@ -126,55 +120,38 @@ import pickUp2White from "~/assets/BaseIcons/pc2.svg";
   }
 
   &__column {
-    flex: 1 1 240px; // Ensure all columns are flexible and align nicely
+    flex: 1 1 240px;
     &--info,
     &--explore,
     &--legal {
       h4 {
-        color: #c6c6c7;
-        font-size: 1.6rem;
+        color: #fcfcfc;
+        font-size: 1.7rem;
         font-weight: 500;
       }
     }
   }
 
   &__logo {
+    margin-top: -25px;
     &--svg {
-      width: 10rem;
-      height: 5rem;
+      width: 20rem;
+      height: 10rem;
     }
-    p {
+    &--description {
+      color: #fcfcfc;
       font-weight: 700;
-      color: #c6c6c7;
     }
   }
   &__copyright {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     padding: 20px 0px;
     width: 100%;
     &--text {
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       font-weight: 300;
-      color: #c6c6c7;
+      color: #fcfcfc;
       text-align: left;
       white-space: nowrap;
-    }
-  }
-
-  &__rules {
-    text-align: right;
-    text-decoration: none;
-    color: white;
-    font-weight: 100;
-    margin-right: 70px;
-
-    a {
-      color: white;
-      text-decoration: none;
-      font-size: 1.2rem;
-      font-weight: 300;
     }
   }
 
@@ -189,7 +166,7 @@ import pickUp2White from "~/assets/BaseIcons/pc2.svg";
       font-size: 1.5rem;
       font-weight: 300;
       text-decoration: none;
-      color: #c6c6c7;
+      color: #fcfcfc;
       display: inline-block;
       &:hover {
         color: #c46b18;
@@ -201,23 +178,20 @@ import pickUp2White from "~/assets/BaseIcons/pc2.svg";
     display: flex;
 
     margin-top: 30px;
-    gap: 20px; // Adjusted the gap to reduce spacing
+    gap: 20px;
 
     &--svg {
-      color: #c6c6c7;
-      width: 1.7em; // Adjust size if necessary
-      height: 1.7em; // Adjust size if necessary
-      border: 2px solid #c6c6c7; // Adds a solid border
-      border-radius: 50%; // Makes the icon borders circular
-      padding: 6px; // Padding inside the border
-      transition: all 0.3s ease; // Smooth transition for hover effects
-
+      color: var(--main-orange);
+      width: 1.7em;
+      height: 1.7em;
+      border: 2px solid var(--main-orange);
+      border-radius: 50%;
+      padding: 6px;
+      transition: all 0.3s ease;
       &:hover {
-        background-color: #c46b18; // Changes background on hover
-        color: white; // Changes icon color on hover
-        transform: scale(
-          1.1
-        ); // Slightly enlarges the icon on hoversure height matches width for square aspect ratio
+        background-color: #c46b18;
+        color: white;
+        transform: scale(1.1);
       }
     }
   }

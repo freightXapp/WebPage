@@ -24,29 +24,22 @@
   gap: 20px; // Adds space between the cards
   flex-wrap: wrap;
   margin-bottom: 30px;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: stretch; // Stretches cards to full width on smaller screens
-    margin-bottom: 100px;
-  }
 }
 
 .card {
   background: #fff;
-  //   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border: 1px solid #e5e5e5;
   padding: 20px;
   border-radius: 20px;
-  width: 350px; // Specific width for square-like appearance
+  width: 350px; // Specific width for larger screens
   height: 250px; // Matching height to make it square
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
   @media (max-width: 768px) {
-    width: 60%; // Makes card width responsive
-    margin: 0 auto; // Centers card horizontally with margin
+    width: 45%; // Makes card width responsive
+    margin: 10px; // Adds a small margin for spacing
   }
 
   &__title {
@@ -81,6 +74,13 @@
       background-color: #151e3a;
       color: #c6c6c7;
     }
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 100%; // Full width on very small screens
+    margin: 10px 0; // Margin to add space between cards vertically
   }
 }
 </style>
