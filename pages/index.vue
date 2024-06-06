@@ -1,9 +1,9 @@
 <template>
   <div>
-    <MainVideoContent/>
+    <MainVideoContent />
     <div class="services">
       <Services
-        v-for="item, index in mainContentent"
+        v-for="(item, index) in mainContentent"
         :key="item.title"
         :index="index"
         :text="item.description"
@@ -17,8 +17,9 @@
     </div>
     <PartnerLogos />
 
-    <ServicesLong/>    
-    <test/>
+    <ServicesLong />
+    <test />
+    <SignUpSection />
   </div>
 </template>
 <script setup lang="ts">
@@ -61,7 +62,6 @@ const mainContentent = [
     description:
       "Empower your transport business with our logistics interface. It  connects you swiftly to loads, provides real-time tracking, and helps optimize your route efficiency to reduce empty kilometers.",
   },
-
 ];
 </script>
 <style lang="scss" scoped>

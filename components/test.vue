@@ -4,7 +4,7 @@
     @mouseenter="stopAutoSwitch"
     @mouseleave="startAutoSwitch"
   >
-    <h1 class="container__title">More Servives by Pickup2</h1>
+    <h1 class="container__title">More Services by Pickup2</h1>
     <div class="tabs">
       <button
         v-for="tab in tabs"
@@ -18,15 +18,17 @@
         <span>{{ tab.name }}</span>
       </button>
     </div>
-    <div class="content">
-      <div class="left-content">
-        <div v-if="activeTab === 'rating'" class="content__subtitle">
-          <h3 class="subtitle">{{ subtitle }}</h3>
+    <transition name="slide-fade" mode="out-in">
+      <div class="content" :key="activeTab">
+        <div class="left-content">
+          <div v-if="activeTab === 'rating'" class="content__subtitle">
+            <h3 class="subtitle">{{ subtitle }}</h3>
+          </div>
+          <img :src="activeImage" alt="" class="content__image" />
         </div>
-        <img :src="activeImage" alt="" class="content__image" />
+        <div class="content__text" v-html="activeContent"></div>
       </div>
-      <div class="content__text" v-html="activeContent"></div>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -118,7 +120,7 @@ onUnmounted(() => {
 <style scoped lang="scss">
 .container {
   width: 100%;
-  max-width: $breakpoint-maxsize;
+  max-width: 1500px; /* Example max width */
   margin: 0 auto;
   background-color: #f4f4f4;
   padding: 20px;
@@ -136,31 +138,43 @@ onUnmounted(() => {
 .content {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+  justify-content: center; /* Center the content */
   margin-top: 40px;
-  width: 100%;
+  width: 65%;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 450px;
+  transition: all 0.3s ease;
 
   .left-content {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center; /* Center the image vertically */
     flex: 1;
   }
 
   .subtitle {
-    font-size: 5rem;
+    font-size: 2rem; /* Adjusted font size for better alignment */
   }
+
   &__text {
     flex: 1;
-    font-size: 3rem;
+    font-size: 2rem; /* Increased font size */
     color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Prevent text overflow issues */
+    max-height: 450px; /* Set max-height to prevent container resizing */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the text vertically */
+    text-align: center; /* Center the text horizontally */
   }
 
   &__image {
     flex: 1;
-    max-width: 600px;
-    max-height: 450px;
+    max-width: 400px; /* Set fixed max width */
+    max-height: 300px; /* Set fixed max height */
     width: auto;
     height: auto;
     border-radius: 2rem;
@@ -181,6 +195,9 @@ onUnmounted(() => {
   justify-content: space-around;
   margin-bottom: 20px;
   flex-wrap: wrap;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .tab {
@@ -207,8 +224,8 @@ onUnmounted(() => {
 }
 
 .icons {
-  width: 40px;
-  height: 40px;
+  width: 80px;
+  height: 60px;
 }
 
 span {
@@ -234,5 +251,16 @@ span {
 }
 
 @media (max-width: 480px) {
+}
+
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.3s ease;
+}
+
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: translateX(100%);
+  opacity: 0;
 }
 </style>
