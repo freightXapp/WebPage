@@ -18,6 +18,7 @@
       </SwiperSlide>
     </Swiper>
     <div class="content">
+      <img :src="services1Img" alt="" />
       <p>{{ activeContent }}</p>
     </div>
   </div>
@@ -30,6 +31,7 @@ import rewardsSvg from "~/assets/BaseIcons/rewards.svg";
 import boostingSvg from "~/assets/BaseIcons/boosting.svg";
 import filterSvg from "~/assets/BaseIcons/filter.svg";
 import ratingSvg from "~/assets/BaseIcons/rating.svg";
+import services1Img from "~/assets/BaseIcons/services1.png";
 
 const tabs = [
   {
@@ -37,6 +39,7 @@ const tabs = [
     name: "Boosting",
     icon: boostingSvg,
     content: "Boosting your case to get quick responses.",
+    image: services1Img,
   },
   {
     id: "filter",
