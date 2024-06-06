@@ -1,30 +1,35 @@
 <template>
   <div class="container">
-    <Swiper
+    <swiper
       :slides-per-view="isMobile ? 4 : tabs.length"
       @slideChange="onSlideChange"
       class="tabs"
+      ref="swiperRef"
     >
-      <SwiperSlide
+      <swiper-slide
         v-for="tab in tabs"
         :key="tab.id"
         :class="{ active: activeTab === tab.id }"
         @click="changeTab(tab.id)"
       >
-        <div class="icon-container">
-          <component :is="tab.icon" :filled="''" class="icons" />
+        <div class="tab-content">
+          <div class="icon-container">
+            <component :is="tab.icon" :filled="''" class="icons" />
+          </div>
+          <span>{{ tab.name }}</span>
         </div>
-        <span>{{ tab.name }}</span>
-      </SwiperSlide>
-    </Swiper>
-    <div class="content">
-      <p>{{ activeContent }}</p>
-    </div>
+        <div v-if="activeTab === tab.id" class="content">
+          <p>{{ tab.content }}</p>
+        </div>
+      </swiper-slide>
+    </swiper>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/swiper.scss";
 
 import rewardsSvg from "~/assets/BaseIcons/rewards.svg";
 import boostingSvg from "~/assets/BaseIcons/boosting.svg";
@@ -114,13 +119,19 @@ onMounted(() => {
   }
 }
 
+.tab-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .icon-container {
   margin-bottom: 5px;
 }
 
 .icons {
-  width: 80px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
 }
 
 span {
@@ -129,8 +140,13 @@ span {
 }
 
 .content {
-  min-height: 100px;
-  color: #333;
+  width: 100%;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.content p {
   font-size: 14px;
+  color: #333;
 }
 </style>
