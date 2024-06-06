@@ -1,22 +1,22 @@
 <template>
-  <div class="container">
-    <Swiper
-      :slides-per-view="isMobile ? 4 : tabs.length"
-      @slideChange="onSlideChange"
-      class="tabs"
-    >
-      <SwiperSlide
+  <div
+    class="container"
+    @mouseenter="stopAutoSwitch"
+    @mouseleave="startAutoSwitch"
+  >
+    <div class="tabs">
+      <button
         v-for="tab in tabs"
         :key="tab.id"
-        :class="{ active: activeTab === tab.id }"
+        :class="{ tab: true, active: activeTab === tab.id }"
         @click="changeTab(tab.id)"
       >
         <div class="icon-container">
           <component :is="tab.icon" :filled="''" class="icons" />
         </div>
         <span>{{ tab.name }}</span>
-      </SwiperSlide>
-    </Swiper>
+      </button>
+    </div>
     <div class="content">
       <p>{{ activeContent }}</p>
     </div>
@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 
 import rewardsSvg from "~/assets/BaseIcons/rewards.svg";
 import boostingSvg from "~/assets/BaseIcons/boosting.svg";
@@ -61,6 +61,7 @@ const tabs = [
 const activeTab = ref(tabs[0].id);
 const activeContent = ref(tabs[0].content);
 const isMobile = ref(false);
+let intervalId;
 
 function changeTab(tabId) {
   const tab = tabs.find((tab) => tab.id === tabId);
@@ -68,11 +69,18 @@ function changeTab(tabId) {
   activeContent.value = tab.content;
 }
 
-function onSlideChange(swiper) {
-  const currentIndex = swiper.realIndex;
-  const tab = tabs[currentIndex];
-  activeTab.value = tab.id;
-  activeContent.value = tab.content;
+function setNextTab() {
+  const currentIndex = tabs.findIndex((tab) => tab.id === activeTab.value);
+  const nextIndex = (currentIndex + 1) % tabs.length;
+  changeTab(tabs[nextIndex].id);
+}
+
+function startAutoSwitch() {
+  intervalId = setInterval(setNextTab, 2000);
+}
+
+function stopAutoSwitch() {
+  clearInterval(intervalId);
 }
 
 onMounted(() => {
@@ -80,6 +88,12 @@ onMounted(() => {
   window.addEventListener("resize", () => {
     isMobile.value = window.innerWidth <= 768;
   });
+
+  startAutoSwitch();
+});
+
+onUnmounted(() => {
+  clearInterval(intervalId);
 });
 </script>
 <style scoped lang="scss">
@@ -93,20 +107,24 @@ onMounted(() => {
 }
 
 .tabs {
+  display: flex;
+  justify-content: space-around;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
-.swiper-slide {
+.tab {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5px 10px;
+  padding: 10px 20px;
   border: none;
   background-color: transparent;
   color: #333;
   font-size: 14px;
   cursor: pointer;
   transition: color 0.3s, border-bottom 0.3s;
+  width: 20%;
 
   &.active {
     color: blue;
@@ -119,18 +137,31 @@ onMounted(() => {
 }
 
 .icons {
-  width: 80px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
 }
 
 span {
   margin-top: 5px;
   font-size: 12px;
+  text-align: center;
 }
 
 .content {
   min-height: 100px;
   color: #333;
   font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .tab {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tab {
+    width: 100%;
+  }
 }
 </style>
