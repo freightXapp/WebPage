@@ -27,8 +27,8 @@
           <img :src="activeImage" alt="" class="content__image" />
         </div>
         <div class="content__text" v-html="activeContent"></div>
-      </div>
-    </transition>
+      </div> </transition
+    >>
   </div>
 </template>
 
@@ -120,7 +120,7 @@ onUnmounted(() => {
 <style scoped lang="scss">
 .container {
   width: 100%;
-  max-width: 1500px; /* Example max width */
+  max-width: 1500px;
   margin: 0 auto;
   background-color: #f4f4f4;
   padding: 20px;
@@ -138,7 +138,7 @@ onUnmounted(() => {
 .content {
   display: flex;
   align-items: center;
-  justify-content: center; /* Center the content */
+  justify-content: center;
   margin-top: 40px;
   width: 65%;
   margin-left: auto;
@@ -150,31 +150,31 @@ onUnmounted(() => {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Center the image vertically */
+    justify-content: center;
     flex: 1;
   }
 
   .subtitle {
-    font-size: 2rem; /* Adjusted font size for better alignment */
+    font-size: 2rem;
   }
 
   &__text {
     flex: 1;
-    font-size: 2rem; /* Increased font size */
+    font-size: 2rem;
     color: #333;
     overflow: hidden;
-    text-overflow: ellipsis; /* Prevent text overflow issues */
-    max-height: 450px; /* Set max-height to prevent container resizing */
+    text-overflow: ellipsis;
+    max-height: 450px;
     display: flex;
     align-items: center;
-    justify-content: center; /* Center the text vertically */
-    text-align: center; /* Center the text horizontally */
+    justify-content: center;
+    text-align: center;
   }
 
   &__image {
     flex: 1;
-    max-width: 400px; /* Set fixed max width */
-    max-height: 300px; /* Set fixed max height */
+    max-width: 400px;
+    max-height: 300px;
     width: auto;
     height: auto;
     border-radius: 2rem;
@@ -195,7 +195,8 @@ onUnmounted(() => {
   justify-content: space-around;
   margin-bottom: 20px;
   flex-wrap: wrap;
-  width: 70%;
+  width: 80%;
+  gap: 20px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -205,6 +206,7 @@ onUnmounted(() => {
   flex-direction: column;
   align-items: center;
   padding: 10px 20px;
+
   border: none;
   background-color: transparent;
   color: #333;
