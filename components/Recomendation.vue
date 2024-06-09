@@ -156,6 +156,8 @@ const breakpoints = {
 
 .recommendation {
     padding: 5rem 0;
+    max-width: $breakpoint_maxsize;
+  margin: 0 auto;
 
     &__title{
         text-align: center;
