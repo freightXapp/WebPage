@@ -2,26 +2,28 @@
   <section class="main">
     <div class="main__container">
       <video
-        class="main__video lazy w-100 mw-100 loaded"
+        class="main__video"
         autoplay
         muted
         playsinline
-      >
-        <source src="../assets/videos/main.hevc.mp4" type="video/mp4" />
-        <source src="../assets/videos/main.hevc.webm" type="video/webm" />
+      > 
+        <source
+          v-for="video in data"
+          :key="video.type"
+          :src="video.src"
+          :type="video.type"
+        >
         Your browser does not support this video.
       </video>
       <div class="main__text-wrapper">
         <div class="main__text-container">
-          <h1>Transport platform for freight exchange</h1>
+          <h1>{{ title }}</h1>
           <p class="main__text-add">
-            Enhances transport logistics by offering better workforce
-            management, reducing empty kilometers, and increasing payment
-            security.
+            {{ description }}
           </p>
           <div class="main__button-container">
             <BaseButton
-              :bg-color="'var(--pc2-orange-button)'"
+              :bg-color="buttonColor"
               :button-text="'Start for free'"
             />
           </div>
@@ -30,6 +32,25 @@
     </div>
   </section>
 </template>
+<script setup lang="ts">
+interface Props {
+  data?: { src: string; type: string }[],
+  title?: string,
+  description?: string,
+  buttonColor?: string,
+
+}
+
+withDefaults(defineProps<Props>(), {
+  data: [
+    { src: "../videos/main.hevc.mp4", type: "video/mp4" },
+    { src: "../videos/main.hevc.webm", type: "video/webm" }
+  ],
+  title: 'Transport platform for freight exchange',
+  description: 'Enhances transport logistics by offering better workforce management, reducing empty kilometers, and increasing payment security.',
+  buttonColor: 'var(--pc2-orange-button)'
+});
+</script>
 
 <style lang="scss" scoped>
 :deep(.button::after){

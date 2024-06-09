@@ -20,6 +20,7 @@
     />
     <span v-if="tag !== 'a'">{{ buttonText }}</span>
   </component>
+    <NuxtLink v-else :to="linkPath" class="button">
 
   <button
     v-if="type === 'arrow'"
@@ -51,6 +52,8 @@
       />
     </svg>
   </button>
+    </NuxtLink>
+
 </template>
 
 <script setup lang="ts">

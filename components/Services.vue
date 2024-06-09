@@ -19,7 +19,7 @@
             </div>
            </div>
             <div class="section__btn-box">
-              <BaseButton :button-text="buttonText" :bg-color="buttonColor"/>
+              <BaseButton :button-text="buttonText" :link-path="`/${imageTitle.toLowerCase()}`" :bg-color="buttonColor"/>
             </div>
           </div>
         </div>
