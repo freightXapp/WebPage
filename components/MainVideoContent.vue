@@ -5,18 +5,16 @@
         class="main__video lazy w-100 mw-100 loaded"
         autoplay
         muted
-        loop
         playsinline
       >
-        <source src="../assets/videos/v1.hevc.mp4" type="video/mp4" />
-
-        <!-- <source src="video-data.mp4" type="video/mp4"> -->
+        <source src="../assets/videos/main.hevc.mp4" type="video/mp4" />
+        <source src="../assets/videos/main.hevc.webm" type="video/webm" />
         Your browser does not support this video.
       </video>
       <div class="main__text-wrapper">
         <div class="main__text-container">
           <h1>Transport platform for freight exchange</h1>
-          <p>
+          <p class="main__text-add">
             Enhances transport logistics by offering better workforce
             management, reducing empty kilometers, and increasing payment
             security.
@@ -50,6 +48,13 @@
   align-items: center;
   position: relative;
   width: 100%;
+
+  &__text-add{
+    @media(min-width: $breakpoint-small){
+        max-width: 70%;
+  margin: 0 auto;
+    }
+  }
 
   &__container {
     position: relative;

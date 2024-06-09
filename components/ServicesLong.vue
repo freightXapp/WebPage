@@ -137,10 +137,12 @@ const services = [
   justify-content: space-between;
   background-color: #f1f1f1;  // TODO
 
+
   .service-long__main {
     max-width: $breakpoint-maxsize;
     margin: 3% auto 10rem auto;
     padding: 0 1.5rem;
+
     @media (min-width: $breakpoint-large) {
       margin:5% auto;
     }

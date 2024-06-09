@@ -27,8 +27,8 @@
           <img :src="activeImage" alt="" class="content__image" />
         </div>
         <div class="content__text" v-html="activeContent"></div>
-      </div> </transition
-    >>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -101,7 +101,7 @@ function setNextTab() {
 }
 
 function startAutoSwitch() {
-  intervalId = setInterval(setNextTab, 2000);
+  intervalId = setInterval(setNextTab, 4000);
 }
 
 function stopAutoSwitch() {
@@ -126,6 +126,14 @@ onUnmounted(() => {
   padding: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   align-items: center;
+  height: 70vh;
+  max-height: 70vh;
+  min-height: 70vh;
+
+  @media (min-width: $breakpoint-small) {
+    min-width: none;
+    height: auto;
+  }
 
   &__title {
     text-align: center;

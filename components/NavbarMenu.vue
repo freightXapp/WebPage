@@ -141,7 +141,7 @@ console.log(props.isAbove)
         // left: 0;
         width: 8rem;
         height: 2px;
-        background-color: var(--baby-blue);
+        background-color: var(--main-orange);
         transform: translateX(-30%);
         opacity: 0;
         transition: transform 0.3s ease-in-out;
@@ -198,7 +198,7 @@ console.log(props.isAbove)
           left: 0;
           width: 100%;
           height: 2px;
-          background-color: var(--baby-blue);
+          background-color: var(--main-orange);
           transform: translateX(-100%);
           transition: transform 0.3s ease-in-out;
         }
