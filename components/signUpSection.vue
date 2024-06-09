@@ -39,7 +39,6 @@ import serviceImg from "~/assets/BaseIcons/truck-services.jpg";
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 100%;
   overflow: hidden;
 
   &__container {

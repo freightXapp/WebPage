@@ -48,6 +48,7 @@
   align-items: center;
   position: relative;
   width: 100%;
+  overflow: hidden;
 
   &__text-add{
     @media(min-width: $breakpoint-small){
