@@ -73,6 +73,11 @@ import StafManageSVG from "~/assets/BaseIcons/stafmanage.svg";
     justify-content: center;
     gap: 6rem;
 
+    @media(min-width: $breakpoint_mobiletabs){
+    gap: 11rem;
+
+    }
+
     @media (min-width: $breakpoint_small) {
       gap: 7rem;
     }
