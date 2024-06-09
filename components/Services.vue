@@ -56,7 +56,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 </script>
 <style lang="scss" scoped>
-:deep(.button) {
+:deep(.button-container) {
   width: 100%;
 }
 
