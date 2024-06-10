@@ -18,7 +18,7 @@
       <div class="main__text-wrapper">
         <div class="main__text-container">
           <h1>{{ title }}</h1>
-          <p class="main__text-add">
+          <p class="main__text-add" v-if="description">
             {{ description }}
           </p>
           <div class="main__button-container">

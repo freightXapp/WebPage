@@ -19,7 +19,7 @@
       </button>
     </div>
     <transition name="slide-fade" mode="out-in">
-      <div class="content" :key="activeTab">
+      <div class="pickup-section__content" :key="activeTab">
         <div class="left-content">
           <div v-if="activeTab === 'rating'" class="content__subtitle">
             <h3 class="subtitle">{{ subtitle }}</h3>
@@ -140,7 +140,7 @@ onUnmounted(() => {
   }
 }
 
-.content {
+.pickup-section__content {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -242,7 +242,7 @@ span {
 }
 
 @media (max-width: 768px) {
-  .content {
+  .pickup-section__content {
     flex-direction: column-reverse;
 
     &__image {

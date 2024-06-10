@@ -17,7 +17,7 @@
         <span>{{ tab.name }}</span>
       </SwiperSlide>
     </Swiper>
-    <div class="content">
+    <div class="pickup-section__content">
       <img :src="services1Img" alt="" />
       <p>{{ activeContent }}</p>
     </div>
@@ -131,7 +131,7 @@ span {
   font-size: 12px;
 }
 
-.content {
+.pickup-section__content {
   min-height: 100px;
   color: #333;
   font-size: 14px;

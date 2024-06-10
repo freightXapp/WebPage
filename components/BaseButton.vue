@@ -20,39 +20,38 @@
     />
     <span v-if="tag !== 'a'">{{ buttonText }}</span>
   </component>
-    <NuxtLink v-else :to="linkPath" class="button-container">
-  <button
-    v-if="type === 'arrow'"
-    class="button"
-    :style="{ background: bgColor, padding: padding, margin: margin }"
-  >
-    {{ buttonText }}
-    <svg
-      class="arrow-icon"
-      width="17"
-      height="17"
-      viewBox="0 0 17 17"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
+  <NuxtLink v-else :to="linkPath" class="button-container">
+    <button
+      v-if="type === 'arrow'"
+      class="button"
+      :style="{ background: bgColor, padding: padding, margin: margin }"
     >
-      <path
-        class="arrow-icon__tip"
-        d="M8 15L14 8.5L8 2"
-        stroke="currentColor"
-        stroke-width="3"
-      />
-      <line
-        class="arrow-icon__line"
-        x1="13"
-        y1="8.5"
-        y2="8.5"
-        stroke="currentColor"
-        stroke-width="3"
-      />
-    </svg>
-  </button>
-    </NuxtLink>
-
+      {{ buttonText }}
+      <svg
+        class="arrow-icon"
+        width="17"
+        height="17"
+        viewBox="0 0 17 17"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          class="arrow-icon__tip"
+          d="M8 15L14 8.5L8 2"
+          stroke="currentColor"
+          stroke-width="3"
+        />
+        <line
+          class="arrow-icon__line"
+          x1="13"
+          y1="8.5"
+          y2="8.5"
+          stroke="currentColor"
+          stroke-width="3"
+        />
+      </svg>
+    </button>
+  </NuxtLink>
 </template>
 
 <script setup lang="ts">
@@ -87,6 +86,13 @@ withDefaults(defineProps<Props>(), {
   position: absolute;
   right: 0.7rem;
   top: 1.3rem;
+}
+
+.button-container {
+  &:active,
+  &:focus {
+    text-decoration: none;
+  }
 }
 
 .button {

@@ -13,12 +13,12 @@
       <div class="header__dropdown" />
     </li>
     <li class="header__nav-item">
-      <a
-        href="#"
+      <NuxtLink
+        to="/forwarders"
         class="header__nav-link"
       >
         <span class="header__nav-title" :class="[{'header__nav-title--white': isAbove}]">Forwarders</span>
-      </a>
+      </NuxtLink>
     </li>
     <li class="header__nav-item">
       <a
