@@ -21,28 +21,28 @@
       </NuxtLink>
     </li>
     <li class="header__nav-item">
-      <a
+      <NuxtLink
         href="#"
         class="header__nav-link"
       >
         <span class="header__nav-title"  :class="[{'header__nav-title--white': isAbove}]">Carriers</span>
-      </a>
+      </NuxtLink>
     </li>
     <li class="header__nav-item">
-      <a
+      <NuxtLink
         href="#"
         class="header__nav-link"
       >
         <span class="header__nav-title" :class="[{'header__nav-title--white': isAbove}]">Price</span>
-      </a>
+      </NuxtLink>
     </li>
     <li class="header__nav-item">
-      <a
+      <NuxtLink
         href="#"
         class="header__nav-link"
       >
         <span class="header__nav-title" :class="[{'header__nav-title--white': isAbove}]">About us</span>
-      </a>
+      </NuxtLink>
     </li>
   </ul>
 </template>

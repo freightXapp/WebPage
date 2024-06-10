@@ -65,11 +65,9 @@ withDefaults(defineProps<Props>(), {
                 font-weight: 300;
 
                 &:nth-of-type(1)::first-letter {
-                    -webkit-initial-letter: 4;
-                    initial-letter: 4;
+                    initial-letter: 2;
                     color: var(--main-orange);
-                    font-size: 4rem;
-                    font-weight: bold;
+                    font-weight: 400;
                 }
             }
         }
