@@ -207,7 +207,7 @@ import pickUp2White from "~/assets/BaseIcons/pc2.svg";
       padding: 20px;
     }
     &__column {
-      flex: 1 1 calc(50% - 10px); /* Two columns in a row */
+      flex: 1 1 calc(50% - 20px);
     }
     &__form {
       flex-direction: column;
@@ -218,6 +218,18 @@ import pickUp2White from "~/assets/BaseIcons/pc2.svg";
     }
     &__button {
       margin-top: 10px;
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .footer {
+    &__row {
+      flex-direction: column;
+      gap: 10px;
+    }
+    &__column {
+      flex: 1 1 100%;
     }
   }
 }

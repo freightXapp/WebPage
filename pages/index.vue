@@ -19,7 +19,7 @@
     <PartnerLogos />
 
     <ServicesLong />
-    <test />
+    <test1 />
     <SignUpSection />
     <Recomendation />
   </div>
