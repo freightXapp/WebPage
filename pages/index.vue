@@ -1,7 +1,7 @@
 <template>
   <div>
     <MainVideoContent />
-    <Solutions/>
+    <Solutions />
     <div class="services">
       <Services
         v-for="(item, index) in mainContentent"
@@ -21,7 +21,7 @@
     <ServicesLong />
     <test />
     <SignUpSection />
-    <Recomendation/>
+    <Recomendation />
   </div>
 </template>
 <script setup lang="ts">

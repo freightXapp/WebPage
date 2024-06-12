@@ -1,139 +1,160 @@
 <template>
-  <div class="container">
-    <Swiper
-      :slides-per-view="isMobile ? 4 : tabs.length"
-      @slideChange="onSlideChange"
-      class="tabs"
-    >
-      <SwiperSlide
+  <div class="tabs-component">
+    <div class="tabs-icons">
+      <div
         v-for="tab in tabs"
         :key="tab.id"
-        :class="{ active: activeTab === tab.id }"
-        @click="changeTab(tab.id)"
+        :class="{ active: currentTab === tab.id }"
+        @click="selectTab(tab.id)"
+        class="tab-icon"
       >
-        <div class="icon-container">
-          <component :is="tab.icon" :filled="''" class="icons" />
-        </div>
-        <span>{{ tab.name }}</span>
-      </SwiperSlide>
-    </Swiper>
-    <div class="pickup-section__content">
-      <img :src="services1Img" alt="" />
-      <p>{{ activeContent }}</p>
+        <img :src="tab.icon" :alt="tab.name" />
+        <p>{{ tab.name }}</p>
+      </div>
     </div>
+    <swiper :options="swiperOptions" class="tabs-content">
+      <swiper-slide v-for="tab in tabs" :key="tab.id">
+        <div
+          :class="[
+            'tab-content',
+            { 'image-left': index % 2 === 0, 'image-right': index % 2 !== 0 },
+          ]"
+          v-if="currentTab === tab.id"
+        >
+          <img :src="tab.image" :alt="tab.name" class="tab-image" />
+          <div class="tab-text">
+            <div v-html="tab.content"></div>
+            <div v-if="tab.subtitle" class="tab-subtitle">
+              {{ tab.subtitle }}
+            </div>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper>
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted } from "vue";
-
-import rewardsSvg from "~/assets/BaseIcons/rewards.svg";
-import boostingSvg from "~/assets/BaseIcons/boosting.svg";
-import filterSvg from "~/assets/BaseIcons/filter.svg";
-import ratingSvg from "~/assets/BaseIcons/rating.svg";
-import services1Img from "~/assets/BaseIcons/services1.png";
-
-const tabs = [
-  {
-    id: "boosting",
-    name: "Boosting",
-    icon: boostingSvg,
-    content: "Boosting your case to get quick responses.",
-    image: services1Img,
+<script>
+export default {
+  components: {
+    Swiper,
   },
-  {
-    id: "filter",
-    name: "Filter",
-    icon: filterSvg,
-    content: "Filter your searches to find exactly what you need.",
+  data() {
+    return {
+      currentTab: "boosting",
+      swiperOptions: {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        breakpoints: {
+          640: {
+            slidesPerView: 1,
+          },
+          768: {
+            slidesPerView: 1,
+          },
+          1024: {
+            slidesPerView: 1,
+          },
+        },
+      },
+      tabs: [
+        {
+          id: "boosting",
+          name: "Boosting",
+          icon: require("~/assets/BaseIcons/boosting.svg"),
+          content:
+            "The urgency of an order is not to be ignored?<br><br> Or do you intend to pay special attention to your case? The sponsored ad is responding to help. An efficient and cost-effective way to keep your workflow in shape. Don't let a single urgency slow down the entire business flow.",
+          image: require("@/assets/services1Img.png"),
+        },
+        {
+          id: "filter",
+          name: "Filter",
+          icon: require("@/assets/filterSvg.svg"),
+          content:
+            "Do you have preferences for what kind of ads should be displayed on your desktop?<br><br> Take advantage of the enriched features for customized search. Turn your working day into a pleasant pleasure. PicкUp2's lightweight interface allows you to take full advantage of digitized tools.",
+          image: require("@/assets/services2Img.png"),
+        },
+        {
+          id: "rating",
+          name: "Rating Transfer",
+          icon: require("@/assets/ratingSvg.svg"),
+          content:
+            "Chronology. Payments. Documentation. How nice it would be if all this was transparent, wouldn't it?<br><br> Valuable partnerships are built with hard work and constant communication. We at the PickUp2 know this. To this purpose, we have developed our rating system into a more productive tool.<br><br> Allow us to transfer your ratings from other sources and implement them in your profile.",
+          subtitle: "Don't let your past good performance be forgotten.",
+          image: require("@/assets/services3Img.png"),
+        },
+        {
+          id: "rewards",
+          name: "Rewards",
+          icon: require("@/assets/rewardsSvg.svg"),
+          content:
+            "The roads are full of fines and penalties. It is no different in the path of the entrepreneur.<br><br> A system works well both when there is a regulation and when there is a reward mechanism. We aim to provide the latter. Achieve certain steps and get your financial relief in the PickUp2 system.",
+          image: require("@/assets/services4Img.png"),
+        },
+      ],
+    };
   },
-  {
-    id: "rating",
-    name: "Rating Transfer",
-    icon: ratingSvg,
-    content: "Transfer ratings from one service to another.",
+  methods: {
+    selectTab(tabId) {
+      this.currentTab = tabId;
+    },
   },
-  {
-    id: "rewards",
-    name: "Rewards",
-    icon: rewardsSvg,
-    content: "Earn rewards through your engagement.",
-  },
-];
-
-const activeTab = ref(tabs[0].id);
-const activeContent = ref(tabs[0].content);
-const isMobile = ref(false);
-
-function changeTab(tabId) {
-  const tab = tabs.find((tab) => tab.id === tabId);
-  activeTab.value = tab.id;
-  activeContent.value = tab.content;
-}
-
-function onSlideChange(swiper) {
-  const currentIndex = swiper.realIndex;
-  const tab = tabs[currentIndex];
-  activeTab.value = tab.id;
-  activeContent.value = tab.content;
-}
-
-onMounted(() => {
-  isMobile.value = window.innerWidth <= 768;
-  window.addEventListener("resize", () => {
-    isMobile.value = window.innerWidth <= 768;
-  });
-});
+};
 </script>
-<style scoped lang="scss">
-.container {
-  width: 100%;
-  max-width: 1400px;
+
+<style scoped>
+.tabs-component {
+  max-width: 1600px;
   margin: 0 auto;
-  background-color: #f4f4f4;
-  padding: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
-.tabs {
+.tabs-icons {
+  display: flex;
+  justify-content: space-around;
   margin-bottom: 20px;
 }
 
-.swiper-slide {
+.tab-icon {
+  cursor: pointer;
+}
+
+.tab-icon.active img {
+  border: 2px solid blue;
+}
+
+.tabs-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tab-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5px 10px;
-  border: none;
-  background-color: transparent;
-  color: #333;
-  font-size: 14px;
-  cursor: pointer;
-  transition: color 0.3s, border-bottom 0.3s;
-
-  &.active {
-    color: blue;
-    border-bottom: 3px solid blue;
-  }
 }
 
-.icon-container {
-  margin-bottom: 5px;
+.tab-content.image-left {
+  flex-direction: row;
 }
 
-.icons {
-  width: 80px;
-  height: 60px;
+.tab-content.image-right {
+  flex-direction: row-reverse;
 }
 
-span {
-  margin-top: 5px;
-  font-size: 12px;
+.tab-image {
+  max-width: 400px;
+  margin: 0 20px;
 }
 
-.pickup-section__content {
-  min-height: 100px;
-  color: #333;
-  font-size: 14px;
+.tab-text {
+  max-width: 600px;
+  text-align: left;
+}
+
+.tab-subtitle {
+  margin-top: 10px;
+  font-weight: bold;
 }
 </style>

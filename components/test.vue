@@ -13,14 +13,22 @@
         @click="changeTab(tab.id)"
       >
         <div class="icon-container">
-          <component :is="tab.icon" :filled="''" class="icons" />
+          <component :is="tab.icon" :filled="true" class="icons" />
         </div>
         <span>{{ tab.name }}</span>
       </button>
     </div>
     <transition name="slide-fade" mode="out-in">
-      <div class="pickup-section__content" :key="activeTab">
-        <div class="left-content">
+      <div
+        class="content"
+        :key="activeTab"
+        :class="{
+          'reverse-layout': isEven(
+            tabs.findIndex((tab) => tab.id === activeTab)
+          ),
+        }"
+      >
+        <div class="content__left">
           <div v-if="activeTab === 'rating'" class="content__subtitle">
             <h3 class="subtitle">{{ subtitle }}</h3>
           </div>
@@ -34,7 +42,6 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
-
 import rewardsSvg from "~/assets/BaseIcons/rewards.svg";
 import boostingSvg from "~/assets/BaseIcons/boosting.svg";
 import filterSvg from "~/assets/BaseIcons/filter.svg";
@@ -83,8 +90,12 @@ const tabs = [
 const activeTab = ref(tabs[0].id);
 const activeContent = ref(tabs[0].content);
 const activeImage = ref(tabs[0].image);
-const subtitle = ref(tabs.find((tab) => tab.id === "rating").subtitle);
-let intervalId;
+const subtitle = ref(tabs.find((tab) => tab.id === "rating").subtitle || "");
+let intervalId = null;
+
+function isEven(index) {
+  return index % 2 === 0;
+}
 
 function changeTab(tabId) {
   const tab = tabs.find((tab) => tab.id === tabId);
@@ -101,36 +112,31 @@ function setNextTab() {
 }
 
 function startAutoSwitch() {
-  intervalId = setInterval(setNextTab, 4000);
+  if (!intervalId) {
+    intervalId = setInterval(setNextTab, 4000);
+  }
 }
 
 function stopAutoSwitch() {
-  clearInterval(intervalId);
+  if (intervalId) {
+    clearInterval(intervalId);
+    intervalId = null;
+  }
 }
 
-onMounted(() => {
-  startAutoSwitch();
-});
-
-onUnmounted(() => {
-  clearInterval(intervalId);
-});
+onMounted(startAutoSwitch);
+onUnmounted(() => clearInterval(intervalId));
 </script>
 
 <style scoped lang="scss">
 .container {
   width: 100%;
-  max-width: 1500px;
+  max-width: 1600px;
   margin: 0 auto;
-  background-color: #f4f4f4;
   padding: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
   align-items: center;
-
-  @media (min-width: $breakpoint-small) {
-    min-width: none;
-    height: auto;
-  }
 
   &__title {
     text-align: center;
@@ -140,70 +146,15 @@ onUnmounted(() => {
   }
 }
 
-.pickup-section__content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 40px;
-  width: 65%;
-  margin-left: auto;
-  margin-right: auto;
-  min-height: 450px;
-  transition: all 0.3s ease;
-
-  .left-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-  }
-
-  .subtitle {
-    font-size: 2rem;
-  }
-
-  &__text {
-    flex: 1;
-    font-size: 2rem;
-    color: #333;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-height: 450px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-
-  &__image {
-    flex: 1;
-    max-width: 400px;
-    max-height: 300px;
-    width: auto;
-    height: auto;
-    border-radius: 2rem;
-    display: block;
-    margin: 0 auto;
-  }
-
-  &__subtitle {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-    color: #333;
-  }
-}
-
 .tabs {
   display: flex;
   justify-content: space-around;
   margin-bottom: 20px;
-  flex-wrap: wrap;
-  width: 80%;
+  flex-wrap: nowrap;
+  width: 100%;
   gap: 20px;
-  margin-left: auto;
-  margin-right: auto;
+  overflow-x: auto;
+  padding: 0 10px;
 }
 
 .tab {
@@ -211,14 +162,13 @@ onUnmounted(() => {
   flex-direction: column;
   align-items: center;
   padding: 10px 20px;
-
   border: none;
   background-color: transparent;
   color: #333;
   font-size: 14px;
   cursor: pointer;
   transition: color 0.3s, border-bottom 0.3s;
-  width: 20%;
+  flex: 1;
 
   &.active {
     color: blue;
@@ -241,23 +191,133 @@ span {
   text-align: center;
 }
 
-@media (max-width: 768px) {
-  .pickup-section__content {
-    flex-direction: column-reverse;
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 40px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 450px;
+  transition: all 0.3s ease;
+  padding: 0 20px;
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+  }
+
+  &__subtitle {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #333;
+  }
+
+  &__text {
+    flex: 1;
+    font-size: 2rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-left: 20px;
+  }
+
+  &__image {
+    flex: 1;
+    width: 100%;
+    max-height: 40rem;
+    width: 100%;
+    height: 100%;
+    border-radius: 2rem;
+    display: block;
+    margin-right: 20px;
+  }
+
+  &.reverse-layout {
+    flex-direction: row-reverse;
+
+    &__text {
+      margin-left: 0;
+      margin-right: 20px;
+    }
 
     &__image {
-      max-width: 50%;
+      margin-right: 0;
+      margin-left: 20px;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .content {
+    flex-direction: column-reverse;
+    width: 90%;
+    min-height: auto;
+
+    &__image {
+      max-width: 70%;
+      height: auto;
       margin: 0 auto;
-      height: 200px;
+    }
+
+    &__text {
+      margin: 0 auto;
     }
   }
 
   .tab {
-    margin-bottom: 10px;
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+
+    &__image {
+      max-width: 50%;
+      height: auto;
+      margin: 0 auto;
+    }
+
+    &__text {
+      margin: 0 auto;
+    }
+  }
+
+  .tab {
+    padding: 5px;
+    font-size: 10px;
   }
 }
 
 @media (max-width: 480px) {
+  .content {
+    width: 100%;
+
+    &__image {
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto;
+    }
+
+    &__text {
+      margin: 0 auto;
+    }
+  }
+
+  .tab {
+    padding: 5px;
+    font-size: 10px;
+  }
 }
 
 .slide-fade-enter-active,

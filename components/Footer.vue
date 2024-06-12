@@ -201,8 +201,13 @@ import pickUp2White from "~/assets/BaseIcons/pc2.svg";
   .footer {
     padding: 200px 0 0 0;
     &__row {
-      flex-direction: column;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 10px;
       padding: 20px;
+    }
+    &__column {
+      flex: 1 1 calc(50% - 10px); /* Two columns in a row */
     }
     &__form {
       flex-direction: column;
