@@ -60,7 +60,6 @@
 
 <script setup lang="ts">
 import BaseDialog from "./BaseDialog.vue";
-import pickUp2 from "~/assets/BaseIcons/pc2-dark.svg";
 import pickUp2White from "~/assets/BaseIcons/pc2.svg";
 import closeBtn from "~/assets/BaseIcons/closeBold.svg";
 import User from "~/assets/BaseIcons/user.svg";

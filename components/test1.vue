@@ -172,7 +172,7 @@ const pagination = ref({
   }
 
   :deep(.swiper-container) {
-    bottom: 75% !important;
+    bottom: 80% !important;
   }
 }
 
@@ -209,7 +209,7 @@ const pagination = ref({
 }
 
 :deep(.swiper-container) {
-  bottom: 70%;
+  bottom: 75%;
   display: flex;
   margin-bottom: 20px;
   width: 100%;
