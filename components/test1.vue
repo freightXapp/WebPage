@@ -14,7 +14,6 @@
       <SwiperSlide v-for="(tab, index) in tabs" :key="tab.id">
         <div class="content" :class="{ 'content--reverse': index % 2 !== 0 }">
           <div class="content__left">
-            <h3 class="content__subtitle">{{ tab.subtitle }}</h3>
             <img :src="tab.image" alt="" class="content__image" />
           </div>
           <div class="content__text" v-html="tab.content"></div>
@@ -56,10 +55,10 @@ const tabs = [
     name: "Rating",
     icon: "../img/rating.svg",
     content: `
+    Don't let your past good performance be forgotten. <br><br>
       Chronology. Payments. Documentation. How nice it would be if all this was transparent, wouldn't it?<br><br>
       Valuable partnerships are built with hard work and constant communication. We at the PickUp2 know this. To this purpose, we have developed our rating system into a more productive tool.<br><br>
       Allow us to transfer your ratings from other sources and implement them in your profile.`,
-    subtitle: "Don't let your past good performance be forgotten.",
     image: services2Img,
   },
   {
@@ -128,13 +127,6 @@ const pagination = ref({
     justify-content: center;
   }
 
-  &__subtitle {
-    text-align: left;
-    margin-bottom: 20px;
-    font-size: 1.8rem;
-    color: black;
-  }
-
   &__text {
     flex: 1;
     font-size: 2.5rem;
@@ -163,9 +155,6 @@ const pagination = ref({
     &__text {
       margin: 0 auto;
     }
-    &__subtitle {
-      margin-top: 100px;
-    }
   }
 
   :deep(.swiper-container) {
@@ -193,9 +182,6 @@ const pagination = ref({
 
     &__image {
       max-width: 100%;
-    }
-    &__subtitle {
-      margin-top: 25px;
     }
   }
 
@@ -231,7 +217,7 @@ const pagination = ref({
 
 :deep(.bullet-active) {
   color: var(--main-blue);
-  border-bottom: 3px solid var(--main-blue);
+  border-bottom: 3px solid var(--main-orange);
 }
 
 :deep(.bullets) {
