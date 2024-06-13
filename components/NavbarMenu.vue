@@ -1,47 +1,49 @@
 <template>
-  <ul
-    class="header__nav-list"
-    :class="{ 'header__nav-mobile': isToggle }"
-  >
+  <ul class="header__nav-list" :class="{ 'header__nav-mobile': isToggle }">
     <li class="header__nav-item">
-      <NuxtLink
-        to="/"
-        class="header__nav-link"
-      >
-        <span class="header__nav-title" :class="[{'header__nav-title--white': isAbove}]">Shippers</span>
+      <NuxtLink to="/Shippers" class="header__nav-link">
+        <span
+          class="header__nav-title"
+          :class="[{ 'header__nav-title--white': isAbove }]"
+          >Shippers</span
+        >
       </NuxtLink>
       <div class="header__dropdown" />
     </li>
     <li class="header__nav-item">
-      <NuxtLink
-        to="/forwarders"
-        class="header__nav-link"
-      >
-        <span class="header__nav-title" :class="[{'header__nav-title--white': isAbove}]">Forwarders</span>
+      <NuxtLink to="/forwarders" class="header__nav-link">
+        <span
+          class="header__nav-title"
+          :class="[{ 'header__nav-title--white': isAbove }]"
+          >Forwarders</span
+        >
       </NuxtLink>
     </li>
     <li class="header__nav-item">
-      <NuxtLink
-        href="#"
-        class="header__nav-link"
-      >
-        <span class="header__nav-title"  :class="[{'header__nav-title--white': isAbove}]">Carriers</span>
+      <NuxtLink href="#" class="header__nav-link">
+        <span
+          class="header__nav-title"
+          :class="[{ 'header__nav-title--white': isAbove }]"
+          >Carriers</span
+        >
       </NuxtLink>
     </li>
     <li class="header__nav-item">
-      <NuxtLink
-        href="#"
-        class="header__nav-link"
-      >
-        <span class="header__nav-title" :class="[{'header__nav-title--white': isAbove}]">Price</span>
+      <NuxtLink href="#" class="header__nav-link">
+        <span
+          class="header__nav-title"
+          :class="[{ 'header__nav-title--white': isAbove }]"
+          >Price</span
+        >
       </NuxtLink>
     </li>
     <li class="header__nav-item">
-      <NuxtLink
-        href="#"
-        class="header__nav-link"
-      >
-        <span class="header__nav-title" :class="[{'header__nav-title--white': isAbove}]">About us</span>
+      <NuxtLink href="#" class="header__nav-link">
+        <span
+          class="header__nav-title"
+          :class="[{ 'header__nav-title--white': isAbove }]"
+          >About us</span
+        >
       </NuxtLink>
     </li>
   </ul>
@@ -49,13 +51,12 @@
 
 <script setup lang="ts">
 interface Props {
-  isToggle: boolean,
-  isAbove?: boolean
+  isToggle: boolean;
+  isAbove?: boolean;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-})
-console.log(props.isAbove)
+const props = withDefaults(defineProps<Props>(), {});
+console.log(props.isAbove);
 </script>
 
 <style setup lang="scss">
@@ -82,7 +83,7 @@ console.log(props.isAbove)
       font-size: clamp(1.5rem, 50%, 1.7rem);
       font-weight: 500;
       position: relative;
-      &--white{
+      &--white {
         color: white;
       }
     }
@@ -135,7 +136,7 @@ console.log(props.isAbove)
       }
 
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         bottom: 0;
         // left: 0;
@@ -170,7 +171,8 @@ console.log(props.isAbove)
       opacity: 0;
       visibility: hidden;
       transform: translateY(20px);
-      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, transform 0.3s ease-in-out;
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out,
+        transform 0.3s ease-in-out;
 
       &-list {
         list-style: none;
@@ -192,7 +194,7 @@ console.log(props.isAbove)
         overflow: hidden;
 
         &::after {
-          content: '';
+          content: "";
           position: absolute;
           bottom: 0;
           left: 0;

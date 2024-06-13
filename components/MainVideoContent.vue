@@ -1,18 +1,13 @@
 <template>
   <section class="main">
     <div class="main__container">
-      <video
-        class="main__video"
-        autoplay
-        muted
-        playsinline
-      > 
+      <video class="main__video" autoplay muted playsinline>
         <source
           v-for="video in data"
           :key="video.type"
           :src="video.src"
           :type="video.type"
-        >
+        />
         Your browser does not support this video.
       </video>
       <div class="main__text-wrapper">
@@ -34,34 +29,34 @@
 </template>
 <script setup lang="ts">
 interface Props {
-  data?: { src: string; type: string }[],
-  title?: string,
-  description?: string,
-  buttonColor?: string,
-
+  data?: { src: string; type: string }[];
+  title?: string;
+  description?: string;
+  buttonColor?: string;
 }
 
 withDefaults(defineProps<Props>(), {
   data: [
     { src: "../videos/main.hevc.mp4", type: "video/mp4" },
-    { src: "../videos/main.hevc.webm", type: "video/webm" }
+    { src: "../videos/main.hevc.webm", type: "video/webm" },
   ],
-  title: 'Transport platform for freight exchange',
-  description: 'Enhances transport logistics by offering better workforce management, reducing empty kilometers, and increasing payment security.',
-  buttonColor: 'var(--pc2-orange-button)'
+  title: "Transport platform for freight exchange",
+  description:
+    "Enhances transport logistics by offering better workforce management, reducing empty kilometers, and increasing payment security.",
+  buttonColor: "var(--pc2-orange-button)",
 });
 </script>
 
 <style lang="scss" scoped>
-:deep(.button::after){
-    width: 3.9rem;
-    height: 4.2rem;
-    top: 0;
-    border: 0.4rem solid white;
-    right: -0.3rem;
+:deep(.button::after) {
+  width: 3.9rem;
+  height: 4.2rem;
+  top: 0;
+  border: 0.4rem solid white;
+  right: -0.3rem;
 }
-:deep(.button){
-    height: 4rem;
+:deep(.button) {
+  height: 4rem;
 }
 .main {
   display: flex;
@@ -71,10 +66,10 @@ withDefaults(defineProps<Props>(), {
   width: 100%;
   overflow: hidden;
 
-  &__text-add{
-    @media(min-width: $breakpoint-small){
-        max-width: 70%;
-  margin: 0 auto;
+  &__text-add {
+    @media (min-width: $breakpoint-small) {
+      max-width: 70%;
+      margin: 0 auto;
     }
   }
 
@@ -105,26 +100,24 @@ withDefaults(defineProps<Props>(), {
     justify-content: center;
     color: #fff;
     padding: 1rem;
-   background: linear-gradient(
+    background: linear-gradient(
       to bottom,
       rgba(0, 105, 180, 0.8) 0%,
       rgba(255, 255, 255, 0.7) 100%
     );
     top: -1rem;
-
-    
   }
   &__container {
     text-align: center;
 
     h1 {
-    margin-top: 1rem;
+      margin-top: 1rem;
       font-size: 3rem;
       margin-bottom: 2rem;
     }
 
     p {
-        font-size: 1.5rem;
+      font-size: 1.5rem;
       margin-bottom: 2rem;
     }
   }
@@ -140,16 +133,16 @@ withDefaults(defineProps<Props>(), {
   @media (min-width: $breakpoint_small) {
     &__text-wrapper {
       width: 80%;
-        position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    background: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      background: none;
     }
 
     &__text-container {

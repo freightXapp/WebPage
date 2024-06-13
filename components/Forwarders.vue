@@ -1,7 +1,9 @@
 <template>
   <!-- VIDEO -->
   <MainVideoContent
-    :data="[{ src: '../videos/forwarders.webm', type: 'video/webm' }]" :title="'Your reliable partner for professional logistics operations management'"
+    :data="[{ src: '../videos/forwarders.webm', type: 'video/webm' }]"
+    :title="'Your reliable partner for professional logistics operations management'"
+    :description="''"
   />
   <!--  INFO SECTION -->
   <InfoSection
@@ -12,13 +14,26 @@
   />
 
   <!--  FEATURE -->
-  <FeatureSection class="main-container" :feature-data="featureData"/>
+  <FeatureSection class="main-container" :feature-data="featureData" />
 
   <!-- PROMO -->
-  <PromoSection class="main-container" :title="promoData.title" :image-alt="promoData.imageAlt" :description="promoData.description" :image="promoData.image" :rotate="true"/>
-  <PromoSection class="main-container" :title="promoData2.title" :image-alt="promoData.imageAlt" :description="promoData2.description" :image="promoData2.image" :reverse="true"/>
-    <SignUpSection />
-
+  <PromoSection
+    class="main-container"
+    :title="promoData.title"
+    :image-alt="promoData.imageAlt"
+    :description="promoData.description"
+    :image="promoData.image"
+    :rotate="true"
+  />
+  <PromoSection
+    class="main-container"
+    :title="promoData2.title"
+    :image-alt="promoData.imageAlt"
+    :description="promoData2.description"
+    :image="promoData2.image"
+    :reverse="true"
+  />
+  <SignUpSection />
 </template>
 
 <script lang="ts" setup>
@@ -28,8 +43,21 @@ import circleChartSVG from "../assets/BaseIcons/circleChart.svg";
 import trackingSVG from "../assets/BaseIcons/tracking.svg";
 import upperChartSVG from "../assets/BaseIcons/upperChart.svg";
 
-const promoData = {image: '../img/dash.jpeg',imageAlt: 'Logistics Dashboard', title: ' Are you looking for effective solutions to manage your logisticsoperations?', description: ' Get started with PickUp2 today and optimize your freight forwarding processes!'};
-const promoData2 = {image: '../img/forwardersIllustration.png', title: 'Want to improve communication and collaboration in your logistics operations?', description: 'Join PickUp2 and take advantage of our innovative freight forwarding tools!' }
+const promoData = {
+  image: "../img/dash.jpeg",
+  imageAlt: "Logistics Dashboard",
+  title:
+    " Are you looking for effective solutions to manage your logisticsoperations?",
+  description:
+    " Get started with PickUp2 today and optimize your freight forwarding processes!",
+};
+const promoData2 = {
+  image: "../img/forwardersIllustration.png",
+  title:
+    "Want to improve communication and collaboration in your logistics operations?",
+  description:
+    "Join PickUp2 and take advantage of our innovative freight forwarding tools!",
+};
 const featureData = [
   {
     icon: boxSVG,
@@ -76,16 +104,13 @@ const infoData = {
   }
 }
 
-:deep(.promo-image){
-    &:nth-child(0){
-        rotate: 20deg;
-    }
-
+:deep(.promo-image) {
+  &:nth-child(0) {
+    rotate: 20deg;
+  }
 }
 .main-container {
   max-width: 1600px;
   margin: 0 auto;
 }
-
-
 </style>
