@@ -16,7 +16,6 @@
         :button-color="item.buttonColor"
       />
     </div>
-    <PartnerLogos />
 
     <ServicesLong />
     <test1 />
