@@ -1,6 +1,20 @@
 <template>
   <section class="footer">
     <div class="footer__row">
+      <div class="footer__column footer__logo">
+        <NuxtLink to="/">
+          <pickUp2White :filled="''" class="footer__logo--svg" />
+        </NuxtLink>
+        <p class="footer__logo--description">
+          Partners in optimized transport process
+        </p>
+        <div class="footer__icons">
+          <Facebook class="footer__icons--svg" />
+          <Instagram class="footer__icons--svg" />
+          <Linkedin class="footer__icons--svg" />
+          <Twitter class="footer__icons--svg" />
+        </div>
+      </div>
       <div class="footer__column footer__column--info">
         <h4 class="footer__title">Info</h4>
         <ul class="footer__links">
@@ -34,20 +48,6 @@
         </ul>
       </div>
 
-      <div class="footer__column footer__logo">
-        <NuxtLink to="/">
-          <pickUp2White :filled="''" class="footer__logo--svg" />
-        </NuxtLink>
-        <p class="footer__logo--description">
-          Partners in optimized transport process
-        </p>
-        <div class="footer__icons">
-          <Facebook class="footer__icons--svg" />
-          <Instagram class="footer__icons--svg" />
-          <Linkedin class="footer__icons--svg" />
-          <Twitter class="footer__icons--svg" />
-        </div>
-      </div>
       <div class="footer__copyright">
         <p class="footer__copyright--text">
           All Rights Reserved © Pickup2 2024
@@ -171,7 +171,7 @@ import pickUp2White from "~/assets/BaseIcons/pc2.svg";
     &__row {
       flex-direction: row;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 20px;
       padding: 20px;
     }
 
@@ -181,6 +181,10 @@ import pickUp2White from "~/assets/BaseIcons/pc2.svg";
         width: 15rem;
         height: 8rem;
       }
+    }
+
+    &__icons {
+      gap: 10px;
     }
     &__column {
       flex: 1 1 calc(50% - 38px);
