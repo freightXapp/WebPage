@@ -143,42 +143,30 @@ const pagination = ref({
   }
 }
 
+@media (max-width: $breakpoint-medium-large) {
+  .content {
+    width: 100%;
+    &__image {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    &__text {
+      margin: 0 auto;
+      font-size: 2.3rem;
+    }
+  }
+
+  :deep(.swiper-container) {
+    bottom: 80% !important;
+  }
+}
+
 @media (max-width: $breakpoint_small) {
   .content {
     flex-direction: column;
     width: 100%;
-    &__image {
-      max-width: 100%;
-      margin: 0 auto;
-    }
-
-    &__text {
-      margin: 0 auto;
-    }
-  }
-
-  :deep(.swiper-container) {
-    bottom: 80% !important;
-  }
-}
-
-@media (max-width: $breakpoint-medium-large) {
-  .content {
-    margin-top: 200px;
-
-    &__text {
-      font-size: 2rem;
-    }
-  }
-
-  :deep(.swiper-container) {
-    bottom: 80% !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .content {
-    width: 100%;
+    top: 50px;
 
     &__image {
       max-width: 100%;
@@ -186,7 +174,7 @@ const pagination = ref({
   }
 
   :deep(.swiper-container) {
-    bottom: 80% !important;
+    bottom: 85% !important;
   }
 
   :deep(.icon-title) {
@@ -209,7 +197,7 @@ const pagination = ref({
 }
 
 :deep(.swiper-container) {
-  bottom: 75%;
+  bottom: 70%;
   display: flex;
   margin-bottom: 20px;
   width: 100%;

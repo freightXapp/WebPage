@@ -165,6 +165,21 @@ import pickUp2White from "~/assets/BaseIcons/pc2.svg";
   }
 }
 
+@media (max-width: 1100px) {
+  .footer {
+    padding: 150px 0 0 0;
+    &__row {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 20px;
+    }
+    &__column {
+      flex: 1 1 calc(50% - 38px);
+    }
+  }
+}
+
 @media (max-width: 768px) {
   .footer {
     padding: 150px 0 0 0;
