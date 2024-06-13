@@ -168,7 +168,7 @@ function handleViewportChange() {
 
   &__hamburger-icon {
     position: relative;
-    color: var(--black);
+    color: var(--white);
     &--white {
       &,
       &::before,
@@ -182,7 +182,7 @@ function handleViewportChange() {
     &::after {
       width: 3rem;
       height: 0.2rem;
-      background-color: var(--black);
+      background-color: var(--white);
       display: inline-block;
     }
 
