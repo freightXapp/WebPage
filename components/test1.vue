@@ -2,49 +2,32 @@
   <div class="container">
     <h1 class="container__title">More Services by Pickup2</h1>
     <Swiper
-      :modules="[SwiperAutoplay]"
-      :breakpoints="breakpoints"
-      @slideChange="onSlideChange"
-      class="tabs"
-      ref="swiperRef"
+      class="swiper-slider"
+      :modules="[Autoplay, Pagination]"
+      :pagination="pagination"
+      :slides-per-view="1"
       :autoplay="{
-        delay: 3000,
-        disableOnInteraction: false,
+        delay: 5000,
+        pauseOnMouseEnter: true,
       }"
-      :loop="false"
     >
-      <SwiperSlide
-        v-for="tab in tabs"
-        :key="tab.id"
-        :class="{ active: activeTab === tab.id }"
-        @click="changeTab(tab.id)"
-      >
-        <div class="tab-content">
-          <div class="icon-container">
-            <component :is="tab.icon" :filled="''" class="icons" />
+      <SwiperSlide v-for="tab in tabs" :key="tab.id">
+        <div class="content">
+          <div class="content__left">
+            <div class="content__subtitle">
+              <h3 class="subtitle">{{ tab.subtitle }}</h3>
+            </div>
+            <img :src="tab.image" alt="" class="content__image" />
           </div>
-          <span>{{ tab.name }}</span>
+          <div class="content__text" v-html="tab.content"></div>
         </div>
       </SwiperSlide>
     </Swiper>
-    <div class="content" v-if="activeContent">
-      <div class="content__left">
-        <div v-if="activeTab === 'rating'" class="content__subtitle">
-          <h3 class="subtitle">{{ subtitle }}</h3>
-        </div>
-        <img :src="activeImage" alt="" class="content__image" />
-      </div>
-      <div class="content__text" v-html="activeContent"></div>
-    </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import rewardsSvg from "~/assets/BaseIcons/rewards.svg";
-import boostingSvg from "~/assets/BaseIcons/boosting.svg";
-import filterSvg from "~/assets/BaseIcons/filter.svg";
-import ratingSvg from "~/assets/BaseIcons/rating.svg";
+import { Autoplay, Pagination } from "swiper/modules";
 import services1Img from "~/assets/BaseIcons/services1.png";
 import services2Img from "~/assets/BaseIcons/services2.png";
 import services3Img from "~/assets/BaseIcons/services3.png";
@@ -54,7 +37,7 @@ const tabs = [
   {
     id: "boosting",
     name: "Boosting",
-    icon: boostingSvg,
+    icon: "../img/boosting.svg",
     content:
       "The urgency of an order is not to be ignored?<br><br> Or do you intend to pay special attention to your case? The sponsored ad is responding to help. An efficient and cost-effective way to keep your workflow in shape. Don't let a single urgency slow down the entire business flow.",
     image: services1Img,
@@ -62,15 +45,15 @@ const tabs = [
   {
     id: "filter",
     name: "Filter",
-    icon: filterSvg,
+    icon: "../img/filter.svg",
     content:
       "Do you have preferences for what kind of ads should be displayed on your desktop?<br><br> Take advantage of the enriched features for customized search. Turn your working day into a pleasant pleasure. PicкUp2's lightweight interface allows you to take full advantage of digitized tools.",
     image: services2Img,
   },
   {
     id: "rating",
-    name: "Rating Transfer",
-    icon: ratingSvg,
+    name: "Rating",
+    icon: "../img/rating.svg",
     content:
       "Chronology. Payments. Documentation. How nice it would be if all this was transparent, wouldn't it?<br><br> Valuable partnerships are built with hard work and constant communication. We at the PickUp2 know this. To this purpose, we have developed our rating system into a more productive tool.<br><br> Allow us to transfer your ratings from other sources and implement them in your profile.",
     subtitle: "Don't let your past good performance be forgotten.",
@@ -79,60 +62,28 @@ const tabs = [
   {
     id: "rewards",
     name: "Rewards",
-    icon: rewardsSvg,
+    icon: "../img/rewards.svg",
     content:
       "The roads are full of fines and penalties. It is no different in the path of the entrepreneur.<br><br> A system works well both when there is a regulation and when there is a reward mechanism. We aim to provide the latter. Achieve certain steps and get your financial relief in the PickUp2 system.",
     image: services4Img,
   },
 ];
 
-const breakpoints = {
-  320: {
-    slidesPerView: 4,
-    spaceBetween: 50,
-    width: "320",
-  },
-  480: {
-    width: null,
-    slidesPerView: 4,
-    spacebetween: 20,
-  },
-  768: {
-    width: null,
-    spacebetween: 20,
-    slidesPerView: 4,
-  },
-  1199: {
-    width: null,
-    spacebetween: 50,
-    slidesPerView: 4,
-  },
-  1600: {
-    width: null,
-    spacebetween: 50,
-    slidesPerView: 4,
-  },
-};
+const pagination = ref({
+  clickable: true,
+  bulletClass: "bullets",
+  horizontalClass: "swiper-container",
+  bulletActiveClass: "bullet-active",
+  renderBullet: (index, className) =>
+    `<span class="${className}">
 
-const activeTab = ref(tabs[0].id);
-const activeContent = ref(tabs[0].content);
-const activeImage = ref(tabs[0].image);
-const subtitle = ref(tabs.find((tab) => tab.id === "rating").subtitle || "");
-
-function changeTab(tabId) {
-  const tab = tabs.find((tab) => tab.id === tabId);
-  activeTab.value = tab.id;
-  activeContent.value = tab.content;
-  activeImage.value = tab.image;
-  subtitle.value = tab.subtitle || "";
-}
-
-function onSlideChange(swiper) {
-  const currentIndex = swiper.realIndex;
-  const tab = tabs[currentIndex];
-  activeTab.value = tab.id;
-  activeContent.value = tab.content;
-}
+     
+        <img src=${tabs[index].icon} class="icons" />
+        
+        
+        <span class="icon-title"> ${tabs[index].name}</span></span>
+        `,
+});
 </script>
 
 <style scoped lang="scss">
@@ -141,63 +92,26 @@ function onSlideChange(swiper) {
   max-width: 1600px;
   margin: 0 auto;
   padding: 20px;
+  align-items: center;
 
   &__title {
     text-align: center;
-    margin-bottom: 20px;
-    font-size: 2rem;
-    color: #1b358f;
+    font-size: 2.6rem;
+    background: var(--pickup2-gradient-2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    @media (min-width: $breakpoint-large) {
+      font-size: 3.6rem;
+    }
   }
-}
-
-.tabs {
-  margin-bottom: 20px;
-}
-
-.swiper-slide {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 5px 10px;
-  border: none;
-  background-color: transparent;
-  color: #333;
-  font-size: 14px;
-  cursor: pointer;
-  transition: color 0.3s, border-bottom 0.3s;
-
-  &.active {
-    color: blue;
-    border-bottom: 3px solid blue;
-  }
-}
-
-.tab-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.icon-container {
-  margin-bottom: 5px;
-}
-
-.icons {
-  width: 80px;
-  height: 80px;
-}
-
-span {
-  margin-top: 5px;
-  font-size: 12px;
-  text-align: center;
 }
 
 .content {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 40px;
+  margin-top: 200px;
   width: 85%;
   margin-left: auto;
   margin-right: auto;
@@ -233,36 +147,12 @@ span {
 
   &__image {
     flex: 1;
-    width: 100%;
     max-height: 40rem;
-    width: 100%;
+    width: 80%;
     height: 100%;
     border-radius: 2rem;
     display: block;
     margin-right: 200px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .content {
-    flex-direction: column-reverse;
-    width: 90%;
-    min-height: auto;
-
-    &__image {
-      max-width: 70%;
-      height: auto;
-      margin: 0 auto;
-    }
-
-    &__text {
-      margin: 0 auto;
-    }
-  }
-
-  .tab {
-    padding: 5px 10px;
-    font-size: 12px;
   }
 }
 
@@ -279,11 +169,6 @@ span {
     &__text {
       margin: 0 auto;
     }
-  }
-
-  .tab {
-    padding: 5px;
-    font-size: 10px;
   }
 }
 
@@ -302,9 +187,65 @@ span {
     }
   }
 
-  .tab {
-    padding: 5px;
-    font-size: 10px;
+  :deep(.swiper-container) {
+    bottom: 80% !important;
   }
+
+  .swiper-slider {
+    bottom: 20px;
+  }
+
+  :deep(.bullets) {
+    padding: 5px !important;
+    font-size: 10px !important;
+    margin: 0 !important; /* Remove margin */
+  }
+
+  :deep(.icons) {
+    margin: 0 !important;
+    width: 55px !important;
+    height: 55px !important;
+  }
+}
+
+:deep(.icons) {
+  width: 80px;
+  height: 80px;
+}
+
+:deep(.swiper-container) {
+  width: 1600px;
+  bottom: 70%;
+  display: flex !important;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  flex-wrap: nowrap;
+  width: 100%;
+  padding: 0 10px;
+}
+
+:deep(.bullet-active) {
+  color: var(--main-blue) !important;
+  border-bottom: 3px solid var(--main-blue) !important;
+}
+
+:deep(.bullets) {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  padding: 10px 20px !important;
+  border: none;
+  background-color: transparent;
+  color: #333;
+  font-size: 14px !important;
+  cursor: pointer;
+  transition: color 0.3s, border-bottom 0.3s;
+  flex: 1;
+}
+
+:deep(.bullets span) {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
 }
 </style>

@@ -1,14 +1,4 @@
 <template>
-  <div>
-    <!-- <ActionSection class="action-section" /> -->
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="wave">
-      <path
-        fill="#1B4390"
-        fill-opacity="1"
-        d="M0,288L1440,224L1440,320L0,320Z"
-      />
-    </svg>
-  </div>
   <section class="footer">
     <div class="footer__row">
       <div class="footer__column footer__column--info">
@@ -76,21 +66,12 @@ import pickUp2White from "~/assets/BaseIcons/pc2.svg";
 </script>
 
 <style lang="scss" scoped>
-.action-section {
-  margin-bottom: -350px;
-  z-index: 1;
-}
-.wave {
-  display: block;
-  margin-top: 0;
-  top: 1px;
-}
 .footer {
   position: relative;
   width: 100%;
   background: var(--main-blue);
   color: black;
-  padding: 5px 20px 15px;
+  padding: 40px 20px;
   overflow: hidden;
   bottom: 0;
   left: 0;
