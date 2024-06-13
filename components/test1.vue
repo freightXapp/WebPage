@@ -198,8 +198,8 @@ const pagination = ref({
   }
 
   :deep(.icons) {
-    width: 50px !important;
-    height: 50px !important;
+    width: 60px !important;
+    height: 60px !important;
   }
 }
 
