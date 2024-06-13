@@ -170,6 +170,10 @@ const pagination = ref({
       margin: 0 auto;
     }
   }
+
+  :deep(.swiper-container) {
+    bottom: 80% !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -187,10 +191,6 @@ const pagination = ref({
     }
   }
 
-  :deep(.swiper-container) {
-    bottom: 80% !important;
-  }
-
   .swiper-slider {
     bottom: 20px;
   }
@@ -198,7 +198,6 @@ const pagination = ref({
   :deep(.bullets) {
     padding: 5px !important;
     font-size: 10px !important;
-    margin: 0 !important; /* Remove margin */
   }
 
   :deep(.icons) {

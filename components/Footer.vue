@@ -75,7 +75,7 @@ import pickUp2White from "~/assets/BaseIcons/pc2.svg";
   overflow: hidden;
   bottom: 0;
   left: 0;
-  clip-path: polygon(0 -10%, 100% 50%, 200%% 100%, 50% 100%);
+  clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
 
   &:before {
     content: "";
@@ -180,7 +180,7 @@ import pickUp2White from "~/assets/BaseIcons/pc2.svg";
 
 @media (max-width: 768px) {
   .footer {
-    padding: 200px 0 0 0;
+    padding: 150px 0 0 0;
     &__row {
       flex-direction: row;
       flex-wrap: wrap;
@@ -188,7 +188,7 @@ import pickUp2White from "~/assets/BaseIcons/pc2.svg";
       padding: 20px;
     }
     &__column {
-      flex: 1 1 calc(50% - 20px);
+      flex: 1 1 calc(50% - 38px);
     }
     &__form {
       flex-direction: column;
