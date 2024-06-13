@@ -11,8 +11,8 @@
         pauseOnMouseEnter: true,
       }"
     >
-      <SwiperSlide v-for="tab in tabs" :key="tab.id">
-        <div class="content">
+      <SwiperSlide v-for="(tab, index) in tabs" :key="tab.id">
+        <div class="content" :class="{ 'content--reverse': index % 2 !== 0 }">
           <div class="content__left">
             <div class="content__subtitle">
               <h3 class="subtitle">{{ tab.subtitle }}</h3>
@@ -76,11 +76,7 @@ const pagination = ref({
   bulletActiveClass: "bullet-active",
   renderBullet: (index, className) =>
     `<span class="${className}">
-
-     
         <img src=${tabs[index].icon} class="icons" />
-        
-        
         <span class="icon-title"> ${tabs[index].name}</span></span>
         `,
 });
@@ -118,6 +114,10 @@ const pagination = ref({
   min-height: 450px;
   transition: all 0.3s ease;
   padding: 0 20px;
+
+  &--reverse {
+    flex-direction: row-reverse;
+  }
 
   &__left {
     display: flex;
@@ -159,6 +159,10 @@ const pagination = ref({
 @media (max-width: 768px) {
   .content {
     flex-direction: column;
+
+    &--reverse {
+      flex-direction: column;
+    }
 
     &__image {
       max-width: 50%;
