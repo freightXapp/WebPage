@@ -123,9 +123,6 @@ console.log(props.isAbove);
       overflow: hidden;
       border: none;
       outline: none;
-      @media (min-width: $breakpoint-small) {
-        color: var(--black);
-      }
 
       &:hover {
         .header__dropdown {

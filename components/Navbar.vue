@@ -3,7 +3,7 @@
     <div class="header__container">
       <div class="header__logo-container">
         <NuxtLink to="/">
-          <pickUp2 v-if="isHeaderBg" :filled="''" class="header__logo" />
+          <pickUp2White v-if="isHeaderBg" :filled="''" class="header__logo" />
           <pickUp2White v-else :filled="''" class="header__logo" />
         </NuxtLink>
       </div>
@@ -135,7 +135,7 @@ function handleViewportChange() {
   right: 1.8rem;
 }
 .sticky-header {
-  background-color: var(--white);
+  background-color: var(--main-blue);
 }
 // desktop + hamburger menu
 .header {
@@ -234,7 +234,7 @@ function handleViewportChange() {
   &__auth-icon {
     height: 3rem;
     width: 3rem;
-    color: var(--black);
+    color: var(--white);
     &--white {
       color: var(--white);
     }
