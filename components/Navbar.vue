@@ -148,7 +148,7 @@ function handleViewportChange() {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: $breakpoint-maxsize;
+    max-width: 1280px;
     margin: 0 auto;
   }
 

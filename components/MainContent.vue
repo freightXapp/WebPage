@@ -5,7 +5,7 @@
       :key="section"
       :class="[`main__cont-${index}`, { 'main__cont-container': index !== 0 }]"
     >
-      <test2/>
+      <test2 />
 
       <div class="main__cont-1-main">
         <div
@@ -66,29 +66,24 @@ const textContent = [
 
 <style scoped lang="scss">
 .video-container {
-    position:relative
-
+  position: relative;
 }
-
 
 video {
-    height: auto;
-    left: 50%;
-    min-height: 100%;
-    min-width: 100%;
-    position: absolute;
-    top: 50%;
-    -ms-transform: translateX(-50%) translateY(-50%);
-    -moz-transform: translateX(-50%) translateY(-50%);
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
-    width: auto;
-    z-index: 0;
-    width: 100%;
+  height: auto;
+  left: 50%;
+  min-height: 100%;
+  min-width: 100%;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  width: auto;
+  z-index: 0;
+  width: 100%;
 }
-
-
-
 
 .main {
   display: grid;
@@ -157,7 +152,7 @@ video {
   }
 }
 .main__cont-1 {
-    position:relative;
+  position: relative;
   &-main {
     border-radius: 1rem;
     background: white;
@@ -242,10 +237,9 @@ video {
   width: 100%;
 }
 .main__cont-0 {
-    position: relative;
-    height: 100%;
-    width: 100%;
- 
+  position: relative;
+  height: 100%;
+  width: 100%;
 
   @media (min-width: $breakpoint-small) {
   }
