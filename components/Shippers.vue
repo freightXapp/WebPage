@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts" setup>
-import IllustrationImg from "../assets/BaseIcons/shippers3.webp";
+import IllustrationImg from "@/assets/BaseIcons/shippers3.webp";
 
 import boxSVG from "../assets/BaseIcons/time.svg";
 import circleChartSVG from "../assets/BaseIcons/tracking2.svg";
