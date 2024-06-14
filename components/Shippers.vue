@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts" setup>
-import Illustration from "../assets/BaseIcons/shippers3.png";
+import IllustrationImg from "../assets/BaseIcons/shippers3.png";
 
 import boxSVG from "../assets/BaseIcons/time.svg";
 import circleChartSVG from "../assets/BaseIcons/tracking2.svg";
@@ -49,7 +49,7 @@ const infoData = {
     "we understand that successfully transporting your freights is critical to your business. Our platform offers integrated solutions that simplify the entire process, from start to finish.",
     "We focus on efficiency, security and transparency to provide you with the best possible service.",
   ],
-  illustration: Illustration,
+  illustration: IllustrationImg,
 };
 
 const featureData = [
