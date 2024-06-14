@@ -64,12 +64,6 @@ withDefaults(defineProps<Props>(), {
         font-size: 1.2em;
         margin-bottom: 2rem;
         font-weight: 300;
-
-        &:nth-of-type(1)::first-letter {
-          initial-letter: 2;
-          color: var(--main-orange);
-          font-weight: 400;
-        }
       }
     }
 

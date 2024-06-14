@@ -205,7 +205,7 @@ const pagination = ref({
 
 :deep(.bullet-active) {
   color: var(--main-blue);
-  border-bottom: 3px solid var(--main-orange);
+  border-bottom: 3px solid var(--main-orange) !important;
 }
 
 :deep(.bullets) {
@@ -215,5 +215,6 @@ const pagination = ref({
   padding: 10px 0;
   cursor: pointer;
   flex: 1;
+  border-bottom: 1px solid var(--main-orange);
 }
 </style>

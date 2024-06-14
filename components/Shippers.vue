@@ -90,3 +90,13 @@ const promoData2 = {
   description: "Get started now and take advantage of PickUp2!",
 };
 </script>
+
+<style lang="scss" scoped>
+:deep(.pickup-section__title) {
+  &:after {
+    content: "2";
+    color: var(--main-orange);
+    font-size: 6rem;
+  }
+}
+</style>
