@@ -11,9 +11,9 @@
     :description="infoData.description"
     :illustration="infoData.illustration"
   />
-
-  <FeatureSection class="main-container" :feature-data="featureData" />
-
+  <div class="background">
+    <FeatureSection class="main-container" :feature-data="featureData" />
+  </div>
   <PromoSection
     class="main-container"
     :title="promoData.title"
@@ -99,5 +99,15 @@ const promoData2 = {
     color: var(--main-orange);
     font-size: 6rem;
   }
+}
+
+.main-container {
+  margin: 0 auto;
+}
+.background {
+  padding-top: 100px !important;
+  background-image: url("../assets//BaseIcons/service_bg.png") !important;
+  background-position: -50% 0 !important;
+  background-repeat: no-repeat !important;
 }
 </style>
