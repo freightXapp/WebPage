@@ -1,5 +1,5 @@
 <template>
-    <div class="promo-container" :class="{ 'reverse': reverse }">
+    <div class="promo-container" :class="{ 'reverse': reverse }" :style="{ backgroundColor: backgroundColor }">
         <div class="promo-image">
             <img :src="image" :alt="imageAlt" :class="{ 'rotate': rotate }"></img>
         </div>
@@ -22,11 +22,13 @@ interface Props {
     imageAlt: string;
     reverse?: boolean;
     rotate: boolean
+    backgroundColor?: string;
 }
 
 withDefaults(defineProps<Props>(), {
     reverse: false,
     rotate: false,
+    backgroundColor: 'var(--light-white)',
 });
 </script>
 
@@ -40,7 +42,7 @@ withDefaults(defineProps<Props>(), {
     align-items: center;
     justify-content: space-between;
     padding: 2rem;
-    background-color: var(--light-white);
+  width:80%;
     border-radius: 8px;
     flex-direction: column;
     overflow: hidden;

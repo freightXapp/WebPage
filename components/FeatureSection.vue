@@ -1,5 +1,17 @@
 <template>
-  <div>
+  <div class="features">
+    <div class="intro-container">
+      <div class="intro-text">
+        <h1>Comprehensive Freight Management Solutions</h1>
+        <p>
+          Experience seamless transport management with our comprehensive
+          solutions that encompass precision planning, real-time tracking,
+          efficient communication, and cost optimization. Enhance your logistics
+          operations with our innovative and reliable tools designed to ensure
+          smooth, secure, and economical transportation.
+        </p>
+      </div>
+    </div>
     <div class="features-container">
       <div
         v-for="(featur, index) in featureData"
@@ -29,11 +41,15 @@ withDefaults(defineProps<Props>(), {});
 </script>
 
 <style lang="scss" scoped>
+.features {
+  width: 70%;
+  margin: 0 auto;
+}
 .features-container {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: 2rem;
-  margin: 7% 2rem;
+  margin: 3% 2rem;
 
   @media (min-width: $breakpoint_verysmall) {
     grid-template-columns: repeat(2, 1fr);
@@ -44,7 +60,54 @@ withDefaults(defineProps<Props>(), {});
   }
 }
 
+.intro-container {
+  width: 90%;
+  margin: 2rem 2rem 1rem;
+
+  @media (min-width: $breakpoint_verysmall) {
+    width: 75%;
+  }
+
+  @media (min-width: $breakpoint_medium) {
+    width: 60%;
+    text-align: left;
+  }
+
+  @media (min-width: $breakpoint_large) {
+    width: 50%;
+  }
+}
+
+.intro-text h1 {
+  font-size: 2.5rem;
+  color: var(--dark-blue);
+  margin-bottom: 1rem;
+
+  @media (min-width: $breakpoint_small) {
+    text-align: left;
+    font-size: 2.7rem;
+  }
+
+  @media (min-width: $breakpoint_medium) {
+    font-size: 3rem;
+    text-align: left;
+  }
+}
+
+.intro-text p {
+  font-size: 1.5rem;
+  color: var(--text-grey);
+
+  @media (min-width: $breakpoint_small) {
+    font-size: 1.6rem;
+  }
+
+  @media (min-width: $breakpoint_medium) {
+    font-size: 1.8rem;
+  }
+}
 .feature {
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -77,3 +140,4 @@ withDefaults(defineProps<Props>(), {});
   }
 }
 </style>
+>

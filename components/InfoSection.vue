@@ -44,7 +44,6 @@ withDefaults(defineProps<Props>(), {
     justify-content: center;
     flex-direction: column;
     padding: 2rem;
-    background: var(--light-white);
 
     @media (min-width: $breakpoint_small) {
       flex-direction: row-reverse;
@@ -52,6 +51,22 @@ withDefaults(defineProps<Props>(), {
 
     .pickup-section__text {
       order: 2;
+
+      &::after {
+        position: absolute;
+        content: "";
+        width: 30%;
+        z-index: 1;
+        top: 0px;
+        left: 5%;
+        height: 100%;
+        background-size: 18px 18px;
+        background-image: radial-gradient(
+          rgba(47, 106, 217, 0.4) 20%,
+          transparent 20%
+        );
+        opacity: 0.2;
+      }
 
       h1 {
         font-size: 3rem;

@@ -30,6 +30,7 @@
     :description="promoData2.description"
     :image="promoData2.image"
     :reverse="true"
+    :background-color="''"
   />
 
   <SignUpSection />

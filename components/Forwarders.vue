@@ -11,11 +11,13 @@
     :title="infoData.title"
     :description="infoData.description"
     :illustration="infoData.illustration"
+    :backgroundColor="''"
   />
 
   <!--  FEATURE -->
-  <FeatureSection class="main-container" :feature-data="featureData" />
-
+  <div class="background">
+    <FeatureSection class="main-container" :feature-data="featureData" />
+  </div>
   <!-- PROMO -->
   <PromoSection
     class="main-container"
@@ -24,6 +26,7 @@
     :description="promoData.description"
     :image="promoData.image"
     :rotate="true"
+    :background-color="''"
   />
   <PromoSection
     class="main-container"
@@ -109,8 +112,14 @@ const infoData = {
     rotate: 20deg;
   }
 }
+
 .main-container {
-  max-width: 1600px;
   margin: 0 auto;
+}
+.background {
+  padding-top: 100px !important;
+  background-image: url("../assets//BaseIcons/service_bg.png") !important;
+  background-position: -50% 0 !important;
+  background-repeat: no-repeat !important;
 }
 </style>
