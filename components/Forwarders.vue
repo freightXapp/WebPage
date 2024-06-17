@@ -18,6 +18,7 @@
   <div class="background">
     <FeatureSection class="main-container" :feature-data="featureData" />
   </div>
+  <Stats />
   <!-- PROMO -->
   <PromoSection
     class="main-container"
@@ -36,6 +37,7 @@
     :image="promoData2.image"
     :reverse="true"
   />
+
   <SignUpSection />
 </template>
 
