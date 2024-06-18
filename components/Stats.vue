@@ -1,5 +1,5 @@
 <template>
-  <div class="experience">
+  <div ref="experienceSection" class="experience">
     <div class="experience__title">16 Years Of Experience</div>
     <div class="experience__stats">
       <div class="experience__stat" v-for="(stat, index) in stats" :key="index">
@@ -9,7 +9,10 @@
     </div>
   </div>
 </template>
+
 <script lang="ts" setup>
+import { ref, onMounted } from "vue";
+
 const stats = [
   { number: 27, description: "Ongoing Projects" },
   { number: 493, description: "Finished Cases" },
@@ -18,6 +21,8 @@ const stats = [
 ];
 
 const animatedNumbers = ref(stats.map(() => 0));
+const experienceSection = ref<HTMLElement | null>(null);
+const animationStarted = ref(false);
 
 const animateNumbers = (targetNumber: number, index: number) => {
   const duration = 2000;
@@ -36,10 +41,29 @@ const animateNumbers = (targetNumber: number, index: number) => {
   }, frameDuration);
 };
 
-onMounted(() => {
+const startAnimation = () => {
   stats.forEach((stat, index) => {
     animateNumbers(stat.number, index);
   });
+};
+
+onMounted(() => {
+  if (experienceSection.value) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !animationStarted.value) {
+            animationStarted.value = true;
+            startAnimation();
+            observer.unobserve(entry.target); // Ensure the animation only runs once
+          }
+        });
+      },
+      { threshold: 0.1 }
+    ); // Adjust threshold as needed
+
+    observer.observe(experienceSection.value);
+  }
 });
 </script>
 

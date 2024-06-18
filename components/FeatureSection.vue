@@ -56,6 +56,10 @@ withDefaults(defineProps<Props>(), {});
   }
 
   @media (min-width: $breakpoint_medium) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1500px) {
     grid-template-columns: repeat(4, 1fr);
   }
 }
@@ -140,4 +144,3 @@ withDefaults(defineProps<Props>(), {});
   }
 }
 </style>
->
