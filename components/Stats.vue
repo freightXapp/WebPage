@@ -11,8 +11,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from "vue";
-
 const stats = [
   { number: 27, description: "Ongoing Projects" },
   { number: 493, description: "Finished Cases" },
@@ -55,12 +53,12 @@ onMounted(() => {
           if (entry.isIntersecting && !animationStarted.value) {
             animationStarted.value = true;
             startAnimation();
-            observer.unobserve(entry.target); // Ensure the animation only runs once
+            observer.unobserve(entry.target);
           }
         });
       },
       { threshold: 0.1 }
-    ); // Adjust threshold as needed
+    );
 
     observer.observe(experienceSection.value);
   }
