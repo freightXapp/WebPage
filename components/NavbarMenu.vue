@@ -29,11 +29,11 @@
       </NuxtLink>
     </li>
     <li class="header__nav-item">
-      <NuxtLink href="#" class="header__nav-link">
+      <NuxtLink to="/pricing" class="header__nav-link">
         <span
           class="header__nav-title"
           :class="[{ 'header__nav-title--white': isAbove }]"
-          >Price</span
+          >Pricing</span
         >
       </NuxtLink>
     </li>
