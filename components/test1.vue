@@ -215,6 +215,5 @@ const pagination = ref({
   padding: 10px 0;
   cursor: pointer;
   flex: 1;
-  border-bottom: 1px solid var(--main-orange);
 }
 </style>
