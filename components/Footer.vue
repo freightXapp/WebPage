@@ -16,27 +16,33 @@
         </div>
       </div>
       <div class="footer__column footer__column--info">
-        <h4 class="footer__title">Info</h4>
+        <h4 class="footer__title">About</h4>
         <ul class="footer__links">
           <li><a href="#">About Us</a></li>
-          <li><a href="#">Compressions</a></li>
-          <li><a href="#">Customers</a></li>
-          <li><a href="#">Service</a></li>
-          <li><a href="#">Collection</a></li>
+          <li><a href="#">Guides</a></li>
+          <li><a href="#">Video tutorials</a></li>
+          <li><a href="#">API</a></li>
         </ul>
       </div>
 
       <div class="footer__column footer__column--explore">
-        <h4 class="footer__title">Explore</h4>
+        <h4 class="footer__title">Services</h4>
         <ul class="footer__links">
-          <li><a href="#">Free Designs</a></li>
-          <li><a href="#">Latest Designs</a></li>
-          <li><a href="#">Themes</a></li>
-          <li><a href="#">Popular Designs</a></li>
-          <li><a href="#">Art Skills</a></li>
+          <li><a href="#">Boost</a></li>
+          <li><a href="#">Filter</a></li>
+          <li><a href="#">Rating system</a></li>
+          <li><a href="#">Rewards</a></li>
         </ul>
       </div>
 
+      <div class="footer__column footer__column--legal">
+        <h4 class="footer__title">Companies</h4>
+        <ul class="footer__links">
+          <li><a href="#">Shippers</a></li>
+          <li><a href="#">Forwarders</a></li>
+          <li><a href="#">Carriers</a></li>
+        </ul>
+      </div>
       <div class="footer__column footer__column--legal">
         <h4 class="footer__title">Legal</h4>
         <ul class="footer__links">
@@ -44,7 +50,6 @@
           <li><a href="#">Privacy Policy</a></li>
           <li><a href="#">GDPR</a></li>
           <li><a href="#">Security</a></li>
-          <li><a href="#">Testimonials</a></li>
         </ul>
       </div>
 
@@ -81,14 +86,12 @@ import pickUp2White from "~/assets/BaseIcons/pc2.svg";
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 20px;
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 20px;
   }
 
   &__column {
-    flex: 1 1 240px;
     &--info,
     &--explore,
     &--legal {

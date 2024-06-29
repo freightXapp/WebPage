@@ -20,7 +20,7 @@
       </NuxtLink>
     </li>
     <li class="header__nav-item">
-      <NuxtLink href="#" class="header__nav-link">
+      <NuxtLink href="/carriers" class="header__nav-link">
         <span
           class="header__nav-title"
           :class="[{ 'header__nav-title--white': isAbove }]"
