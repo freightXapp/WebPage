@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <h1 class="container__title">More Services by Pickup2</h1>
+    <div class="swiper-container" />
     <Swiper
       class="swiper-slider"
       :modules="[Autoplay, Pagination]"
@@ -75,7 +76,7 @@ const tabs = [
 const pagination = ref({
   clickable: true,
   bulletClass: "bullets",
-  horizontalClass: "swiper-container",
+  el: ".swiper-container",
   bulletActiveClass: "bullet-active",
   renderBullet: (index, className) =>
     `<span class="${className}">
@@ -92,6 +93,7 @@ const pagination = ref({
   margin: 0 auto;
   padding: 20px;
   text-align: center;
+  position: relative;
 
   &__title {
     font-size: 2.6rem;
@@ -109,10 +111,8 @@ const pagination = ref({
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 200px;
   width: 85%;
-  margin: 200px auto 0;
-  min-height: 450px;
+
   transition: all 0.3s ease;
   padding: 0 20px;
 
@@ -145,6 +145,7 @@ const pagination = ref({
 
 @media (max-width: $breakpoint-medium-large) {
   .content {
+    flex-direction: column;
     width: 100%;
     &__image {
       max-width: 100%;
@@ -156,33 +157,20 @@ const pagination = ref({
       font-size: 2.3rem;
     }
   }
-
-  :deep(.swiper-container) {
-    bottom: 80% !important;
-  }
 }
 
 @media (max-width: $breakpoint_small) {
   .content {
     flex-direction: column;
     width: 100%;
-    top: 50px;
 
     &__image {
       max-width: 100%;
     }
   }
 
-  :deep(.swiper-container) {
-    bottom: 85% !important;
-  }
-
   :deep(.icon-title) {
     font-size: 1.3rem;
-  }
-
-  .swiper-slider {
-    bottom: 5rem;
   }
 
   :deep(.icons) {
@@ -192,15 +180,12 @@ const pagination = ref({
 }
 
 :deep(.icons) {
-  width: 80px;
-  height: 80px;
+  width: 65px;
+  height: 65px;
 }
 
 :deep(.swiper-container) {
-  bottom: 70%;
   display: flex;
-  margin-bottom: 20px;
-  width: 100%;
 }
 
 :deep(.bullet-active) {
