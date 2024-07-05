@@ -25,7 +25,7 @@ watch(selectedCountryCode, (newCode) => {
   </select>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 select {
   width: 100%;
 }

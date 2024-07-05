@@ -59,7 +59,7 @@ const props = withDefaults(defineProps<Props>(), {});
 console.log(props.isAbove);
 </script>
 
-<style setup lang="scss">
+<style scoped lang="scss">
 .header {
   &__nav {
     &-link {

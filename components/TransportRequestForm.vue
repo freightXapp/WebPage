@@ -26,13 +26,11 @@
         >
       </div>
 
-      <!-- Phone Field -->
-          <CountryCodeDropdown :code="form.countryCode" />
-
+      <!-- Phone Field TEST-->
       <div :class="{ error: errors.phone }">
         <label for="phone">{{ errors.phone ? errors.phone : 'Phone Number:' }}</label>
         <div class="phone-container">
-          <CountryCodeDropdown v-model:code="form.countryCode" />
+          <CustomDropdown v-model:code="form.countryCode" />
           <input
             id="phone"
             v-model="form.phone"
@@ -151,7 +149,6 @@
 
 <script lang="ts" setup>
 import { isValidPhoneNumber } from 'libphonenumber-js';
-
 import { z } from 'zod';
 
 const isSubmitting = ref(false);
@@ -224,9 +221,8 @@ const fieldSchemas = {
 
 const validateFieldOnError = (fieldName: keyof FormValues) => {
   if (errors[fieldName]) {
-    console.log('TEST +>>>', fieldSchemas[fieldName])
     const result = fieldSchemas[fieldName].safeParse(form[fieldName]);
-    console.log(result)
+    console.log(form.countryCode)
     if (!result.success) {
       errors[fieldName] = result.error.errors[0].message;
     } else {
