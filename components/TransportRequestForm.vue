@@ -1,7 +1,7 @@
 <template>
   <div class="form-container">
     <h1>Transport Request Form</h1>
-    <form @submit.prevent.stop="submitForm">
+    <form @submit.prevent="submitForm">
       <!-- Full Name Field -->
       <div :class="{ error: errors.fullName }">
         <label for="fullName">{{ errors.fullName ? errors.fullName : 'Full Name:' }}</label>
@@ -9,6 +9,7 @@
           id="fullName"
           v-model="form.fullName"
           type="text"
+          placeholder="Enter your full name"
           @blur="validateField('fullName')"
           @input="validateFieldOnError('fullName')"
         >
@@ -21,12 +22,13 @@
           id="email"
           v-model="form.email"
           type="email"
+          placeholder="Enter your email address"
           @blur="validateField('email')"
           @input="validateFieldOnError('email')"
         >
       </div>
 
-      <!-- Phone Field TEST-->
+      <!-- Phone Field -->
       <div :class="{ error: errors.phone }">
         <label for="phone">{{ errors.phone ? errors.phone : 'Phone Number:' }}</label>
         <div class="phone-container">
@@ -35,6 +37,7 @@
             id="phone"
             v-model="form.phone"
             type="text"
+            placeholder="Enter your phone number"
             @blur="validateField('phone')"
             @input="validateFieldOnError('phone')"
           >
@@ -48,6 +51,7 @@
           id="pickupLocation"
           v-model="form.pickupLocation"
           type="text"
+          placeholder="Enter the pickup location"
           @blur="validateField('pickupLocation')"
           @input="validateFieldOnError('pickupLocation')"
         >
@@ -60,6 +64,7 @@
           id="dropoffLocation"
           v-model="form.dropoffLocation"
           type="text"
+          placeholder="Enter the dropoff location"
           @blur="validateField('dropoffLocation')"
           @input="validateFieldOnError('dropoffLocation')"
         >
@@ -72,6 +77,7 @@
           id="goodsDescription"
           v-model="form.goodsDescription"
           rows="4"
+          placeholder="Describe the goods to be transported"
           @blur="validateField('goodsDescription')"
           @input="validateFieldOnError('goodsDescription')"
         />
@@ -84,6 +90,7 @@
           id="weight"
           v-model="form.weight"
           type="number"
+          placeholder="Enter the weight of the goods"
           @blur="validateField('weight')"
           @input="validateFieldOnError('weight')"
         >
@@ -96,30 +103,33 @@
           id="dimensions"
           v-model="form.dimensions"
           type="text"
+          placeholder="Enter the dimensions of the goods"
           @blur="validateField('dimensions')"
           @input="validateFieldOnError('dimensions')"
         >
       </div>
 
-      <!-- Pickup DateTime Field -->
+      <!-- Pickup Date Field -->
       <div :class="{ error: errors.pickupDateTime }">
-        <label for="pickupDateTime">{{ errors.pickupDateTime ? errors.pickupDateTime : 'Pickup Date and Time:' }}</label>
+        <label for="pickupDateTime">{{ errors.pickupDateTime ? errors.pickupDateTime : 'Pickup Date:' }}</label>
         <input
           id="pickupDateTime"
           v-model="form.pickupDateTime"
-          type="datetime-local"
+          type="date"
+          placeholder="Select the pickup date"
           @blur="validateField('pickupDateTime')"
           @input="validateFieldOnError('pickupDateTime')"
         >
       </div>
 
-      <!-- Delivery DateTime Field -->
+      <!-- Delivery Date Field -->
       <div :class="{ error: errors.deliveryDateTime }">
-        <label for="deliveryDateTime">{{ errors.deliveryDateTime ? errors.deliveryDateTime : 'Delivery Date and Time:' }}</label>
+        <label for="deliveryDateTime">{{ errors.deliveryDateTime ? errors.deliveryDateTime : 'Delivery Date:' }}</label>
         <input
           id="deliveryDateTime"
           v-model="form.deliveryDateTime"
-          type="datetime-local"
+          type="date"
+          placeholder="Select the delivery date"
           @blur="validateField('deliveryDateTime')"
           @input="validateFieldOnError('deliveryDateTime')"
         >
@@ -132,6 +142,7 @@
           id="specialInstructions"
           v-model="form.specialInstructions"
           rows="4"
+          placeholder="Enter any special instructions"
           @blur="validateField('specialInstructions')"
           @input="validateFieldOnError('specialInstructions')"
         />
@@ -145,7 +156,6 @@
     </form>
   </div>
 </template>
-
 
 <script lang="ts" setup>
 import { isValidPhoneNumber } from 'libphonenumber-js';
@@ -176,7 +186,7 @@ const form: FormValues = reactive({
   pickupLocation: '',
   dropoffLocation: '',
   goodsDescription: '',
-  weight: 0,
+  weight: '',
   dimensions: '',
   pickupDateTime: '',
   deliveryDateTime: '',
@@ -202,27 +212,32 @@ const fieldSchemas = {
   fullName: z.string().min(1, 'Full Name is required'),
   email: z.string().email('Email is not valid'),
   phone: z.string().refine((phone) => isValidPhoneNumber(form.countryCode + phone), 'Phone number is not valid'),
-    countryCode: z.string().min(1, 'Country code is required'),
+  countryCode: z.string().min(1, 'Country code is required'),
   pickupLocation: z.string().min(1, 'Pickup Location is required'),
   dropoffLocation: z.string().min(1, 'Dropoff Location is required'),
   goodsDescription: z.string().min(10, 'Goods Description must be at least 10 characters long'),
   weight: z.number().positive('Weight must be a positive number'),
   dimensions: z.string().min(1, 'Dimensions are required'),
   pickupDateTime: z.string()
-    .min(1, 'Pickup Date and Time is required')
+    .min(1, 'Pickup Date is required')
     .refine((date) => {
       const pickupDate = new Date(date);
       const today = new Date();
       return pickupDate >= today;
-    }, 'Pickup Date and Time cannot be in the past'),
-  deliveryDateTime: z.string().min(1, 'Delivery Date and Time is required'),
+    }, 'Pickup Date cannot be in the past'),
+  deliveryDateTime: z.string()
+    .min(1, 'Delivery Date is required')
+    .refine((date) => {
+      const deliveryDate = new Date(date);
+      const pickupDate = new Date(form.pickupDateTime);
+      return deliveryDate >= pickupDate;
+    }, 'Delivery Date cannot be before Pickup Date'),
   specialInstructions: z.string().optional(),
 };
 
 const validateFieldOnError = (fieldName: keyof FormValues) => {
   if (errors[fieldName]) {
     const result = fieldSchemas[fieldName].safeParse(form[fieldName]);
-    console.log(form.countryCode)
     if (!result.success) {
       errors[fieldName] = result.error.errors[0].message;
     } else {
@@ -248,25 +263,25 @@ const hasErrors = () => {
 };
 
 const submitForm = async () => {
-  console.log('has error',hasErrors())
-  // TODO 
-    // try {
-    //   isSubmitting.value = true;
-    //   // Replace with your actual API call
-    //   const response = await fetch('/api/request', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(form),
-    //   });
-    //   const data = await response.json();
-    //   message.value = data.message;
-    // } catch (error) {
-    //   console.error(error);
-    // } finally {
-    //   resetForm();
-    // }
+    console.log(hasErrors())
+//   if (!hasErrors()) {
+//     try {
+//       isSubmitting.value = true;
+//       // Replace with your actual API call
+//       const response = await fetch('/api/request', {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify(form),
+//       });
+//       const data = await response.json();
+//       message.value = data.message;
+//     } catch (error) {
+//       console.error(error);
+//     } finally {
+//       resetForm();
+//     }
 //   }
 };
 
@@ -290,23 +305,41 @@ const resetForm = () => {
 };
 
 onMounted(() => {
-    document.querySelector(".header").style.background = "var(--main-blue)";
+  document.querySelector(".header").style.background = "var(--main-blue)";
 });
 </script>
 
+
 <style scoped lang="scss">
 .form-container {
-  max-width: 600px;
+  max-width: 60rem;
   margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 2rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.5rem;
   background-color: #f9f9f9;
   margin-top: 10rem;
+
+  h1{
+        text-align: center;
+    font-size: 2.7rem;
+    margin-bottom: 3rem;
+    font-weight: 500;
+  }
 }
 
 .form-container .error label {
   color: red;
+}
+
+.form-container label
+// .form-container textarea,
+// .form-container button,
+// .form-container select 
+{
+    font-size: 1.2rem;
+    color: var(--text-grey);
+ 
 }
 
 .form-container input,
@@ -315,18 +348,29 @@ onMounted(() => {
 .form-container select {
   display: block;
   width: 100%;
-  margin-bottom: 10px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 0.1rem solid var(--border);
+  border-radius: $border-default;
+     &::placeholder{
+    font-size: 1.6rem;
+    color: var(--text-grey);
+    font-weight: 300;
+
+
+    }
 }
 
 .form-container input:focus,
+.form-container input:hover,
 .form-container textarea:focus,
+.form-container textarea:hover,
+.form-container select:hover,
 .form-container select:focus {
   outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  border-color: var(--main-blue);
+  box-shadow: 0 0 5px rgba(2, 85, 174, 0.5);
+  transition: all 0.3s;
 }
 
 .form-container .error input,
@@ -337,11 +381,11 @@ onMounted(() => {
 }
 
 .form-container button {
-  background-color: #007bff;
+  background-color: var(--main-blue);
   color: white;
   border: none;
   cursor: pointer;
-  width: auto;
+  width: 100%;
 }
 
 .form-container button:disabled {
@@ -352,7 +396,7 @@ onMounted(() => {
   display: inline-block;
   width: 16px;
   height: 16px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid var(--text-grey);
   border-radius: 50%;
   border-top-color: #fff;
   animation: spin 1s ease infinite;
