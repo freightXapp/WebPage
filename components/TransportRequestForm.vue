@@ -264,6 +264,17 @@ const hasErrors = () => {
 
 const submitForm = async () => {
     console.log(hasErrors())
+
+     const errorFields = Object.keys(errors).filter((key) => errors[key]);
+  if (errorFields.length > 0) {
+    const firstErrorField = errorFields[0];
+    const firstErrorElement = document.getElementById(firstErrorField);
+    if (firstErrorElement) {
+      firstErrorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      firstErrorElement.focus();
+    }
+}
+    
 //   if (!hasErrors()) {
 //     try {
 //       isSubmitting.value = true;
