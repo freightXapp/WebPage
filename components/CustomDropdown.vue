@@ -158,7 +158,6 @@ const setDefaultCountryCode = async () => {
     const data: IpInfo = await $fetch(
       `https://ipinfo.io/json?token=${ipInfoKey}`
     );
-    console.log(data);
     if (data) {
       const country = euCountries.find(
         (country) => country.code === data.country

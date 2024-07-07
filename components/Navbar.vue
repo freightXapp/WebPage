@@ -142,6 +142,8 @@ function handleViewportChange() {
   position: fixed;
   width: 100%;
   z-index: 4;
+  height: 8rem;
+  min-height: 8rem;
 
   &__container {
     margin: 0 1rem;

@@ -147,6 +147,17 @@
           @input="validateFieldOnError('specialInstructions')"
         />
       </div>
+      <!--  TODO Verification step (dialog), reset form, reset verification. -->
+      <div v-if="verificationStep">
+        <label for="verificationCode">Verification Code:</label>
+        <input
+          id="verificationCode"
+          v-model="verificationCode"
+          type="text"
+          placeholder="Enter the verification code"
+        >
+        <button :disabled="isSubmitting" @click="verifyCode">Verify Code</button>
+      </div>
 
       <button :disabled="isSubmitting" type="submit">
         <div v-if="isSubmitting" class="loading-spinner">Loading...</div>
@@ -162,6 +173,17 @@ import { isValidPhoneNumber } from 'libphonenumber-js';
 import { z } from 'zod';
 
 const isSubmitting = ref(false);
+const config = useRuntimeConfig();
+const baseUrl = config.public.baseUrl;
+const verificationStep = ref(false);
+const verificationId = ref<string | undefined>('');
+const verificationCode = ref<string | undefined>('');
+
+type ResponseData = {
+    message: string;
+    requestId?: string;
+    errors?: Record<string, string>;
+};
 
 type FormValues = {
   fullName: string;
@@ -171,7 +193,7 @@ type FormValues = {
   pickupLocation: string;
   dropoffLocation: string;
   goodsDescription: string;
-  weight: number;
+  weight: number | null;
   dimensions: string;
   pickupDateTime: string;
   deliveryDateTime: string;
@@ -182,18 +204,18 @@ const form: FormValues = reactive({
   fullName: '',
   email: '',
   phone: '',
-  countryCode: '+1',
+  countryCode: '',
   pickupLocation: '',
   dropoffLocation: '',
   goodsDescription: '',
-  weight: '',
+  weight: null,
   dimensions: '',
   pickupDateTime: '',
   deliveryDateTime: '',
   specialInstructions: '',
 });
 
-const message = ref('');
+const message = ref<string | undefined>('');
 const errors: Record<string, string | null | boolean> = reactive({
   fullName: false,
   email: false,
@@ -263,39 +285,83 @@ const hasErrors = () => {
 };
 
 const submitForm = async () => {
-    console.log(hasErrors())
 
-     const errorFields = Object.keys(errors).filter((key) => errors[key]);
-  if (errorFields.length > 0) {
-    const firstErrorField = errorFields[0];
-    const firstErrorElement = document.getElementById(firstErrorField);
-    if (firstErrorElement) {
-      firstErrorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      firstErrorElement.focus();
+    if (hasErrors()) {
+        const errorFields = Object.keys(errors).filter((key) => errors[key]);
+        if (errorFields.length > 0) {
+            const firstErrorField = errorFields[0];
+            const firstErrorElement = document.getElementById(firstErrorField);
+            if (firstErrorElement) {
+                firstErrorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                firstErrorElement.focus();
+            }
+        }
+        return;
     }
-}
-    
-//   if (!hasErrors()) {
-//     try {
-//       isSubmitting.value = true;
-//       // Replace with your actual API call
-//       const response = await fetch('/api/request', {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(form),
-//       });
-//       const data = await response.json();
-//       message.value = data.message;
-//     } catch (error) {
-//       console.error(error);
-//     } finally {
-//       resetForm();
-//     }
-//   }
+  try {
+        isSubmitting.value = true;
+        const { data, refresh } = await useFetch<ResponseData>(`${baseUrl}/trs`, {
+            method: 'POST',
+            body: JSON.stringify(form),
+            onResponse({ response }) {
+                return response;
+            }
+        });
+        if(data){
+            if (data.value?.errors && Object.keys(data.value?.errors).length ) {
+                console.log(data.value.errors)
+                    // Update errors in the form
+                    Object.keys(data.value.errors).forEach(key => {
+                        errors[key] = data.value.errors[key];
+                    });
+                    const firstErrorField = Object.keys(data.value.errors)[0];
+                    const firstErrorElement = document.getElementById(firstErrorField);
+                    if (firstErrorElement) {
+                        firstErrorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        firstErrorElement.focus();
+                    }
+            } else {
+                message.value = data.value?.message;
+                verificationId.value = data.value?.requestId;
+                verificationStep.value = true;
+            }
+        }else{
+            await refresh()
+        }
+    } catch (error) {
+        console.error(error);
+        message.value = 'An error occurred';
+    } finally {
+        isSubmitting.value = false;
+    }
 };
 
+const verifyCode = async () => {
+    try {
+        isSubmitting.value = true;
+       const { data, error, status } = await useFetch(`${baseUrl}/trs/verify`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ requestId: verificationId.value, verificationCode: verificationCode.value}),
+        });
+
+        if (status.value !== 'success') {
+            message.value = data.value?.message || 'Verification failed';
+        } else {
+            message.value = data.value?.message;
+            resetForm();
+        }
+    } catch (error) {
+        console.error(error);
+        message.value = 'An error occurred';
+    } finally {
+        isSubmitting.value = false;
+    }
+};
+
+    
 const resetForm = () => {
   form.fullName = '';
   form.email = '';
@@ -303,7 +369,7 @@ const resetForm = () => {
   form.pickupLocation = '';
   form.dropoffLocation = '';
   form.goodsDescription = '';
-  form.weight = 0;
+  form.weight = null;
   form.dimensions = '';
   form.pickupDateTime = '';
   form.deliveryDateTime = '';
