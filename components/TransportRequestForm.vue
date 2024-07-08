@@ -119,7 +119,7 @@
           :min="today"
           :max="maxDate"
           placeholder="dd.mm.yyyy"
-          @focus="(e) => { e.target.type = 'date'; form.pickupDateTime = form.pickupDateTime ? form.pickupDateTime : today }"
+          @focus="(e) => { e.target.type = 'date'; form.pickupDateTime = form.pickupDateTime ? form.pickupDateTime : today; e.target.focus() }"
           @blur="validateField('pickupDateTime')"
           @input="validateFieldOnError('pickupDateTime')"
         >
@@ -135,7 +135,7 @@
           :min="today"
           :max="maxDate"
           placeholder="dd.mm.yyyy"
-           @focus="(e) => { e.target.type = 'date';  form.deliveryDateTime = form.deliveryDateTime ? form.deliveryDateTime : today }"
+           @focus="(e) => { e.target.type = 'date';  form.deliveryDateTime = form.deliveryDateTime ? form.deliveryDateTime : today; e.target.focus()}"
           @blur="validateField('deliveryDateTime')"
           @input="validateFieldOnError('deliveryDateTime')"
         >
