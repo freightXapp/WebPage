@@ -248,14 +248,14 @@ const fieldSchemas = {
     .refine((date) => {
       const pickupDate = new Date(date);
       const today = new Date();
-      return pickupDate >= today;
+      return pickupDate.toDateString() === today.toDateString() || pickupDate >= today;
     }, 'Pickup Date cannot be in the past'),
   deliveryDateTime: z.string()
     .min(1, 'Delivery Date is required')
     .refine((date) => {
       const deliveryDate = new Date(date);
       const pickupDate = new Date(form.pickupDateTime);
-      return deliveryDate > pickupDate;
+      return deliveryDate.toDateString() === pickupDate.toDateString() || deliveryDate > pickupDate;
     }, 'Delivery Date must be after Pickup Date'),
   specialInstructions: z.string().optional(),
 };
@@ -389,9 +389,6 @@ onMounted(() => {
   document.querySelector(".header").style.background = "var(--main-blue)";
 });
 </script>
-
-
-
 <style scoped lang="scss">
 .form-container {
   max-width: 60rem;
