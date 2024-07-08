@@ -113,15 +113,20 @@
       <div :class="{ error: errors.pickupDateTime }">
         <label for="pickupDateTime">{{ errors.pickupDateTime ? errors.pickupDateTime : 'Pickup Date:' }}</label>
         <input
+          v-if="showPickupDateInput"
           id="pickupDateTime"
           v-model="form.pickupDateTime"
-          type="text"
+          type="date"
           :min="today"
           :max="maxDate"
-          placeholder="dd.mm.yyyy"
-          @focus="(e) => { e.target.type = 'date'; form.pickupDateTime = form.pickupDateTime ? form.pickupDateTime : today; e.target.focus() }"
           @blur="validateField('pickupDateTime')"
           @input="validateFieldOnError('pickupDateTime')"
+        >
+             <input
+          v-else
+          type="text"
+          placeholder="dd.mm.yyyy"
+          @focus="showPickupDateInput = true"
         >
       </div>
 
@@ -129,15 +134,20 @@
       <div :class="{ error: errors.deliveryDateTime }">
         <label for="deliveryDateTime">{{ errors.deliveryDateTime ? errors.deliveryDateTime : 'Delivery Date:' }}</label>
         <input
+          v-if="showDeliveryDateInput"
           id="deliveryDateTime"
-          v-model="form.deliveryDateTime"
-          type="text"
+           v-model="form.deliveryDateTime"
+          type="date"
           :min="today"
           :max="maxDate"
-          placeholder="dd.mm.yyyy"
-           @focus="(e) => { e.target.type = 'date';  form.deliveryDateTime = form.deliveryDateTime ? form.deliveryDateTime : today; e.target.focus()}"
           @blur="validateField('deliveryDateTime')"
           @input="validateFieldOnError('deliveryDateTime')"
+        >
+          <input
+          v-else
+          type="text"
+          placeholder="dd.mm.yyyy"
+          @focus="showDeliveryDateInput = true"
         >
       </div>
 
@@ -185,7 +195,8 @@ const baseUrl = config.public.baseUrl;
 const verificationStep = ref(false);
 const verificationId = ref<string | undefined>('');
 const verificationCode = ref<string | undefined>('');
-
+const showDeliveryDateInput = ref(false);
+const showPickupDateInput = ref(false);
 type ResponseData = {
     message: string;
     requestId?: string;
