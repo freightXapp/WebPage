@@ -159,7 +159,7 @@
         <button :disabled="isSubmitting" @click="verifyCode">Verify Code</button>
       </div>
 
-      <button :disabled="isSubmitting" type="submit">
+      <button v-else :disabled="isSubmitting" type="submit">
         <div v-if="isSubmitting" class="loading-spinner">Loading...</div>
         <span v-else>Submit</span>
       </button>
@@ -200,6 +200,9 @@ type FormValues = {
   specialInstructions: string;
 };
 
+// Initialize today's date
+const today = new Date().toISOString().split('T')[0];
+
 const form: FormValues = reactive({
   fullName: '',
   email: '',
@@ -210,8 +213,8 @@ const form: FormValues = reactive({
   goodsDescription: '',
   weight: null,
   dimensions: '',
-  pickupDateTime: '',
-  deliveryDateTime: '',
+  pickupDateTime: today,
+  deliveryDateTime: today,
   specialInstructions: '',
 });
 
@@ -252,8 +255,8 @@ const fieldSchemas = {
     .refine((date) => {
       const deliveryDate = new Date(date);
       const pickupDate = new Date(form.pickupDateTime);
-      return deliveryDate >= pickupDate;
-    }, 'Delivery Date cannot be before Pickup Date'),
+      return deliveryDate > pickupDate;
+    }, 'Delivery Date must be after Pickup Date'),
   specialInstructions: z.string().optional(),
 };
 
@@ -308,7 +311,7 @@ const submitForm = async () => {
             }
         });
         if(data){
-            if (data.value?.errors && Object.keys(data.value?.errors).length ) {
+            if (data.value?.errors && Object.keys(data.value.errors).length ) {
                 console.log(data.value.errors)
                     // Update errors in the form
                     Object.keys(data.value.errors).forEach(key => {
@@ -371,20 +374,22 @@ const resetForm = () => {
   form.goodsDescription = '';
   form.weight = null;
   form.dimensions = '';
-  form.pickupDateTime = '';
-  form.deliveryDateTime = '';
+  form.pickupDateTime = today;
+  form.deliveryDateTime = today;
   form.specialInstructions = '';
   isSubmitting.value = false;
   Object.keys(errors).forEach((key) => {
     errors[key] = false;
   });
   message.value = '';
+  verificationStep.value = false;
 };
 
 onMounted(() => {
   document.querySelector(".header").style.background = "var(--main-blue)";
 });
 </script>
+
 
 
 <style scoped lang="scss">
