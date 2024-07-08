@@ -115,8 +115,11 @@
         <input
           id="pickupDateTime"
           v-model="form.pickupDateTime"
-          type="date"
-          placeholder="Select the pickup date"
+          type="text"
+          :min="today"
+          :max="maxDate"
+          placeholder="dd.mm.yyyy"
+          @focus="(e) => { e.target.type = 'date'; }"
           @blur="validateField('pickupDateTime')"
           @input="validateFieldOnError('pickupDateTime')"
         >
@@ -128,8 +131,11 @@
         <input
           id="deliveryDateTime"
           v-model="form.deliveryDateTime"
-          type="date"
-          placeholder="Select the delivery date"
+          type="text"
+          :min="today"
+          :max="maxDate"
+          placeholder="dd.mm.yyyy"
+           @focus="(e) => { e.target.type = 'date'; }"
           @blur="validateField('deliveryDateTime')"
           @input="validateFieldOnError('deliveryDateTime')"
         >
@@ -147,7 +153,8 @@
           @input="validateFieldOnError('specialInstructions')"
         />
       </div>
-      <!--  TODO Verification step (dialog), reset form, reset verification. -->
+
+      <!-- Verification Code Field (Initially Hidden) -->
       <div v-if="verificationStep">
         <label for="verificationCode">Verification Code:</label>
         <input
@@ -202,6 +209,8 @@ type FormValues = {
 
 // Initialize today's date
 const today = new Date().toISOString().split('T')[0];
+const maxDate = new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0];
+
 
 const form: FormValues = reactive({
   fullName: '',
@@ -213,8 +222,8 @@ const form: FormValues = reactive({
   goodsDescription: '',
   weight: null,
   dimensions: '',
-  pickupDateTime: today,
-  deliveryDateTime: today,
+  pickupDateTime: '',
+  deliveryDateTime: '',
   specialInstructions: '',
 });
 
@@ -389,6 +398,7 @@ onMounted(() => {
   document.querySelector(".header").style.background = "var(--main-blue)";
 });
 </script>
+
 <style scoped lang="scss">
 .form-container {
   max-width: 60rem;
