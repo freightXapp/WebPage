@@ -233,8 +233,8 @@ const form: FormValues = reactive({
   goodsDescription: '',
   weight: null,
   dimensions: '',
-  pickupDateTime: '',
-  deliveryDateTime: '',
+  pickupDateTime: today,
+  deliveryDateTime: today,
   specialInstructions: '',
 });
 
