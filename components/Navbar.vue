@@ -16,8 +16,12 @@
           >
             <BaseDialog ref="modal" clas="t">
               <template #modal-body>
+           <NuxtLink to="/" @click="hiddenModal">
+          <pickUp2White  :filled="''" class="header__logo header__mobile" />
+        </NuxtLink>
+
                 <closeBtn class="header__dialog-close" @click="hiddenModal" />
-                <NavbarMenu :is-toggle="isToggle" />
+                <NavbarMenu :is-toggle="isToggle"   @close-modal="hiddenModal" />
               </template>
             </BaseDialog>
           </Teleport>
@@ -104,6 +108,7 @@ const hiddenModal = () => {
   modal.value?.closeModal();
   document.removeEventListener("keydown", handleEscape);
   document.removeEventListener("popstate", hiddenModal);
+  document.body.style.overflow = "auto";
 };
 
 const handleEscape = (event: KeyboardEvent) => {
@@ -114,9 +119,11 @@ const handleEscape = (event: KeyboardEvent) => {
 };
 const showModal = () => {
   isToggle.value = !isToggle.value;
-  modal.value?.openModal(); // baseDialog
-  document.addEventListener("keydown", handleEscape);
-  window.addEventListener("popstate", hiddenModal);
+  if(isToggle.value){
+      modal.value?.openModal(); // baseDialog
+      document.addEventListener("keydown", handleEscape);
+      window.addEventListener("popstate", hiddenModal);
+  }
 };
 
 function handleViewportChange() {
@@ -144,6 +151,10 @@ function handleViewportChange() {
   z-index: 4;
   height: 8rem;
   min-height: 8rem;
+
+  &__mobile{
+    margin-top: 1rem;
+  }
 
   &__container {
     margin: 0 1rem;
