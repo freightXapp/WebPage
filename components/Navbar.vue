@@ -16,12 +16,15 @@
           >
             <BaseDialog ref="modal" clas="t">
               <template #modal-body>
-           <NuxtLink to="/" @click="hiddenModal">
-          <pickUp2White  :filled="''" class="header__logo header__mobile" />
-        </NuxtLink>
+                <NuxtLink to="/" @click="hiddenModal">
+                  <pickUp2White
+                    :filled="''"
+                    class="header__logo header__mobile"
+                  />
+                </NuxtLink>
 
                 <closeBtn class="header__dialog-close" @click="hiddenModal" />
-                <NavbarMenu :is-toggle="isToggle"   @close-modal="hiddenModal" />
+                <NavbarMenu :is-toggle="isToggle" @close-modal="hiddenModal" />
               </template>
             </BaseDialog>
           </Teleport>
@@ -35,12 +38,26 @@
       </nav>
       <div class="header__last-items">
         <div class="header__auth">
-          <a href="#" class="header__auth-link">
-            <User
-              class="header__auth-icon"
-              :class="[{ 'header__auth-icon--white': !isHeaderBg }]"
-            />
-          </a>
+          <ClientOnly>
+            <Teleport
+              v-if="isAuthModalOpen"
+              to="body"
+              class="header__menu-mobile"
+            >
+              <BaseDialog ref="authModal">
+                <template #modal-body>
+                  <NuxtLink to="/" @click="hiddenModal, isAuthModalOpen = false" />
+                  <closeBtn class="header__dialog-close" @click="hiddenModal, isAuthModalOpen = false" />
+                  <Register />
+                </template>
+              </BaseDialog>
+            </Teleport>
+          </ClientOnly>
+          <User
+            class="header__auth-icon"
+            :class="[{ 'header__auth-icon--white': !isHeaderBg }]"
+            @click="showAuthModal, isAuthModalOpen = true"
+          />
         </div>
         <label
           for="side-navbar-toggle"
@@ -70,10 +87,12 @@ import User from "~/assets/BaseIcons/user.svg";
 
 const isToggle = ref(false);
 const modal = ref<typeof BaseDialog>();
+const authModal = ref<typeof BaseDialog>();
 const isMobile = ref(false);
 const header = ref(null);
 const isHeaderBg = ref(false);
 let lastScrollPosition = 0;
+const isAuthModalOpen = ref(false);
 
 function handleScroll() {
   const threshold = 0;
@@ -117,12 +136,16 @@ const handleEscape = (event: KeyboardEvent) => {
     isToggle.value = false;
   }
 };
+
+const showAuthModal = () => {
+  authModal.value.openModal();
+};
 const showModal = () => {
   isToggle.value = !isToggle.value;
-  if(isToggle.value){
-      modal.value?.openModal(); // baseDialog
-      document.addEventListener("keydown", handleEscape);
-      window.addEventListener("popstate", hiddenModal);
+  if (isToggle.value) {
+    modal.value?.openModal(); // baseDialog
+    document.addEventListener("keydown", handleEscape);
+    window.addEventListener("popstate", hiddenModal);
   }
 };
 
@@ -152,7 +175,7 @@ function handleViewportChange() {
   height: 8rem;
   min-height: 8rem;
 
-  &__mobile{
+  &__mobile {
     margin-top: 1rem;
   }
 
@@ -168,7 +191,7 @@ function handleViewportChange() {
   &__logo {
     width: 15rem;
     height: 5rem;
-    margin-right: 50px;
+    margin-right: 5rem;
   }
 
   &__hamburger-btn {

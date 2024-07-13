@@ -42,7 +42,6 @@
 </template>
 
 <script setup lang="ts">
-import pickUp2White from "~/assets/BaseIcons/pc2.svg";
 
 interface Props {
   isToggle: boolean;
