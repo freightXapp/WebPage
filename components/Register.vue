@@ -101,8 +101,10 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive } from 'vue';
 import { z } from 'zod';
+import { isValidPhoneNumber } from "libphonenumber-js";
+const config = useRuntimeConfig();
+const baseUrl = config.public.baseUrl;
 
 type FormValues = {
   companyName: string;
@@ -139,18 +141,25 @@ const fieldSchemas = {
   countryName: z.string().min(1, 'Country Name is required'),
   email: z.string().email('Email is not valid'),
   password: z
+    .string(),
+    // .min(8, 'Password must be at least 8 characters long')
+    // .regex(/[a-z]/, 'Password must contain at least one lowercase letter')
+    // .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
+    // .regex(/[0-9]/, 'Password must contain at least one number')
+    // .regex(/[^a-zA-Z0-9]/, 'Password must contain at least one special character'),
+//   repeatPassword: z.string().min(1, 'Repeat Password is required').refine((val) =>  // TODO remove comment 
+//     val === form.password,{
+//         message: "Passwords don't match"
+//     }
+//   ),
+
+repeatPassword: z // TODO JUST FOR TESTING !!!
     .string()
-    .min(8, 'Password must be at least 8 characters long')
-    .regex(/[a-z]/, 'Password must contain at least one lowercase letter')
-    .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
-    .regex(/[0-9]/, 'Password must contain at least one number')
-    .regex(/[^a-zA-Z0-9]/, 'Password must contain at least one special character'),
-  repeatPassword: z.string().min(1, 'Repeat Password is required').refine((val) => 
-    val === form.password,{
-        message: "Passwords don't match"
-    }
-  ),
-  phone: z.string().min(1, 'Phone number is required'),
+    .min(1, 'Repeat Password is required'),
+  phone: z.string() .refine(
+      (phone) => isValidPhoneNumber(form.countryCode + phone),
+      "Phone number is not valid"
+    ),
   countryCode: z.string().min(1, 'Country code is required'),
 };
 
@@ -190,8 +199,16 @@ const submitForm = async () => {
   }
   try {
     isSubmitting.value = true;
-    // Perform API request here
-    message.value = 'Registration successful';
+    const { data, error } = await useFetch(`${baseUrl}/auth/register`, {
+      method: 'POST',
+      body: JSON.stringify(form),
+    });
+    console.log(data.value,error.value);
+    if (error.value) {
+      message.value = error.value.message ? error.value.message : 'An error occurred';
+    } else {
+      message.value = 'Registration successful';
+    }
   } catch (error) {
     console.error(error);
     message.value = 'An error occurred';
