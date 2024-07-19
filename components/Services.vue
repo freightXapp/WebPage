@@ -6,20 +6,24 @@
       <div class="section__row">
         <div class="section__column fadeInRight animated">
           <div class="section__inner">
-           <div class="section__content">
-             <div class="section__title">
+            <div class="section__content">
+              <div class="section__title">
                 <div class="section__sub-container">
-                    <component :is="imageSvg" :filled="''" class="section__svg" />
-                    <span class="section__sub-title">{{ imageTitle }}</span>
+                  <component :is="imageSvg" :filled="''" class="section__svg" />
+                  <span class="section__sub-title">{{ imageTitle }}</span>
                 </div>
-              <h2 class="section__title">{{ title }}</h2>
+                <h2 class="section__title">{{ title }}</h2>
+              </div>
+              <div class="section__description">
+                <div v-html="text" />
+              </div>
             </div>
-            <div class="section__description">
-              {{ text }}
-            </div>
-           </div>
             <div class="section__btn-box">
-              <BaseButton :button-text="buttonText" :link-path="`/${imageTitle.toLowerCase()}`" :bg-color="buttonColor"/>
+              <BaseButton
+                :button-text="buttonText"
+                :link-path="`/${imageTitle.toLowerCase()}`"
+                :bg-color="buttonColor"
+              />
             </div>
           </div>
         </div>
@@ -66,12 +70,12 @@ const props = withDefaults(defineProps<Props>(), {
 
 .section {
   max-width: $breakpoint-maxsize;
-    margin: 3% auto 10rem auto;
+  margin: 3% auto 10rem auto;
   padding: 0 1.5rem;
-  @media(min-width: $breakpoint-large){
+  @media (min-width: $breakpoint-large) {
     margin: 5% auto;
   }
- 
+
   &__svg {
     width: 4rem;
     height: 4rem;
@@ -84,47 +88,46 @@ const props = withDefaults(defineProps<Props>(), {
 
     @media (min-width: $breakpoint_medium) {
       flex-direction: row;
-   
     }
-   
   }
 
   &__column {
     width: auto;
-    @media(min-width: $breakpoint_medium) {
-        width: 40%;
+    @media (min-width: $breakpoint_medium) {
+      width: 40%;
     }
   }
   &__inner {
     position: relative;
     height: 100%;
-    display:flex;
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
   &__title {
-    font-size: 2.6rem;
+    font-size: 2rem;
     line-height: 1.2;
     font-weight: 700;
     color: #04134c;
     margin-bottom: 1rem;
     @media (min-width: $breakpoint-large) {
       margin-bottom: 2.4rem;
-      font-size: 3.6rem;
+      font-size: 3.4rem;
     }
   }
-  &__sub-container{
+  &__sub-container {
     margin-bottom: 0.5rem;
   }
   &__sub-title {
     background: var(--pickup2-gradient-2);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 1.6rem;
-    font-weight: 600;
+    font-size: 1.25rem;
+    font-weight: 700;
     margin-bottom: 1rem;
   }
   &__description {
+    font-family: "NatoThaiLooped", sans-serif;
     margin-bottom: 3rem;
     font-size: 1.6rem;
     color: var(--text-grey-dark);
@@ -141,7 +144,7 @@ const props = withDefaults(defineProps<Props>(), {
     align-items: center;
     flex-direction: column;
     width: 30rem;
-  
+
     @media (min-width: $breakpoint-large) {
       width: 40rem;
     }
@@ -157,8 +160,8 @@ const props = withDefaults(defineProps<Props>(), {
   }
   &__image-container {
     width: auto;
-    @media(min-width: $breakpoint_medium) {
-        width: 60%;
+    @media (min-width: $breakpoint_medium) {
+      width: 60%;
     }
     &__inner {
       position: relative;
@@ -185,8 +188,6 @@ const props = withDefaults(defineProps<Props>(), {
 .reverse-direction .section__row {
   @media (min-width: $breakpoint_medium) {
     flex-direction: row-reverse;
-   
   }
-  
 }
 </style>

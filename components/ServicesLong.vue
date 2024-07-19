@@ -17,7 +17,10 @@
       <p class="service-long__description">
         {{ service.description }}
       </p>
-      <div class="service-long__options-container" :class="{'service-long__options-container-odd': index % 2 !== 0}">
+      <div
+        class="service-long__options-container"
+        :class="{ 'service-long__options-container-odd': index % 2 !== 0 }"
+      >
         <ul class="service-long__options">
           <div class="service-long__option-container">
             <li
@@ -25,16 +28,13 @@
               :key="option.text + index"
               class="service-long__option"
             >
-            <div 
-                  class="service-long__options-svg"
-            >
+              <div class="service-long__options-svg">
                 <component
                   :is="option.optionImage"
                   :filled="''"
                   class="service-long__options-svg"
                 />
-
-            </div>
+              </div>
               <p class="service-long__options-text">
                 {{ option.text }}
               </p>
@@ -49,7 +49,7 @@
             class="service-long__image"
             :src="service.image"
             alt="Feedback Ratings"
-          >
+          />
         </div>
       </div>
     </div>
@@ -135,8 +135,7 @@ const services = [
 .service-long {
   display: flex;
   justify-content: space-between;
-  background-color: #f1f1f1;  // TODO
-
+  background-color: #f1f1f1; // TODO
 
   .service-long__main {
     max-width: $breakpoint-maxsize;
@@ -144,129 +143,125 @@ const services = [
     padding: 0 1.5rem;
 
     @media (min-width: $breakpoint-large) {
-      margin:5% auto;
-    }
-}
-    &__sub-container {
-      display: flex;
-      align-items: center;
-      justify-self: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
-
-      &-title {
-        font-size: 2.4rem;
-        font-weight: 700;
-        background: var(--pickup2-gradient-2);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      &-svg {
-        align-items: baseline;
-        height: 3rem;
-        width: 3rem;
-      }
-    }
-
-    &__title {
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: var(--dark-blue);
-      margin-bottom: 3rem;
-    }
-
-    &__options-container,
-    &__options-container-odd {
-      display: flex;
-      gap: 5rem;
-    flex-direction: column-reverse;
-
-      @media(min-width: $breakpoint-medium){
-        flex-direction: row;
-        
-        }
-      }
-    &__options-container-odd{
-        @media(min-width: $breakpoint-medium){
-        flex-direction: row-reverse;
-
-        }
-    }
-    &__description {
-      margin-bottom: 3rem;
-      font-size: 1.6rem;
-      font-weight: 300;
-      @media(min-width: $breakpoint-large){
-        max-width: 75%;
-      }
-    }
-
-    &__image-container {
-      width: auto;
-      max-height: 40rem;
-      height: 40rem;
-
-      @media (min-width: $breakpoint_medium) {
-        width: 60%;
-      height: auto;
-
-      }
-    }
-
-    &__image {
-      width: 100%;
-      border-radius: 1.6rem;
-      object-fit: cover;
-      height: 100%;
-    }
-
-    &__options {
-      margin-top: 1rem;
-      width: auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      @media(min-width: $breakpoint-medium){
-      width: 40%;
-
-      }
-
-      &-svg {
-        width: 4.5rem;
-        height: 4.5rem;
-      }
-
-      &-text {
-        font-size: 1.6rem;
-        font-weight: 300;
-      }
-    }
-    &__option-container{
-        display:flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        @media(min-width: $breakpoint-verysmall){
-            display: grid;
-  grid-template-columns: repeat(2, 1fr);
-        }
-        @media(min-width: $breakpoint-medium){
-            display: flex;
-        }
-    }
-    &__option {
-      display: flex;
-      margin: 1rem 0;
-      gap: 1rem;
-      align-items: center;
-    }
-
-    &__btn {
-      width: 30rem;
-      margin-top: 2rem;
-      @media (min-width: $breakpoint-large) {
-        width: 40rem;
-      }
+      margin: 5% auto;
     }
   }
+  &__sub-container {
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+
+    &-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      background: var(--pickup2-gradient-2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    &-svg {
+      align-items: baseline;
+      height: 3rem;
+      width: 3rem;
+    }
+  }
+
+  &__title {
+    font-size: 3.4rem;
+    font-weight: 700;
+    color: var(--dark-blue);
+    margin-bottom: 3rem;
+  }
+
+  &__options-container,
+  &__options-container-odd {
+    display: flex;
+    gap: 5rem;
+    flex-direction: column-reverse;
+
+    @media (min-width: $breakpoint-medium) {
+      flex-direction: row;
+    }
+  }
+  &__options-container-odd {
+    @media (min-width: $breakpoint-medium) {
+      flex-direction: row-reverse;
+    }
+  }
+  &__description {
+    margin-bottom: 3rem;
+    font-size: 1.6rem;
+    font-weight: 300;
+    @media (min-width: $breakpoint-large) {
+      max-width: 75%;
+    }
+  }
+
+  &__image-container {
+    width: auto;
+    max-height: 40rem;
+    height: 40rem;
+
+    @media (min-width: $breakpoint_medium) {
+      width: 60%;
+      height: auto;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    border-radius: 1.6rem;
+    object-fit: cover;
+    height: 100%;
+  }
+
+  &__options {
+    margin-top: 1rem;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    @media (min-width: $breakpoint-medium) {
+      width: 40%;
+    }
+
+    &-svg {
+      width: 4.5rem;
+      height: 4.5rem;
+    }
+
+    &-text {
+      font-size: 1.6rem;
+      font-weight: 300;
+    }
+  }
+  &__option-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    @media (min-width: $breakpoint-verysmall) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (min-width: $breakpoint-medium) {
+      display: flex;
+    }
+  }
+  &__option {
+    display: flex;
+    margin: 1rem 0;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  &__btn {
+    width: 30rem;
+    margin-top: 2rem;
+    @media (min-width: $breakpoint-large) {
+      width: 40rem;
+    }
+  }
+}
 </style>

@@ -18,7 +18,7 @@
     </div>
 
     <ServicesLong />
-    <test1 />
+    <Tabs />
     <SignUpSection />
     <Recomendation />
   </div>
@@ -41,7 +41,7 @@ const mainContentent = [
 
     title: "Find transport for your freights",
     description:
-      "Boost your freight forwarding efficiency with our advanced system, quickly connecting you to available loads and providing transparent user ratings for smarter decisions.",
+      "Ship with ease using our platform. Real-time tracking, freight management tools and secure backups.</br></br>Create an advertisement for your freight and receive offers from interested carriers and forwarders. Adjust your search according to your specific characteristics in the most granular detail.",
   },
   {
     buttonColor: "var(--dark-blue)",
@@ -51,7 +51,7 @@ const mainContentent = [
     buttonText: "Learn more",
     title: "Get loads faster, gain trust quicker",
     description:
-      "Boost your freight forwarding efficiency with our advanced system, quickly connecting you to available loads and providing transparent user ratings for smarter decisions.",
+      "Boost your freight forwarding efficiency with our advanced system, quickly connecting you to available loads and providing transparent user ratings for smarter decisions.</br></br>Navigate dynamically with the lightweight desktop interface designed specifically for the intensive daily life of shipping departments. Browse freight listings from shippers and submit quotes to carriers. Control the flow of information from one place.",
   },
   {
     buttonColor: "var(--dark-blue)",
@@ -61,7 +61,7 @@ const mainContentent = [
     buttonText: "Learn more",
     title: "Maximize loads, minimize runs, master your routes",
     description:
-      "Empower your transport business with our logistics interface. It  connects you swiftly to loads, provides real-time tracking, and helps optimize your route efficiency to reduce empty kilometers.",
+      "Empower your transport business with our logistics interface. It  connects you swiftly to loads, provides real-time tracking, and helps optimize your route efficiency to reduce empty kilometers.</br></br>You can search for current loads widely throughout the Pickup2 marketplace. Furthermore, a feature is available to create your own ad for your upcoming tour. Let our network become your most useful tool",
   },
 ];
 </script>

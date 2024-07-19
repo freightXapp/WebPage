@@ -55,19 +55,15 @@ import StafManageSVG from "~/assets/BaseIcons/stafmanage.svg";
   align-items: center;
 
   &__title {
-    font-size: 2.6rem;
+    font-size: 4rem;
     background: var(--pickup2-gradient-2);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     line-height: 87px;
-
-    @media (min-width: $breakpoint-large) {
-      font-size: 3.8rem;
-    }
   }
 
   &__subtitle {
-    font-size: 1.6rem;
+    font-size: 2rem;
     color: var(--dark-blue);
     margin-bottom: 4rem;
   }
