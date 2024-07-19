@@ -1,6 +1,6 @@
 <template>
   <section class="solutions">
-    <h2 class="solutions__title">Your solutions</h2>
+    <h1 class="solutions__title">Your solutions</h1>
     <p class="solutions__subtitle">
       Technology that enhances your performance, security and business
     </p>
@@ -36,6 +36,7 @@
     </div>
   </section>
 </template>
+
 <script lang="ts" setup>
 import FuilSVG from "~/assets/BaseIcons/fuil.svg";
 import DealSVG from "~/assets/BaseIcons/handShakeDeal.svg";
@@ -49,15 +50,19 @@ import StafManageSVG from "~/assets/BaseIcons/stafmanage.svg";
 .solutions {
   text-align: center;
   padding: 2.3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   &__title {
     font-size: 2.6rem;
-    font-weight: bold;
-    margin: 1.5rem 0;
-    color: var(--dark-blue);
+    background: var(--pickup2-gradient-2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 87px;
 
     @media (min-width: $breakpoint-large) {
-      font-size: 3.6rem;
+      font-size: 3.8rem;
     }
   }
 
@@ -68,28 +73,32 @@ import StafManageSVG from "~/assets/BaseIcons/stafmanage.svg";
   }
 
   &__grid {
-    display: flex;
-    flex-wrap: wrap;
+    display: inline-grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
     justify-content: center;
-    gap: 6rem;
+    align-items: center;
 
-    @media(min-width: $breakpoint_mobiletabs){
-    gap: 11rem;
-
+    @media (min-width: $breakpoint_mobiletabs) {
+      gap: 2rem;
     }
 
     @media (min-width: $breakpoint_small) {
-      gap: 7rem;
+      gap: 2rem;
     }
 
     margin-bottom: 3rem;
 
     @media (min-width: $breakpoint-medium) {
-      gap: 0rem;
+      max-width: 1600px;
+      width: 60%;
+      gap: 2rem;
     }
 
     @media (min-width: $breakpoint-large) {
-      gap: 5rem;
+      gap: 3.5rem;
     }
   }
 
@@ -103,16 +112,22 @@ import StafManageSVG from "~/assets/BaseIcons/stafmanage.svg";
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 5rem;
 
     @media (min-width: $breakpoint-small) {
       width: 15rem;
+    }
+
+    @media (min-width: $breakpoint-large) {
+      width: 100%;
     }
   }
 
   &__text {
     font-size: 1.5rem;
     color: var(--dark-blue);
+    font-weight: 700px;
   }
 }
 </style>

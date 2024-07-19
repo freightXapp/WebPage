@@ -17,7 +17,7 @@
           <div class="content__left">
             <img :src="tab.image" alt="" class="content__image" />
           </div>
-          <div class="content__text" v-html="tab.content"></div>
+          <div class="content__text" v-html="tab.content" />
         </div>
       </SwiperSlide>
     </Swiper>
@@ -88,8 +88,7 @@ const pagination = ref({
 
 <style scoped lang="scss">
 .container {
-  width: 100%;
-  max-width: 1600px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 20px;
   text-align: center;
@@ -111,8 +110,7 @@ const pagination = ref({
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 85%;
-
+  width: 100%;
   transition: all 0.3s ease;
   padding: 0 20px;
 
@@ -121,14 +119,13 @@ const pagination = ref({
   }
 
   &__left {
-    flex: 1;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
 
   &__text {
-    flex: 1;
+    width: 80%;
     font-size: 2.5rem;
     color: var(--black);
     align-items: center;
@@ -138,7 +135,7 @@ const pagination = ref({
 
   &__image {
     max-height: 40rem;
-    width: 80%;
+    width: 100%;
     border-radius: 2rem;
   }
 }

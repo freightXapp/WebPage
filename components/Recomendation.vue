@@ -1,6 +1,6 @@
 <template>
     <section class="recommendation">
-        <h1 class="recommendation__title">they love us</h1>
+        <h1 class="recommendation__title">They love us</h1>
         <Swiper 
             :modules="[Pagination, Autoplay]" :pagination="{
             enabled: true,
