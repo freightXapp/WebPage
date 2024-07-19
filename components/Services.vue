@@ -14,9 +14,8 @@
                 </div>
                 <h2 class="section__title">{{ title }}</h2>
               </div>
-              <div class="section__description">
-                <div v-html="text" />
-              </div>
+
+              <div class="section__description" v-html="text" />
             </div>
             <div class="section__btn-box">
               <BaseButton

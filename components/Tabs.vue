@@ -122,11 +122,14 @@ const pagination = ref({
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 50%;
   }
 
   &__text {
-    width: 80%;
-    font-size: 2.5rem;
+    width: 40%;
+    font-family: "NatoThaiLooped", sans-serif;
+    font-size: 1.7rem;
+    font-weight: 500;
     color: var(--black);
     align-items: center;
     justify-content: center;
