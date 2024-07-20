@@ -26,7 +26,7 @@ onMounted(async () => {
     const { data, error, status, refresh } = await useFetch(
       `${baseUrl}/auth/validate-email`,
       {
-        method: "GET",
+        method: "POST",
         params: { token },
         credentials: "include",
       }
