@@ -32,7 +32,7 @@ const form: FormValues = reactive({
 
 const errors: Record<string, string | null | boolean> = reactive({
   companyName: false,
-  countryName: false,
+  countryName: false, 
   email: false,
   password: false,
   repeatPassword: false,
