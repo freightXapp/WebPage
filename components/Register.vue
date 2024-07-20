@@ -240,8 +240,9 @@ const submitForm = async () => {
     });
     console.log(data.value, error.value);
     if (error.value) {
-      message.value = error.value.message
-        ? error.value.message
+        debugger;
+      message.value = error.value.data
+        ? error.value.data
         : "An error occurred";
     } else {
       message.value = "Registration successful";
