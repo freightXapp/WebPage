@@ -88,93 +88,105 @@ const pagination = ref({
 
 <style scoped lang="scss">
 .container {
-  max-width: 100%;
-  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
   padding: 20px;
   text-align: center;
-  @media (min-width: $breakpoint-large) {
-    max-width: 1300px;
-    margin: 0 auto;
-  }
+  position: relative;
 
   &__title {
-    font-size: 2rem;
+    font-size: 3.6rem;
     background: var(--pickup2-gradient-2);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-
-    @media (min-width: $breakpoint-large) {
-      font-size: 2.6rem;
-    }
   }
 }
 
 .content {
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 2.2rem;
   width: 100%;
   transition: all 0.3s ease;
 
   &--reverse {
-    flex-direction: column;
+    flex-direction: row-reverse;
   }
 
   &__left {
-    width: 100%;
-    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    width: 50%;
   }
 
   &__text {
-    width: 100%;
+    width: 40%;
     font-family: "NatoThaiLooped", sans-serif;
-    font-size: 1.6rem;
+    font-size: 2rem;
     font-weight: 500;
     color: var(--black);
+    align-items: center;
+    justify-content: center;
     text-align: left;
-    padding: 0 1rem;
-
-    @media (min-width: $breakpoint-large) {
-      font-size: 2rem;
-    }
   }
 
   &__image {
     width: 100%;
-    max-width: 500px;
+    padding: 7rem;
     border-radius: 2rem;
   }
 }
 
-@media (min-width: $breakpoint-medium) {
+@media (max-width: $breakpoint-medium-large) {
   .content {
-    flex-direction: row;
-    &--reverse {
-      flex-direction: row-reverse;
-    }
-
-    &__left,
-    &__text {
-      width: 50%;
+    flex-direction: column;
+    &__image {
+      max-width: 100%;
+      margin: 0 auto;
     }
 
     &__text {
-      width: 40%;
-      padding: 0;
+      margin: 0 auto;
+      font-size: 2.3rem;
     }
   }
 }
 
+@media (max-width: $breakpoint_small) {
+  .content {
+    flex-direction: column;
+    margin-top: 4rem;
+
+    &__image {
+      max-width: 100%;
+      width: 100%;
+      padding: 0;
+    }
+    &__text {
+      width: 100%;
+      font-size: 1.6rem;
+    }
+  }
+
+  :deep(.icon-title) {
+    font-size: 1.3rem;
+  }
+
+  :deep(.icons) {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
 :deep(.icons) {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
 }
 
 :deep(.swiper-container) {
   display: flex;
-  margin-top: 2rem;
+  margin-top: 4rem;
 }
 
 :deep(.bullet-active) {
@@ -186,9 +198,9 @@ const pagination = ref({
   content: "";
   position: absolute;
   left: 50%;
-  bottom: -1px;
+  bottom: -4px;
   transform: translateX(-50%);
-  width: 40%;
+  width: 30%;
   height: 2px;
   background-color: var(--main-orange);
 }

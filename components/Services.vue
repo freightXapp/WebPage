@@ -128,7 +128,7 @@ const props = withDefaults(defineProps<Props>(), {
   &__description {
     font-family: "NatoThaiLooped", sans-serif;
     margin-bottom: 3rem;
-    font-size: 1.6rem;
+    font-size: 2rem;
     color: var(--text-grey-dark);
     margin-right: 0;
     @media (min-width: $breakpoint-verysmall) {
