@@ -31,7 +31,7 @@ onMounted(async () => {
         credentials: "include",
       }
     );
-    if (!data.value) {
+    if (!data.value && !error.value) {
       await refresh();
     }
     if (error.value) {
