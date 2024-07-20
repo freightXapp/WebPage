@@ -23,15 +23,17 @@ onMounted(async () => {
   }
 
   try {
-    const { data, error,status,refresh } = await useFetch(`${baseUrl}/auth/validate-email`, {
+    const { data, error,status,refresh } = await $fetch(`${baseUrl}/auth/validate-email`, {
       method: 'GET',
       params: { token },
+        credentials: 'include', 
     });
 
     if(status.value === 'idle'){
         await refresh()
     }
     if (error.value) {
+        console.log(error.value.message)
       message.value = 'Validation failed. The token might be invalid or expired.';
     } else if(data.value) {
       message.value = 'Your email has been successfully validated!';

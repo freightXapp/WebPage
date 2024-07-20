@@ -14,7 +14,7 @@
             to="body"
             class="header__menu-mobile"
           >
-            <BaseDialog ref="modal" clas="t">
+            <BaseDialog ref="modal">
               <template #modal-body>
                 <NuxtLink to="/" @click="hiddenModal">
                   <pickUp2White
@@ -44,10 +44,10 @@
               to="body"
               class="header__menu-mobile"
             >
-              <BaseDialog ref="authModal">
+              <BaseDialog ref="authModal" class="dialog-register">
                 <template #modal-body>
-                  <NuxtLink to="/" @click="hiddenModal, isAuthModalOpen = false" />
-                  <closeBtn class="header__dialog-close" @click="hiddenModal, isAuthModalOpen = false" />
+                  <NuxtLink to="/" @click="hiddenModal" />
+                  <closeBtn class="header__dialog-close" @click="hiddenModal" />
                   <Register />
                 </template>
               </BaseDialog>
@@ -56,7 +56,7 @@
           <User
             class="header__auth-icon"
             :class="[{ 'header__auth-icon--white': !isHeaderBg }]"
-            @click="showAuthModal, isAuthModalOpen = true"
+            @click="showAuthModal"
           />
         </div>
         <label
@@ -123,7 +123,10 @@ const hiddenModal = () => {
   setTimeout(() => {
     // needed for animation dialig
     isToggle.value = false;
+    isAuthModalOpen.value = false;
   }, 200);
+
+  authModal.value?.closeModal();
   modal.value?.closeModal();
   document.removeEventListener("keydown", handleEscape);
   document.removeEventListener("popstate", hiddenModal);
@@ -132,14 +135,19 @@ const hiddenModal = () => {
 
 const handleEscape = (event: KeyboardEvent) => {
   if (event.key === "Escape") {
-    event.preventDefault();
-    isToggle.value = false;
+    hiddenModal()
   }
 };
 
 const showAuthModal = () => {
-  authModal.value.openModal();
+    isAuthModalOpen.value = !isAuthModalOpen.value;
+     if (isAuthModalOpen.value) {
+    authModal.value?.openModal(); // baseDialog
+    document.addEventListener("keydown", handleEscape);
+    window.addEventListener("popstate", hiddenModal);
+  }
 };
+
 const showModal = () => {
   isToggle.value = !isToggle.value;
   if (isToggle.value) {
@@ -155,6 +163,14 @@ function handleViewportChange() {
 </script>
 
 <style lang="scss" scoped>
+.dialog-register {
+  :deep(.dialog) {
+    overflow: auto !important;
+    backdrop-filter: blur(0.4rem);
+    -webkit-backdrop-filter: blur(0.4rem);
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+}
 .header__dialog-close {
   width: 3rem;
   height: 3rem;
