@@ -167,7 +167,7 @@ withDefaults(defineProps<Props>(), {
       }
 
       p {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
       }
     }
   }

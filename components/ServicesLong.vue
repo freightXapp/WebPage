@@ -152,8 +152,8 @@ const services = [
     margin-bottom: 1rem;
 
     &-title {
-      font-size: 1.25rem;
-      font-weight: 700;
+      font-size: 1.6rem;
+      font-weight: 600;
       background: var(--pickup2-gradient-2);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -233,7 +233,7 @@ const services = [
 
     &-text {
       font-size: 1.6rem;
-      font-weight: 300;
+      font-weight: 400;
     }
   }
   &__option-container {

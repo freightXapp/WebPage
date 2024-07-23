@@ -98,13 +98,13 @@ const pagination = ref({
   }
 
   &__title {
-    font-size: 2rem;
+    font-size: 3.8rem;
     background: var(--pickup2-gradient-2);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
     @media (min-width: $breakpoint-large) {
-      font-size: 2.6rem;
+      font-size: 5.4rem;
     }
   }
 }
@@ -116,6 +116,7 @@ const pagination = ref({
   gap: 2.2rem;
   width: 100%;
   transition: all 0.3s ease;
+  margin-top: 5rem;
 
   &--reverse {
     flex-direction: column;
@@ -163,8 +164,13 @@ const pagination = ref({
 }
 
 :deep(.icons) {
-  width: 40px;
-  height: 40px;
+  width: 4.5rem;
+  height: 4.5rem;
+}
+:deep(.icon-title) {
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-top: 1rem;
 }
 
 :deep(.swiper-container) {

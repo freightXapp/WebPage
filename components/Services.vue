@@ -121,8 +121,8 @@ const props = withDefaults(defineProps<Props>(), {
     background: var(--pickup2-gradient-2);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 1.25rem;
-    font-weight: 700;
+    font-size: 1.6rem;
+    font-weight: 600;
     margin-bottom: 1rem;
   }
   &__description {
