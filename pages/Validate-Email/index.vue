@@ -8,40 +8,43 @@
 
 <script setup>
 const route = useRoute();
-const message = ref('');
+const message = ref("");
 const isValidating = ref(true);
 const config = useRuntimeConfig();
 const baseUrl = config.public.baseUrl;
 
 onMounted(async () => {
   const token = route.query.token;
-  console.log(token)
+  console.log(token);
   if (!token) {
-    message.value = 'Invalid request.';
+    message.value = "Invalid request.";
     isValidating.value = false;
     return;
   }
 
   try {
-    const { data, error,status,refresh } = await useFetch(`${baseUrl}/auth/validate-email`, {
-      method: 'GET',
-      params: { token },
-    });
-
-    if(status.value === 'idle'){
-        await refresh()
+    const { data, error, status, refresh } = await useFetch(
+      `${baseUrl}/auth/validate-email`,
+      {
+        method: "POST",
+        params: { token },
+        credentials: "include",
+      }
+    );
+    if (!data.value && !error.value) {
+      await refresh();
     }
     if (error.value) {
-      message.value = 'Validation failed. The token might be invalid or expired.';
-    } else if(data.value) {
-      message.value = 'Your email has been successfully validated!';
+      message.value =
+        "Validation failed. The token might be invalid or expired.";
+    } else if (data.value) {
+      message.value = "Your email has been successfully validated!";
+    } else {
+      await refresh();
     }
-        console.log('DATA VALUE', data.value);
-    console.log('ERROR VALIE +>>>', error.value);
-    console.log('STATUS +>>>', status.value);
   } catch (err) {
     console.error(err);
-    message.value = 'An error occurred during validation.';
+    message.value = "An error occurred during validation.";
   } finally {
     isValidating.value = false;
   }

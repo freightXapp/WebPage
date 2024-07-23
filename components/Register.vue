@@ -1,10 +1,10 @@
 <template>
-  <div class="form-container">
+  <div class="register-form">
     <h1>Register</h1>
     <form @submit.prevent="submitForm">
       <!-- Company Name Field -->
-      <div :class="{ error: errors.companyName }">
-        <label for="companyName">{{
+      <div :class="{ 'register-form__field--error': errors.companyName }">
+        <label class="register-form__label" for="companyName">{{
           errors.companyName ? errors.companyName : "Company Name:"
         }}</label>
         <input
@@ -18,8 +18,8 @@
       </div>
 
       <!-- Country Name Field -->
-      <div :class="{ error: errors.countryName }">
-        <label for="countryName">{{
+      <div :class="{ 'register-form__field--error': errors.countryName }">
+        <label class="register-form__label" for="countryName">{{
           errors.countryName ? errors.countryName : "Country Name:"
         }}</label>
         <input
@@ -33,8 +33,10 @@
       </div>
 
       <!-- Email Field -->
-      <div :class="{ error: errors.email }">
-        <label for="email">{{ errors.email ? errors.email : "Email:" }}</label>
+      <div :class="{ 'register-form__field--error': errors.email }">
+        <label class="register-form__label" for="email">{{
+          errors.email ? errors.email : "Email:"
+        }}</label>
         <input
           id="email"
           v-model="form.email"
@@ -46,39 +48,57 @@
       </div>
 
       <!-- Password Field -->
-      <div :class="{ error: errors.password }">
-        <label for="password">{{ errors.password ? errors.password : "Password:" }}</label>
-        <input
-          id="password"
-          v-model="form.password"
-          type="password"
-          placeholder="Enter your password"
-          @blur="validateField('password')"
-          @input="validateFieldOnError('password')"
-        >
+      <div :class="{ 'register-form__field--error': errors.password }">
+        <label class="register-form__label" for="password">{{
+          errors.password ? errors.password : "Password:"
+        }}</label>
+        <div class="register-form__password-wrapper">
+          <input
+            id="password"
+            ref="password"
+            v-model="form.password"
+            type="password"
+            placeholder="Enter your password"
+            @blur="validateField('password')"
+            @input="validateFieldOnError('password')"
+          >
+          <eye
+            v-if="form.password.length"
+            class="register-form__show-pass"
+            @click="showPassword('password')"
+          />
+        </div>
       </div>
 
       <!-- Repeat Password Field -->
-      <div :class="{ error: errors.repeatPassword }">
-        <label for="repeatPassword">{{
+      <div :class="{ 'register-form__field--error': errors.repeatPassword }">
+        <label class="register-form__label" for="repeatPassword">{{
           errors.repeatPassword ? errors.repeatPassword : "Repeat Password:"
         }}</label>
-        <input
-          id="repeatPassword"
-          v-model="form.repeatPassword"
-          type="password"
-          placeholder="Repeat your password"
-          @blur="validateField('repeatPassword')"
-          @input="validateFieldOnError('repeatPassword')"
-        >
+        <div class="register-form__password-wrapper">
+          <input
+            id="repeatPassword"
+            ref="repeatPassword"
+            v-model="form.repeatPassword"
+            type="password"
+            placeholder="Repeat your password"
+            @blur="validateField('repeatPassword')"
+            @input="validateFieldOnError('repeatPassword')"
+          >
+          <eye
+            v-if="form.repeatPassword.length"
+            class="register-form__show-pass"
+            @click="showPassword('repeatPassword')"
+          />
+        </div>
       </div>
 
       <!-- Phone Number Field -->
-      <div :class="{ error: errors.phone }">
-        <label for="phone">{{
+      <div :class="{ 'register-form__field--error': errors.phone }">
+        <label class="register-form__label" for="phone">{{
           errors.phone ? errors.phone : "Phone Number:"
         }}</label>
-        <div class="phone-container">
+        <div class="register-form__phone-wrapper">
           <CustomDropdown v-model:code="form.countryCode" />
           <input
             id="phone"
@@ -92,19 +112,23 @@
       </div>
 
       <button :disabled="isSubmitting" type="submit">
-        <div v-if="isSubmitting" class="loading-spinner" />
+        <div v-if="isSubmitting" class="register-form__loading-spinner" />
         <span v-else>Register</span>
       </button>
-      <span v-if="message" class="message">{{ message }}</span>
+      <span v-if="message" class="register-form__message">{{ message }}</span>
     </form>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { z } from 'zod';
+import { z } from "zod";
 import { isValidPhoneNumber } from "libphonenumber-js";
+import eye from "~/assets/BaseIcons/eye.svg";
 const config = useRuntimeConfig();
+
 const baseUrl = config.public.baseUrl;
+const repeatPassword = ref(null);
+const password = ref(null);
 
 type FormValues = {
   companyName: string;
@@ -117,13 +141,13 @@ type FormValues = {
 };
 
 const form: FormValues = reactive({
-  companyName: '',
-  countryName: '',
-  email: '',
-  password: '',
-  repeatPassword: '',
-  phone: '',
-  countryCode: '',
+  companyName: "",
+  countryName: "",
+  email: "",
+  password: "",
+  repeatPassword: "",
+  phone: "",
+  countryCode: "",
 });
 
 const errors: Record<string, string | null | boolean> = reactive({
@@ -135,32 +159,43 @@ const errors: Record<string, string | null | boolean> = reactive({
   phone: false,
   countryCode: false,
 });
-
+const showPassword = (inputRefName: string) => {
+  const input =
+    inputRefName === "password" ? password.value : repeatPassword.value;
+  input.type = input.type === "password" ? "text" : "password";
+};
 const fieldSchemas = {
-  companyName: z.string().min(1, 'Company Name is required'),
-  countryName: z.string().min(1, 'Country Name is required'),
-  email: z.string().email('Email is not valid'),
+  companyName: z.string().min(1, "Company Name is required"),
+  countryName: z.string().min(1, "Country Name is required"),
+  email: z.string().email("Email is not valid"),
   password: z
-    .string(),
-    // .min(8, 'Password must be at least 8 characters long')
-    // .regex(/[a-z]/, 'Password must contain at least one lowercase letter')
-    // .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
-    // .regex(/[0-9]/, 'Password must contain at least one number')
-    // .regex(/[^a-zA-Z0-9]/, 'Password must contain at least one special character'),
-//   repeatPassword: z.string().min(1, 'Repeat Password is required').refine((val) =>  // TODO remove comment 
-//     val === form.password,{
-//         message: "Passwords don't match"
-//     }
-//   ),
-
-repeatPassword: z // TODO JUST FOR TESTING !!!
     .string()
-    .min(1, 'Repeat Password is required'),
-  phone: z.string() .refine(
+    .min(8, "Password must be at least 8 characters long")
+    .regex(/[a-z]/, "Password must contain at least one lowercase letter")
+    .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
+    .regex(/[0-9]/, "Password must contain at least one number")
+    .regex(
+      /[^a-zA-Z0-9]/,
+      "Password must contain at least one special character"
+    ),
+  repeatPassword: z
+    .string()
+    .min(1, "Repeat Password is required")
+    .refine(
+      (
+        val // TODO remove comment
+      ) => val === form.password,
+      {
+        message: "Passwords don't match",
+      }
+    ),
+  phone: z
+    .string()
+    .refine(
       (phone) => isValidPhoneNumber(form.countryCode + phone),
       "Phone number is not valid"
     ),
-  countryCode: z.string().min(1, 'Country code is required'),
+  countryCode: z.string().min(1, "Country code is required"),
 };
 
 const validateFieldOnError = (fieldName: keyof FormValues) => {
@@ -200,33 +235,36 @@ const submitForm = async () => {
   try {
     isSubmitting.value = true;
     const { data, error } = await useFetch(`${baseUrl}/auth/register`, {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify(form),
     });
-    console.log(data.value,error.value);
+    console.log(data.value, error.value);
     if (error.value) {
-      message.value = error.value.message ? error.value.message : 'An error occurred';
+        debugger;
+      message.value = error.value.data
+        ? error.value.data
+        : "An error occurred";
     } else {
-      message.value = 'Registration successful';
+      message.value = "Registration successful";
     }
   } catch (error) {
     console.error(error);
-    message.value = 'An error occurred';
+    message.value = "An error occurred";
   } finally {
     isSubmitting.value = false;
   }
 };
 </script>
 
-<style scoped>
-.form-container {
+<style scoped lang="scss">
+.register-form {
   max-width: 60rem;
-  margin: 0 auto;
+  margin: 8rem auto;
   padding: 2rem;
-  border: 0.1rem solid #ccc;
+  border: 0.2rem solid var(--main-blue);
   border-radius: 0.5rem;
-  background-color: #f9f9f9;
-  margin-top: 10rem;
+  background-color: var(--white-smoke);
+  align-items: center;
 
   h1 {
     text-align: center;
@@ -234,73 +272,109 @@ const submitForm = async () => {
     margin-bottom: 3rem;
     font-weight: 500;
   }
-}
 
-.form-container .error label {
-  color: red;
-}
-
-.form-container input,
-.form-container button {
-  display: block;
-  width: 100%;
-  margin-bottom: 1rem;
-  padding: 1rem;
-  border: 0.1rem solid var(--border);
-  border-radius: 0.5rem;
-  &::placeholder {
-    font-size: 1.6rem;
-    color: var(--text-grey);
-    font-weight: 300;
+  &__label {
+    font-size: 1.2rem;
+    @media (min-width: $breakpoint-small) {
+      font-size: 1.4rem;
+    }
   }
-}
 
-.form-container input:focus,
-.form-container input:hover,
-.form-container button:focus,
-.form-container button:hover {
-  outline: none;
-  border-color: var(--main-blue);
-  box-shadow: 0 0 5px rgba(2, 85, 174, 0.5);
-  transition: all 0.3s;
-}
-
-.form-container .error input {
-  border-color: red;
-  color: red;
-}
-
-.form-container button {
-  background-color: var(--main-blue);
-  color: white;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-}
-
-.form-container button:disabled {
-  background-color: #ccc;
-}
-
-.loading-spinner {
-  display: inline-block;
-  width: 1.7rem;
-  height: 1.7rem;
-  border: 0.2rem solid var(--main-blue);
-  border-radius: 50%;
-  border-top-color: #ffffff;
-  animation: spin 1s ease infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
+  &__password-wrapper {
+    position: relative;
   }
-}
 
-.message {
-  color: green;
-  text-align: center;
-  margin-top: 10px;
+  &__show-pass {
+    position: absolute;
+    right: 2rem;
+    top: 1.5rem;
+  }
+
+  &__field--error label {
+    color: red;
+  }
+
+  &__field--error input::placeholder {
+    color: red;
+  }
+
+  input,
+  button {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 0.1rem solid var(--border);
+    border-radius: 0.5rem;
+
+    &::placeholder {
+      font-size: 1.6rem;
+      color: var(--text-grey);
+      font-weight: 300;
+    }
+
+    &:focus,
+    &:hover {
+      outline: none;
+      border-color: var(--main-blue);
+      box-shadow: 0 0 5px rgba(2, 85, 174, 0.5);
+      transition: all 0.3s;
+    }
+  }
+
+  button {
+    background-color: var(--main-blue);
+    color: white;
+    border: none;
+    cursor: pointer;
+
+    &:disabled {
+      background-color: #ccc;
+    }
+  }
+
+  &__loading-spinner {
+    display: inline-block;
+    width: 1.7rem;
+    height: 1.7rem;
+    border: 0.2rem solid var(--main-blue);
+    border-radius: 50%;
+    border-top-color: #ffffff;
+    animation: spin 1s ease infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  &__message {
+    color: green;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  &__phone-wrapper {
+    display: flex;
+    gap: 1rem;
+  }
+
+  &__field--error {
+    input {
+      color: red;
+      &:focus,
+      &:focus-visible,
+      &:hover,
+      &:active,
+      &::placeholder {
+        border-color: red;
+        color: red;
+      }
+    }
+    .register-form__show-pass {
+      color: red;
+    }
+  }
 }
 </style>
