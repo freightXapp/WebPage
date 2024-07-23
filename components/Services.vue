@@ -104,9 +104,9 @@ const props = withDefaults(defineProps<Props>(), {
     justify-content: space-between;
   }
   &__title {
-    font-size: 2rem;
+    font-size: 3.5rem;
     line-height: 1.2;
-    font-weight: 700;
+    font-weight: 600;
     color: #04134c;
     margin-bottom: 1rem;
     @media (min-width: $breakpoint-large) {
@@ -126,9 +126,10 @@ const props = withDefaults(defineProps<Props>(), {
     margin-bottom: 1rem;
   }
   &__description {
-    font-family: "NatoThaiLooped", sans-serif;
     margin-bottom: 3rem;
-    font-size: 2rem;
+    font-weight: 300;
+    font-size: 1.6rem;
+    line-height: 28px;
     color: var(--text-grey-dark);
     margin-right: 0;
     @media (min-width: $breakpoint-verysmall) {

@@ -129,15 +129,11 @@ const pagination = ref({
 
   &__text {
     width: 100%;
-    font-size: 1.6rem;
-    font-weight: 500;
+    font-size: 1.7rem;
+    line-height: 28px;
     color: var(--black);
     text-align: left;
     padding: 0 1rem;
-
-    @media (min-width: $breakpoint-large) {
-      font-size: 2rem;
-    }
   }
 
   &__image {

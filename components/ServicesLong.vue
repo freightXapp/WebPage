@@ -14,9 +14,7 @@
         <h2 class="service-long__sub-container-title">{{ service.section }}</h2>
       </div>
       <h1 class="service-long__title">{{ service.title }}</h1>
-      <p class="service-long__description">
-        {{ service.description }}
-      </p>
+      <div class="service-long__description" v-html="service.description" />
       <div
         class="service-long__options-container"
         :class="{ 'service-long__options-container-odd': index % 2 !== 0 }"
@@ -77,7 +75,7 @@ const services = [
     buttonText: "Learn more",
     title: "Navigate, succeed, analyze, delegate, connect All in one place",
     description:
-      "Enhance your managerial efficiency with our advanced analytics, delegated team control, and fast access to an extensive partner network, all designed to streamline your leadership.",
+      "Enhance your managerial efficiency with our advanced analytics, delegated team control, and fast access to an extensive partner network, all designed to streamline your leadership. </br></br>Whether your company has logistics staff, freight forwarders and dispatchers, or freight drivers, assign access to all directly involved employees. Create and approve schedules, check the status of shipments and orders, monitor turnover, concluded deals and established partnerships. A dashboard with analytics and workflow diagrams will serve you at every step of business development.",
     image: Manager,
     buttonColor: "var(--dark-blue)",
     options: [
@@ -105,7 +103,7 @@ const services = [
     buttonText: "Learn more",
     title: "Feedback at every level from companies to individuals",
     description:
-      "Optimize your decision-making with our evaluation system, offering detailed ratings for companies and individual employees, enhancing your business insights.",
+      "Optimize your decision-making with our evaluation system, offering detailed ratings for companies and individual employees, enhancing your business insights.</br></br>Shape your strategic decisions for your partnerships in the Pickup2 system thanks to the detailed evaluation of the companies. Set criteria and decide with whom to participate in which orders. Strive to always fall into a category with a high level of trust among rated partners.",
     image: Feedback,
     buttonColor: "var(--dark-blue)",
     options: [
@@ -170,7 +168,7 @@ const services = [
 
   &__title {
     font-size: 3.4rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--dark-blue);
     margin-bottom: 3rem;
   }
@@ -194,6 +192,7 @@ const services = [
     margin-bottom: 3rem;
     font-size: 1.6rem;
     font-weight: 300;
+    line-height: 28px;
     @media (min-width: $breakpoint-large) {
       max-width: 75%;
     }
