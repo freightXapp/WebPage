@@ -129,7 +129,6 @@ const pagination = ref({
 
   &__text {
     width: 100%;
-    font-family: "NatoThaiLooped", sans-serif;
     font-size: 1.6rem;
     font-weight: 500;
     color: var(--black);
