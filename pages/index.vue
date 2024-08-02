@@ -16,10 +16,12 @@
         :button-color="item.buttonColor"
       />
     </div>
-
     <ServicesLong />
     <Tabs />
-    <SignUpSection />
+    <SignUpSection
+      :bg-color="'linear-gradient(to bottom,rgba(0, 105, 180, 0.8) 0%,rgba(255, 255, 255, 0.7) 100%)'"
+      :title="'Ready to level up your earnings?'"
+    />
     <Recomendation />
   </div>
 </template>

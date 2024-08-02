@@ -1,7 +1,7 @@
 <template>
   <div class="features">
     <div class="intro-container">
-      <div class="intro-text">
+      <!-- <div class="intro-text">
         <h1>Comprehensive Freight Management Solutions</h1>
         <p>
           Experience seamless transport management with our comprehensive
@@ -10,7 +10,7 @@
           operations with our innovative and reliable tools designed to ensure
           smooth, secure, and economical transportation.
         </p>
-      </div>
+      </div> -->
     </div>
     <div class="features-container">
       <div
@@ -49,7 +49,7 @@ withDefaults(defineProps<Props>(), {});
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: 2rem;
-  margin: 3% 2rem;
+  margin: 1% 2rem;
 
   @media (min-width: $breakpoint_verysmall) {
     grid-template-columns: repeat(2, 1fr);

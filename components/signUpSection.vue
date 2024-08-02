@@ -3,11 +3,12 @@
     <div class="main__container">
       <div class="main__image-wrapper">
         <img :src="serviceImg" alt="Service Image" class="main__image" />
-        <div class="main__overlay"></div>
+        <div class="main__overlay" :style="{ background: bgColor }" />
       </div>
       <div class="main__text-wrapper">
         <div class="main__text-container">
-          <h1>Ready to level up your earnings?</h1>
+          <h1>{{ title }}</h1>
+          <p class="main__description">{{ description }}</p>
           <div class="main__button-container">
             <BaseButton
               :bg-color="'var(--pc2-orange-button)'"
@@ -16,11 +17,35 @@
           </div>
         </div>
       </div>
+      <div class="main__octagon">
+        <svg
+          width="128"
+          height="128"
+          viewBox="0 0 100 100"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <polygon
+            points="50,10 80,20 90,50 80,80 50,90 20,80 10,50 20,20"
+            fill="rgba(0, 31, 63, 1)"
+            stroke="white"
+            stroke-width="10"
+          />
+        </svg>
+      </div>
     </div>
   </section>
 </template>
+
 <script setup lang="ts">
 import serviceImg from "~/assets/BaseIcons/truck-services.jpg";
+
+interface Props {
+  title?: string;
+  description?: string;
+  bgColor: string;
+}
+
+withDefaults(defineProps<Props>(), {});
 </script>
 
 <style lang="scss" scoped>
@@ -34,20 +59,22 @@ import serviceImg from "~/assets/BaseIcons/truck-services.jpg";
 :deep(.button) {
   height: 4rem;
 }
+
 .main {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  overflow: hidden;
-
+  overflow: visible; /* Ensure the main section allows overflow to be visible */
+  padding: 80px 0;
   &__container {
     position: relative;
     width: 100%;
     max-width: 100vw;
     margin-bottom: -1rem;
     text-align: center;
-    height: 30vh;
+    height: 40vh; /* Adjust for mobile first */
+    overflow: visible; /* Ensure the container allows overflow to be visible */
   }
 
   &__image-wrapper {
@@ -70,11 +97,6 @@ import serviceImg from "~/assets/BaseIcons/truck-services.jpg";
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 105, 180, 0.8) 0%,
-      rgba(255, 255, 255, 0.7) 100%
-    );
     z-index: 1;
   }
 
@@ -97,6 +119,10 @@ import serviceImg from "~/assets/BaseIcons/truck-services.jpg";
       font-size: 2rem;
       margin-bottom: 1rem;
     }
+
+    .main__description {
+      display: none; /* Hide description on mobile */
+    }
   }
 
   &__button-container {
@@ -107,12 +133,22 @@ import serviceImg from "~/assets/BaseIcons/truck-services.jpg";
     margin-bottom: 1rem;
   }
 
-  @media (min-width: $breakpoint_small) {
+  &__octagon {
+    position: absolute;
+    bottom: -70px; /* Half the height of the octagon */
+    left: 46%;
+    z-index: 3;
+  }
+
+  @media (min-width: 600px) {
+    /* $breakpoint_small equivalent */
     &__text-wrapper {
       width: 80%;
-    }
 
-    &__text-container {
+      .main__description {
+        display: block; /* Show description on small screens and up */
+      }
+
       h1 {
         font-size: 2.5rem;
       }
@@ -123,12 +159,11 @@ import serviceImg from "~/assets/BaseIcons/truck-services.jpg";
     }
   }
 
-  @media (min-width: $breakpoint_medium) {
+  @media (min-width: 768px) {
+    /* $breakpoint_medium equivalent */
     &__text-wrapper {
       width: 70%;
-    }
 
-    &__text-container {
       h1 {
         font-size: 3rem; /* larger screens */
       }
@@ -139,12 +174,15 @@ import serviceImg from "~/assets/BaseIcons/truck-services.jpg";
     }
   }
 
-  @media (min-width: $breakpoint_large) {
+  @media (min-width: 1024px) {
+    /* $breakpoint_large equivalent */
     &__container {
-      height: 40vh; /* Adjust height for large desktops */
+      height: 50vh; /* Adjust height for large desktops */
     }
 
-    &__text-container {
+    &__text-wrapper {
+      width: 60%;
+
       h1 {
         font-size: 3.5rem; /* large desktops */
       }
