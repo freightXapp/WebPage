@@ -1,10 +1,11 @@
 <template>
-
   <ul class="header__nav-list" :class="{ 'header__nav-mobile': isToggle }">
-
     <li class="header__nav-item">
       <NuxtLink to="/Shippers" class="header__nav-link" @click="closeModal">
-        <span class="header__nav-title" :class="[{ 'header__nav-title--white': isAbove }]">
+        <span
+          class="header__nav-title"
+          :class="[{ 'header__nav-title--white': isAbove }]"
+        >
           Shippers
         </span>
       </NuxtLink>
@@ -12,28 +13,40 @@
     </li>
     <li class="header__nav-item">
       <NuxtLink to="/forwarders" class="header__nav-link" @click="closeModal">
-        <span class="header__nav-title" :class="[{ 'header__nav-title--white': isAbove }]">
+        <span
+          class="header__nav-title"
+          :class="[{ 'header__nav-title--white': isAbove }]"
+        >
           Forwarders
         </span>
       </NuxtLink>
     </li>
     <li class="header__nav-item">
       <NuxtLink href="/carriers" class="header__nav-link" @click="closeModal">
-        <span class="header__nav-title" :class="[{ 'header__nav-title--white': isAbove }]">
+        <span
+          class="header__nav-title"
+          :class="[{ 'header__nav-title--white': isAbove }]"
+        >
           Carriers
         </span>
       </NuxtLink>
     </li>
     <li class="header__nav-item">
       <NuxtLink to="/pricing" class="header__nav-link" @click="closeModal">
-        <span class="header__nav-title" :class="[{ 'header__nav-title--white': isAbove }]">
+        <span
+          class="header__nav-title"
+          :class="[{ 'header__nav-title--white': isAbove }]"
+        >
           Pricing
         </span>
       </NuxtLink>
     </li>
     <li class="header__nav-item">
-      <NuxtLink href="#" class="header__nav-link" @click="closeModal">
-        <span class="header__nav-title" :class="[{ 'header__nav-title--white': isAbove }]">
+      <NuxtLink href="/about" class="header__nav-link" @click="closeModal">
+        <span
+          class="header__nav-title"
+          :class="[{ 'header__nav-title--white': isAbove }]"
+        >
           About us
         </span>
       </NuxtLink>
@@ -42,7 +55,6 @@
 </template>
 
 <script setup lang="ts">
-
 interface Props {
   isToggle: boolean;
   isAbove?: boolean;
@@ -52,11 +64,9 @@ const emit = defineEmits(["close-modal"]);
 withDefaults(defineProps<Props>(), {});
 
 const closeModal = () => {
-  emit('close-modal');
+  emit("close-modal");
 };
 </script>
-
-
 
 <style scoped lang="scss">
 .header {
