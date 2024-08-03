@@ -18,7 +18,6 @@
   <div class="background">
     <FeatureSection class="main-container" :feature-data="featureData" />
   </div>
-  <Stats />
   <!-- PROMO -->
   <PromoSection
     class="main-container"
@@ -38,7 +37,10 @@
     :reverse="true"
   />
 
-  <SignUpSection />
+  <SignUpSection
+    :bg-color="'linear-gradient(to bottom,rgba(0, 105, 180, 0.8) 0%,rgba(255, 255, 255, 0.7) 100%)'"
+    :title="'Ready to level up your earnings?'"
+  />
 </template>
 
 <script lang="ts" setup>

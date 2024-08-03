@@ -28,7 +28,7 @@ interface Props {
 withDefaults(defineProps<Props>(), {
     reverse: false,
     rotate: false,
-    backgroundColor: 'var(--light-white)',
+
 });
 </script>
 

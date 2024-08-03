@@ -10,10 +10,26 @@
     :title="infoData.title"
     :description="infoData.description"
     :illustration="infoData.illustration"
+    :buttonText="'Explore Docs'"
+    :buttonColor="'var(--pc2-orange-button)'"
   />
-  <div class="background">
-    <FeatureSection class="main-container" :feature-data="featureData" />
-  </div>
+  <InfoSection
+    class="main-container"
+    :roadmapPoints="infoData2.roadmapPoints"
+    :illustration="infoData2.illustration"
+    :reverse="true"
+    :buttonText="'Create Account'"
+    :buttonColor="'var(--pc2-blue)'"
+  />
+  <SignUpSection
+    class="signup"
+    :title="'Key benefits'"
+    :description="'An organized process structure, a flexible hierarchy of access and analytics, and customized automation according to specific business needs represent the toolkit available on the platform.'"
+    :bgColor="'linear-gradient(to bottom, rgba(27, 126, 218, 0.8) 16.36%, rgba(9, 70, 127, 0.7) 30.89%, rgba(3, 32, 66, 0.7) 46.83%, rgba(0, 0, 0, 0.7) 66.98%)'"
+  />
+
+  <FeatureSection class="main-container" :feature-data="featureData" />
+
   <PromoSection
     class="main-container"
     :title="promoData.title"
@@ -33,24 +49,37 @@
     :background-color="''"
   />
 
-  <SignUpSection />
+  <SignUpSection
+    :bg-color="'linear-gradient(to bottom,rgba(0, 105, 180, 0.8) 0%,rgba(255, 255, 255, 0.7) 100%)'"
+    :title="'Ready to level up your earnings?'"
+  />
 </template>
 
 <script lang="ts" setup>
 import IllustrationImg from "@/assets/BaseIcons/Shippers3.webp";
-
+import IllustrationImg2 from "@/assets/BaseIcons/carriers2.png";
 import boxSVG from "../assets/BaseIcons/time.svg";
 import circleChartSVG from "../assets/BaseIcons/tracking2.svg";
 import trackingSVG from "../assets/BaseIcons/flexibility.svg";
 import upperChartSVG from "../assets/BaseIcons/communication1.svg";
 const infoData = {
-  title: "At PickUp",
+  title: "Vision",
 
   description: [
     "we understand that successfully transporting your freights is critical to your business. Our platform offers integrated solutions that simplify the entire process, from start to finish.",
     "We focus on efficiency, security and transparency to provide you with the best possible service.",
   ],
   illustration: IllustrationImg,
+};
+
+const infoData2 = {
+  roadmapPoints: [
+    "Create a free account by following the specific steps",
+    "Prepare the necessary documents and post them in a secure repository specially created for the purpose",
+    "Set up the database relevant to you in the intuitively designed desktop for your specific needs",
+    "Start making deals and manage your business processes more easily",
+  ],
+  illustration: IllustrationImg2,
 };
 
 const featureData = [
@@ -93,14 +122,6 @@ const promoData2 = {
 </script>
 
 <style lang="scss" scoped>
-:deep(.pickup-section__title) {
-  &:after {
-    content: "2";
-    color: var(--main-orange);
-    font-size: 6rem;
-  }
-}
-
 .main-container {
   margin: 0 auto;
 }
