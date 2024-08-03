@@ -1,9 +1,9 @@
 <template>
   <div class="roadmap">
-    <div class="background-line"></div>
+    <div class="background-line" />
     <div v-for="(point, index) in points" :key="index" class="roadmap-point">
       <div class="roadmap-content">
-        <div class="point-circle"></div>
+        <div class="point-circle" />
         <div class="point-text">{{ point }}</div>
       </div>
     </div>

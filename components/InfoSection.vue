@@ -3,7 +3,7 @@
     <div class="pickup-section__content" :class="{ reverse: reverse }">
       <div class="pickup-section__text">
         <h1 class="pickup-section__title">{{ title }}</h1>
-        <VerticalRoadmap v-if="roadmapPoints" :points="roadmapPoints" />
+        <VerticalRoadMap v-if="roadmapPoints" :points="roadmapPoints" />
         <p
           v-for="(paragraphText, index) in description"
           v-else
@@ -112,9 +112,6 @@ withDefaults(defineProps<Props>(), {
         display: block;
         margin: 0 auto;
         max-width: 100%;
-        width: 100%; /* Ensure the images take up the full width */
-        max-height: 400px; /* Set a maximum height for consistency */
-        object-fit: contain; /* Ensure the images scale properly */
       }
     }
   }
@@ -123,8 +120,7 @@ withDefaults(defineProps<Props>(), {
     .pickup-section__content {
       .pickup-section__illustration {
         img {
-          max-width: 100%; /* Ensure the images take up the full width */
-          max-height: 400px; /* Set a maximum height for consistency */
+          max-width: 70%;
         }
       }
 
@@ -144,8 +140,7 @@ withDefaults(defineProps<Props>(), {
     .pickup-section__content {
       .pickup-section__illustration {
         img {
-          max-width: 100%; /* Ensure the images take up the full width */
-          max-height: 400px; /* Set a maximum height for consistency */
+          max-width: 90%;
         }
       }
 
@@ -172,8 +167,7 @@ withDefaults(defineProps<Props>(), {
       .pickup-section__illustration {
         img {
           width: 100%;
-          max-width: 70%; /* Ensure the images take up the full width */
-          max-height: 400px; /* Set a maximum height for consistency */
+          max-width: 70%;
         }
       }
     }
@@ -184,8 +178,7 @@ withDefaults(defineProps<Props>(), {
       .pickup-section__illustration {
         img {
           width: 100%;
-          max-width: 90%; /* Ensure the images take up the full width */
-          max-height: 400px; /* Set a maximum height for consistency */
+          max-width: 90%;
         }
       }
 
