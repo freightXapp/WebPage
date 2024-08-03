@@ -26,8 +26,6 @@
 </template>
 
 <script lang="ts" setup>
-import VerticalRoadmap from "@/components/VerticalRoadmap.vue";
-
 interface Props {
   title?: string;
   description?: string[];
