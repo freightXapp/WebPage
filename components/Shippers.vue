@@ -15,7 +15,7 @@
   />
   <InfoSection
     class="main-container"
-    :roadmapPoints="infoData2.roadmapPoints"
+    :roadmap-points="infoData2.roadmapPoints"
     :illustration="infoData2.illustration"
     :reverse="true"
     :buttonText="'Create Account'"

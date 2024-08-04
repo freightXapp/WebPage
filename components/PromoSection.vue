@@ -49,6 +49,7 @@ withDefaults(defineProps<Props>(), {
   border-radius: 8px;
   flex-direction: column;
   overflow: hidden;
+  top: 10rem;
 
   .promo-image img {
     max-width: 100%;
