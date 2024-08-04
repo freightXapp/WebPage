@@ -56,8 +56,8 @@
 </template>
 
 <script lang="ts" setup>
-import IllustrationImg from "@/assets/BaseIcons/Shippers3.webp";
-import IllustrationImg2 from "@/assets/BaseIcons/carriers2.png";
+import IllustrationImg from "@/assets/BaseIcons/shippers3.png";
+import IllustrationImg2 from "@/assets/BaseIcons/shippers4.png";
 import boxSVG from "../assets/BaseIcons/time.svg";
 import circleChartSVG from "../assets/BaseIcons/tracking2.svg";
 import trackingSVG from "../assets/BaseIcons/flexibility.svg";
@@ -66,7 +66,8 @@ const infoData = {
   title: "Vision",
 
   description: [
-    "we understand that successfully transporting your freights is critical to your business. Our platform offers integrated solutions that simplify the entire process, from start to finish.",
+    "At PickUp2,we understand that successfully transporting your freights is critical to your business.",
+    "Our platform offers integrated solutions that simplify the entire process, from start to finish.",
     "We focus on efficiency, security and transparency to provide you with the best possible service.",
   ],
   illustration: IllustrationImg,

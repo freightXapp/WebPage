@@ -42,6 +42,16 @@
       </NuxtLink>
     </li>
     <li class="header__nav-item">
+      <NuxtLink to="/managers" class="header__nav-link" @click="closeModal">
+        <span
+          class="header__nav-title"
+          :class="[{ 'header__nav-title--white': isAbove }]"
+        >
+          Managers
+        </span>
+      </NuxtLink>
+    </li>
+    <li class="header__nav-item">
       <NuxtLink href="/about" class="header__nav-link" @click="closeModal">
         <span
           class="header__nav-title"

@@ -64,25 +64,26 @@ const infoData2 = {
 const featureData = [
   {
     icon: boxSVG,
-    title: "Time and efficiency",
-    description: "Find the fastest and most reliable routes for your freights",
+    title: "Planning and organizing",
+    description: "Optimize routes and schedules for maximum efficiency.",
   },
   {
     icon: circleChartSVG,
-    title: "Security and tracking",
-    description: "Track your shipments in real time for maximum security.",
+    title: "Real-time communication",
+    description:
+      "Stay in constant contact with trustees and drivers for hassle-free transportation.",
   },
   {
     icon: trackingSVG,
-    title: "Flexibility and adaptability",
+    title: "Tracking and security",
     description:
-      "Choose from a variety of carriers and services tailored to your needs.",
+      "Track the movement of your freight in real time for maximum security.",
   },
   {
     icon: upperChartSVG,
-    title: "Communication and collaboration",
+    title: "Resource management",
     description:
-      "Easy communication with all involved in the process for a smooth implementation",
+      "Use your resources efficiently to reduce costs and delivery times.",
   },
 ];
 </script>

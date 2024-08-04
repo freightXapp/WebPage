@@ -11,13 +11,26 @@
     :title="infoData.title"
     :description="infoData.description"
     :illustration="infoData.illustration"
-    :backgroundColor="''"
+    :buttonText="'Explore Docs'"
+    :buttonColor="'var(--pc2-orange-button)'"
   />
 
+  <InfoSection
+    class="main-container"
+    :roadmapPoints="infoData2.roadmapPoints"
+    :illustration="infoData2.illustration"
+    :reverse="true"
+    :buttonText="'Create Account'"
+    :buttonColor="'var(--pc2-blue)'"
+  />
   <!--  FEATURE -->
-  <div class="background">
-    <FeatureSection class="main-container" :feature-data="featureData" />
-  </div>
+  <SignUpSection
+    class="signup"
+    :title="'Key benefits'"
+    :description="'Brokerage services and professionally developed negotiation skills are the engine of the economy. Keep your machine well oiled with the platforms digitized ways without losing the character of high trading practices.'"
+    :bgColor="'linear-gradient(to bottom, rgba(27, 126, 218, 0.8) 16.36%, rgba(9, 70, 127, 0.7) 30.89%, rgba(3, 32, 66, 0.7) 46.83%, rgba(0, 0, 0, 0.7) 66.98%)'"
+  />
+  <FeatureSection class="main-container" :feature-data="featureData" />
   <!-- PROMO -->
   <PromoSection
     class="main-container"
@@ -44,11 +57,12 @@
 </template>
 
 <script lang="ts" setup>
-import Illustration from "../assets/BaseIcons/forwardersIlustration.webp";
+import Illustration from "../assets/BaseIcons/forwardersIlustration.png";
 import boxSVG from "../assets/BaseIcons/box.svg";
 import circleChartSVG from "../assets/BaseIcons/circleChart.svg";
 import trackingSVG from "../assets/BaseIcons/tracking.svg";
 import upperChartSVG from "../assets/BaseIcons/upperChart.svg";
+import IllustrationImg2 from "@/assets/BaseIcons/forwarders4.png";
 
 const promoData = {
   image: "../img/dash.jpeg",
@@ -93,24 +107,26 @@ const featureData = [
 ];
 
 const infoData = {
-  title: "At PickUp",
+  title: "VISION",
   description: [
     "we understand that successful freight forwarding requires not only precise planning and coordination, but also flexibility to deal with various challenges.",
     "Our platform offers integrated tools that make it easier for freight forwarders to manage orders, communicate with trustees and carriers, and optimize transport routes.",
   ],
   illustration: Illustration,
 };
+
+const infoData2 = {
+  roadmapPoints: [
+    "Create a free account by following the specific steps",
+    "Prepare the necessary documents and post them in a secure repository specially created for the purpose",
+    "Set up the database relevant to you in the intuitively designed desktop for your specific needs",
+    "Start making deals and manage your business processes more easily",
+  ],
+  illustration: IllustrationImg2,
+};
 </script>
 
 <style lang="scss" scoped>
-:deep(.pickup-section__title) {
-  &:after {
-    content: "2";
-    color: var(--main-orange);
-    font-size: 6rem;
-  }
-}
-
 :deep(.promo-image) {
   &:nth-child(0) {
     rotate: 20deg;
