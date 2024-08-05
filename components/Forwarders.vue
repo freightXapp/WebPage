@@ -127,12 +127,6 @@ const infoData2 = {
 </script>
 
 <style lang="scss" scoped>
-:deep(.promo-image) {
-  &:nth-child(0) {
-    rotate: 20deg;
-  }
-}
-
 .main-container {
   margin: 0 auto;
 }

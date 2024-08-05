@@ -25,11 +25,35 @@
   <SignUpSection
     class="signup"
     :title="'Key benefits'"
-    :description="'An organized process structure, a flexible hierarchy of access and analytics, and customized automation according to specific business needs represent the toolkit available on the platform.'"
+    :description="'Your business needs persistence, and your affiliate network needs value. Position your business in the most innovative place in a new era of technological progress.'"
     :bgColor="'linear-gradient(to bottom, rgba(27, 126, 218, 0.8) 16.36%, rgba(9, 70, 127, 0.7) 30.89%, rgba(3, 32, 66, 0.7) 46.83%, rgba(0, 0, 0, 0.7) 66.98%)'"
   />
 
   <FeatureSection class="main-container" :feature-data="featureData" />
+
+  <PromoSection
+    class="main-container"
+    :title="promoData.title"
+    :image-alt="promoData.imageAlt"
+    :description="promoData.description"
+    :image="promoData.image"
+    :rotate="true"
+  />
+
+  <PromoSection
+    class="main-container"
+    :title="promoData2.title"
+    :image-alt="promoData.imageAlt"
+    :description="promoData2.description"
+    :image="promoData2.image"
+    :reverse="true"
+    :background-color="''"
+  />
+
+  <SignUpSection
+    :bg-color="'linear-gradient(to bottom,rgba(0, 105, 180, 0.8) 0%,rgba(255, 255, 255, 0.7) 100%)'"
+    :title="'Ready to level up your earnings?'"
+  />
 </template>
 
 <script lang="ts" setup>
@@ -86,11 +110,24 @@ const featureData = [
       "Use your resources efficiently to reduce costs and delivery times.",
   },
 ];
+
+const promoData = {
+  image: "../img/dash.jpeg",
+  imageAlt: "Logistics Dashboard",
+  title: " Need a fast and reliable solution for your freight?",
+  description: " Join PickUp2 and start using our platform today!",
+};
+
+const promoData2 = {
+  image: "../img/Shippers2.png",
+  title: "Looking for a secure and efficient way to manage your freight?",
+  description: "Get started now and take advantage of PickUp2!",
+};
 </script>
 
 <style scoped>
 .main-container {
-  padding: 20px;
+  margin: 0 auto;
 }
 
 .info-section {
